@@ -1,4 +1,4 @@
-window.PPush.common =
+window.RailsApp.common =
 
   init: ->
 
