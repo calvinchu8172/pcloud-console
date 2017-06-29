@@ -1,10 +1,10 @@
-window.PPush = {}
+window.RailsApp = {}
 
 UTIL =
 
   exec: (controller, action) ->
 
-    handler    = PPush
+    handler    = RailsApp
     action     = if action == undefined then 'init' else action
     controller = controller.replace(/\//g, '_')
 
