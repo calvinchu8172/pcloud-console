@@ -57,7 +57,7 @@ group :test do
   gem 'rspec-rails', '3.6.0'
   gem 'selenium-webdriver', '3.4.3'
   gem 'simplecov', '0.14.1', require: false
-  gem 'timecop', '0.8.1'
+  gem 'timecop', '0.9.0'
   gem 'webmock', '3.0.1'
   gem 'webrat', '0.7.3'
   gem 'spring-commands-cucumber', '1.0.1'
@@ -108,7 +108,7 @@ end
 # --------- #
 
 gem 'faker', '1.7.3', group: [:development, :test]
-gem 'hamlit', '2.8.1'
+gem 'hamlit', '2.8.4'
 gem 'i18n-docs', '0.1.0', group: :development
 gem 'letter_opener', '1.4.1', group: :development
 gem 'nokogiri', '1.8.0'
