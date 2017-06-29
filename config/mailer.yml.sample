@@ -11,7 +11,7 @@ development:
   default_options:
     from: RailsApp <rails-app@example.com>
   default_url_options:
-    host:
+    host: localhost:3000
     protocol:
 test:
   delivery_method: :test
