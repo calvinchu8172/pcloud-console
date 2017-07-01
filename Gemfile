@@ -25,11 +25,25 @@ group :development do
 end
 
 # ------------ #
+# - Optimize - #
+# ------------ #
+
+# Boot large ruby/rails apps faster
+gem 'bootsnap', '1.1.1'
+
+# ----------- #
+# - Monitor - #
+# ----------- #
+
+# health check apis for latency and db: /health/latency, /health/db
+gem 'rails-health-check', '1.0.0'
+
+# ------------ #
 # - Database - #
 # ------------ #
 
 gem 'mysql2', '0.4.6'
-# optimize database
+# help to kill N+1 queries and unused eager loading
 gem 'bullet', '5.5.1', group: :development
 
 # --------- #
