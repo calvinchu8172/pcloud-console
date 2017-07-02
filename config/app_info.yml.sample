@@ -1,0 +1,10 @@
+---
+development:
+  stack_env: develop
+  hostname: localhost
+test:
+  stack_env: develop
+  hostname: localhost
+production:
+  stack_env: develop
+  hostname: localhost
