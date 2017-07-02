@@ -4,7 +4,7 @@ end
 
 class SlackNotifier
 
-  attr_accessor :event, :status, :fields
+  attr_accessor :webhook_url, :channel, :username, :event, :status, :fields
 
   # 初始化
   def initialize(event, status = :success)
@@ -16,15 +16,15 @@ class SlackNotifier
   end
 
   def webhook_url
-    Rails.configuration.slack[:webhook_url]
+    @webhook_url ||= Rails.configuration.slack[:webhook_url]
   end
 
   def channel
-    Rails.configuration.slack[:channel]
+    @channel ||= Rails.configuration.slack[:channel]
   end
 
   def username
-    "#{App.stack_env}.#{App.hostname}"
+    @username ||= "#{App.stack_env}.#{App.hostname}"
   end
 
   # 進行通知
