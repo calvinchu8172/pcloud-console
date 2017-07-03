@@ -20,8 +20,8 @@ class Log < ActiveRecord::Base
   }
 
   class << self
-    def write(source, target, event, extra = nil)
-      create(source: source, target: target, event: event, extra: extra)
+    def write(source, target, ip, event, extra = nil)
+      create(source: source, target: target, source_ip: ip, event: event, extra: extra)
     end
   end
 end

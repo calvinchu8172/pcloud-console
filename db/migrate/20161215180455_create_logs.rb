@@ -2,6 +2,7 @@ class CreateLogs < ActiveRecord::Migration[5.0]
   def change
     create_table :logs do |t|
       t.references :source, index: true, polymorphic: true, null: false
+      t.string     :source_ip
       t.references :target, index: true, polymorphic: true
       t.string     :event,  index: true, null: false
       t.text       :extra

@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20170106045047) do
   create_table "logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "source_type",               null: false
     t.integer  "source_id",                 null: false
+    t.string   "source_ip"
     t.string   "target_type"
     t.integer  "target_id"
     t.string   "event",                     null: false

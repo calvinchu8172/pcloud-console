@@ -23,6 +23,14 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
+  def destroy
+    @resource = current_user
+    @ip = request.remote_ip
+    super do
+      Log.write(@resource, @resource, @ip, 'user_sign_out')
+    end
+  end
+
   protected
 
     def after_sign_out_path_for(resource_or_scope)
