@@ -2,11 +2,24 @@ Rails.application.routes.draw do
 
   root 'admin/dashboard#index'
 
+  # 首頁
+  # authenticated do
+  #   # root 'dashboard#index'
+  #   root 'admin/dashboard#index'
+  # end
+
+  # unauthenticated do
+  #   devise_scope :user do
+  #     root 'users/sessions#unauthenticate', as: 'unauthenticate'
+  #   end
+  # end
+
   devise_for :users,
     controllers: {
       passwords:   'users/passwords',
       sessions:    'users/sessions',
-      invitations: 'users/creations'
+      invitations: 'users/creations',
+      omniauth_callbacks: 'users/omniauth_callbacks'
     },
     path_names: {
       invitation: 'creation'

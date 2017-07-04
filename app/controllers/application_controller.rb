@@ -9,4 +9,17 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
+
+  private
+
+  def after_sign_in_path_for(resource)
+    Log.write(resource, resource, request.remote_ip, 'user_sign_in')
+    if resource.profile.anonymous?
+      flash[:notice] = t('common.messages.all_unauthorized')
+      return root_url
+    end
+
+    super
+  end
+
 end

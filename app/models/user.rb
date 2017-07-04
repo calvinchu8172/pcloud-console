@@ -1,11 +1,14 @@
 class User < ApplicationRecord
+  include UserOmniauth
   include UserProfileable
 
   # Include default devise modules. Others available are:
   # :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :timeoutable, :invitable, :lockable
+         :confirmable, :timeoutable, :invitable, :lockable,
+         :omniauthable, omniauth_providers: [:ecowork]
+
 
   # 使用者登入紀錄
   def after_database_authentication

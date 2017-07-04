@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106045047) do
+ActiveRecord::Schema.define(version: 20170703085211) do
 
   create_table "logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "source_type",               null: false
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20170106045047) do
     t.index ["source_type", "source_id"], name: "index_logs_on_source_type_and_source_id", using: :btree
     t.index ["target_type", "target_id"], name: "index_logs_on_target_type_and_target_id", using: :btree
     t.index ["updated_at"], name: "index_logs_on_updated_at", using: :btree
+  end
+
+  create_table "omniauths", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_omniauths_on_user_id", using: :btree
   end
 
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -77,5 +87,6 @@ ActiveRecord::Schema.define(version: 20170106045047) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  add_foreign_key "omniauths", "users"
   add_foreign_key "profiles", "users"
 end

@@ -84,4 +84,11 @@ class Ability
 
     def load_content_manager_permissions(user)
     end
+
+    # -------------------- #
+    # - 載入無權限 - #
+    # -------------------- #
+
+    def load_anonymous_permissions(user)
+    end
 end

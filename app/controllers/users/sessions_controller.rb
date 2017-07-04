@@ -14,7 +14,6 @@ class Users::SessionsController < Devise::SessionsController
   def create
     super do |resource|
       # 儲存此次登入的 Email 資訊
-      # 儲存此次登入的 Email 資訊
       if params[:remember_me] == '1'
         cookies.permanent[:email] = { value: params[:user][:email], httponly: true }
       else
@@ -29,6 +28,11 @@ class Users::SessionsController < Devise::SessionsController
     super do
       Log.write(@resource, @resource, @ip, 'user_sign_out')
     end
+  end
+
+  def unauthenticate
+    # redirect_to user_myzyxel_omniauth_authorize_url
+    redirect_to user_ecowork_omniauth_authorize_url
   end
 
   protected

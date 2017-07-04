@@ -57,12 +57,16 @@ zh-TW:
       no_record_found: 找不到記錄
       import_empty_csv: 匯入空白檔案
       unauthorized: 您無權存取此頁面。
+      all_unauthorized: 您無任何權限。
       no_data_available: 目前無任何資料
       no_data_matching: 無任何符合資料
       please_wait: 請稍候...
       not_found: 找不到
       check_one_at_least: 請至少選擇一列。
       confirm: 您確定要執行？
+
     placeholders:
       select_options: 請選擇
       select_one_option: 請選擇一個選項
+    main:
+      title: P.Cloud 後台

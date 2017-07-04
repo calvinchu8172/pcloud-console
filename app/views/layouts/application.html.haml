@@ -36,7 +36,10 @@
           = render 'shared/components/footer'
     - else
       .container-fluid
+        %h1= yield :console_name
+        %hr.header_devider
         .devise-wrapper
+          / %h1= yield :console_name
           %h1= yield :title
           = render 'shared/wrappers/flash'
           = yield
