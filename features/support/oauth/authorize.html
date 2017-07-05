@@ -1,0 +1,31 @@
+<div class="main container-fluid">
+  <div class="title">
+    OAuth Authorization Form
+  </div>
+  <div class="content">
+    <p>The site myZyxel Accounts is requesting access to your myZyxel Account for the information listed below </p>
+    <ul>
+      <li>{{email}}</li>
+    </ul>
+    <div>
+      <form action="#{ENV['ECOWORK_OAUTH_APP_URL']}/oauth/authorize" method="post">
+        <input type="hidden" name="client_id" id="client_id" value="{{client_id}}">
+        <input type="hidden" name="redirect_uri" id="redirect_uri" value="{{redirect_uri}}">
+        <input type="hidden" name="state" id="state" value="{{state}}">
+        <input type="hidden" name="response_type" id="response_type" value="{{response_type}}">
+        <input type="hidden" name="scope" id="scope" value="">
+        <input type="submit" name="commit" value="Authorize" class="btn btn-custom btn-block" data-disable-with="Authorize">
+      </form>
+    </div>
+    <div>
+      <form action="#{ENV['ECOWORK_OAUTH_APP_URL']}/oauth/authorize" method="post">
+        <input type="hidden" name="client_id" id="client_id" value="{{client_id}}">
+        <input type="hidden" name="redirect_uri" id="redirect_uri" value="{{redirect_uri}}">
+        <input type="hidden" name="state" id="state" value="{{state}}">
+        <input type="hidden" name="response_type" id="response_type" value="{{response_type}}">
+        <input type="hidden" name="scope" id="scope" value="">
+        <input type="submit" name="commit" value="Deny" class="btn btn-danger btn-block" data-disable-with="Deny">
+      </form>
+    </div>
+  </div>
+</div>

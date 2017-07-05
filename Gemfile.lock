@@ -212,6 +212,7 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
+    liquid (4.0.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -474,6 +475,7 @@ DEPENDENCIES
   json_spec (= 1.1.5)
   kaminari (= 1.0.1)
   letter_opener (= 1.4.1)
+  liquid (= 4.0.0)
   listen (~> 3.0.5, = 3.0.8)
   logging (= 2.0.0)
   logging-rails (= 0.6.0)
@@ -514,4 +516,4 @@ DEPENDENCIES
   yard-cucumber (= 3.1.0)
 
 BUNDLED WITH
-   1.14.6
+   1.15.1

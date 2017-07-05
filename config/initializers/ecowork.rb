@@ -26,7 +26,6 @@ module OmniAuth
       end
 
       def user_info
-        # binding.pry
         # @user_info ||= access_token.get('http://api-pcloud.dev/api/v1/my/info').parsed
         @user_info ||= access_token.get('/api/v1/my/info').parsed
       end

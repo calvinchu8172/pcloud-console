@@ -34,7 +34,8 @@ zh-TW:
       show: 人員帳號資訊
       edit: 編輯人員帳號
     messages:
-      super_admin_sign_up_success: 超級管理員註冊成功，請先前往 %{email} 信箱完成驗證手續。
+      # super_admin_sign_up_success: 超級管理員註冊成功，請先前往 %{email} 信箱完成驗證手續。
+      super_admin_sign_up_success: 超級管理員註冊成功。
       resend_creation_success: 已成功重新寄送認證信件給 %{email}。
       lock_success: 已成功鎖定 %{email}。
       unlock_success: 已成功解鎖 %{email}。

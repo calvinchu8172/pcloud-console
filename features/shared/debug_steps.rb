@@ -10,3 +10,7 @@ When /^debug$/ do
   # puts Hash.from_xml(last_response.body)
   # puts Nokogiri::XML(last_response.body)
 end
+
+When(/^screenshot "([^"]*)"$/) do |screenshot|
+  page.save_screenshot("#{screenshot}.png")
+end

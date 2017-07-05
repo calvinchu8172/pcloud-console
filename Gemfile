@@ -115,6 +115,7 @@ gem 'faker', '1.7.3', group: [:development, :test]
 gem 'hamlit', '2.8.1'
 gem 'i18n-docs', '0.1.0', group: :development
 gem 'letter_opener', '1.4.1', group: :development
+gem 'liquid', '4.0.0'
 gem 'nokogiri', '1.8.0'
 gem 'rails-config-loaders', '1.0.1'
 gem 'rails_best_practices', '1.18.1'
