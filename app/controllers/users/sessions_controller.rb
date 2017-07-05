@@ -32,7 +32,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def unauthenticate
     # redirect_to user_myzyxel_omniauth_authorize_url
-    redirect_to user_ecowork_omniauth_authorize_url
+    redirect_to user_zyxel_omniauth_authorize_url
   end
 
   protected

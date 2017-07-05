@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :timeoutable, :invitable, :lockable,
-         :omniauthable, omniauth_providers: [:ecowork]
+         :omniauthable, omniauth_providers: [:zyxel]
 
 
   # 使用者登入紀錄

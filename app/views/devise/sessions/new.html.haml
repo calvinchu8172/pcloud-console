@@ -22,6 +22,4 @@
 /           = link_to t('devise.labels.resend_confirmation_email'), super_admin_confirmation_resend_url
 /         = link_to t('devise.labels.forgot_password'), new_password_url(resource_name)
 
-/= button_to 'SSO Log in', omniauth_authorize_path(resource_name, :ecowork), class: 'btn-block btn-success'
-/= button_to 'SSO Log in', user_omniauth_authorize_path(:ecowork), class: 'btn-block btn-success'
-= button_to t('devise.labels.sign_in'), user_ecowork_omniauth_authorize_url, class: 'btn btn-block btn-success'
+= button_to t('devise.labels.sign_in'), user_zyxel_omniauth_authorize_url, class: 'btn btn-block btn-success'

@@ -29,6 +29,6 @@ Feature: 01_01: SSO Login
      And fills in "Password" with "12345678"
      And presses "Submit"
      And presses "Deny"
-    Then the user should see a message - "無法從 Ecowork 驗證"
+    Then the user should see a message - "無法從 Zyxel 驗證"
     Then the user should see a message - "擁有者或認證伺服器拒絕此需求"
     Then the user should see "P.Cloud 後台"

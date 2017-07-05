@@ -2,12 +2,12 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    class Ecowork < OmniAuth::Strategies::OAuth2
+    class Zyxel < OmniAuth::Strategies::OAuth2
 
-      option :name, :ecowork
+      option :name, :zyxel
 
       option :client_options, {
-        site: ENV['ECOWORK_OAUTH_APP_URL'],
+        site: ENV['ZYXEL_OAUTH_APP_URL'],
         authorize_url: '/oauth/authorize'
       }
 

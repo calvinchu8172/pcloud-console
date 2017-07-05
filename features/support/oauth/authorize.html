@@ -8,7 +8,7 @@
       <li>{{email}}</li>
     </ul>
     <div>
-      <form action="#{ENV['ECOWORK_OAUTH_APP_URL']}/oauth/authorize" method="post">
+      <form action="#{ENV['ZYXEL_OAUTH_APP_URL']}/oauth/authorize" method="post">
         <input type="hidden" name="client_id" id="client_id" value="{{client_id}}">
         <input type="hidden" name="redirect_uri" id="redirect_uri" value="{{redirect_uri}}">
         <input type="hidden" name="state" id="state" value="{{state}}">
@@ -18,7 +18,7 @@
       </form>
     </div>
     <div>
-      <form action="#{ENV['ECOWORK_OAUTH_APP_URL']}/oauth/authorize" method="post">
+      <form action="#{ENV['ZYXEL_OAUTH_APP_URL']}/oauth/authorize" method="post">
         <input type="hidden" name="client_id" id="client_id" value="{{client_id}}">
         <input type="hidden" name="redirect_uri" id="redirect_uri" value="{{redirect_uri}}">
         <input type="hidden" name="state" id="state" value="{{state}}">
