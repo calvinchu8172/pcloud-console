@@ -1,0 +1,12 @@
+zh-TW:
+  activerecord:
+    attributes:
+      group:
+        name: 名稱
+        created_at: 建立時間
+        updated_at: 更新時間
+  group:
+    names:
+      none: 無
+      system_management: 系統管理
+      push_management: 推播管理

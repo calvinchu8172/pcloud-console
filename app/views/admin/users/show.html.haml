@@ -21,14 +21,16 @@
           = link_to edit_admin_user_url(@user), class: 'btn btn-app btn-sm' do
             = fa_icon('pencil')
             = t('common.labels.edit')
-        - if can?(:lock, @user)
-          = link_to lock_admin_user_url(@user), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
-            = fa_icon('lock')
-            = t('common.labels.lock')
-        - if can?(:unlock, @user)
-          = link_to unlock_admin_user_url(@user), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'put' do
-            = fa_icon('unlock')
-            = t('common.labels.unlock')
+        - if !@user.access_locked?
+          - if can?(:lock, @user)
+            = link_to lock_admin_user_url(@user), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
+              = fa_icon('lock')
+              = t('common.labels.lock')
+        - else
+          - if can?(:unlock, @user)
+            = link_to unlock_admin_user_url(@user), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'put' do
+              = fa_icon('unlock')
+              = t('common.labels.unlock')
   .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_title
@@ -44,16 +46,29 @@
             .col-sm-10.col-xs-12
               %p.form-control-static
                 = @user.email
+          / .form-group
+          /   = label_tag :user, Profile.human_attribute_name(:name), class: 'control-label col-sm-2 col-xs-12'
+          /   .col-sm-10.col-xs-12
+          /     %p.form-control-static
+          /       = @user.profile.name
           .form-group
-            = label_tag :user, Profile.human_attribute_name(:name), class: 'control-label col-sm-2 col-xs-12'
+            = label_tag :user, User.human_attribute_name(:lock_status), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
               %p.form-control-static
-                = @user.profile.name
+                = @user.lock_status
           .form-group
-            = label_tag :user, Profile.human_attribute_name(:role), class: 'control-label col-sm-2 col-xs-12'
+            = label_tag :user, User.human_attribute_name(:group_ids), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
-              %p.form-control-static
-                = Profile.human_attribute_name("role.#{@user.profile.role}")
+              - if @user.super_admin?
+                %p.form-control-static
+                  = Profile.human_attribute_name(:super_admin)
+              - elsif @user.groups.empty?
+                %p.form-control-static
+                  = I18n.t('group.names.none')
+              - else
+                - @user.groups.options.each do |option|
+                  %p.form-control-static
+                    = option
           .form-group
             = label_tag :user, User.human_attribute_name(:sign_in_count), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
@@ -64,6 +79,21 @@
             .col-sm-10.col-xs-12
               %p.form-control-static
                 = @user.current_sign_in_at
+          .form-group
+            = label_tag :user, User.human_attribute_name(:current_sign_in_ip), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @user.current_sign_in_ip
+          .form-group
+            = label_tag :user, User.human_attribute_name(:last_sign_in_at), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @user.last_sign_in_at
+          .form-group
+            = label_tag :user, User.human_attribute_name(:last_sign_in_ip), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @user.last_sign_in_ip
           - if @user.created_by_invite?
             .form-group
               = label_tag :user, User.human_attribute_name(:invitation_created_at), class: 'control-label col-sm-2 col-xs-12'

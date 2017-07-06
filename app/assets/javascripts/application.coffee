@@ -14,6 +14,8 @@
 #= require datatables.net-responsive/js/dataTables.responsive
 #= require datatables.net-responsive-bs/js/responsive.bootstrap
 
+#= require select2/dist/js/select2
+
 #= require gentelella/vendors/iCheck/icheck
 
 #= require plugins/time_zone
@@ -21,4 +23,4 @@
 #= require util
 #= require common
 
-#= require admin/users
+#= require_tree ./custom

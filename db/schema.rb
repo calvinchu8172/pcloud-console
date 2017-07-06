@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703085211) do
+ActiveRecord::Schema.define(version: 20170703085213) do
+
+  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "group_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_groups_users_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_groups_users_on_user_id", using: :btree
+  end
 
   create_table "logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "source_type",               null: false
@@ -40,12 +55,12 @@ ActiveRecord::Schema.define(version: 20170703085211) do
   end
 
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",                null: false
-    t.integer  "role",       default: 0, null: false
+    t.integer  "user_id",                 null: false
+    t.integer  "super_admin", default: 0
     t.string   "name"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["role"], name: "index_profiles_on_role", using: :btree
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["super_admin"], name: "index_profiles_on_super_admin", using: :btree
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
@@ -87,6 +102,8 @@ ActiveRecord::Schema.define(version: 20170703085211) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  add_foreign_key "groups_users", "groups"
+  add_foreign_key "groups_users", "users"
   add_foreign_key "omniauths", "users"
   add_foreign_key "profiles", "users"
 end

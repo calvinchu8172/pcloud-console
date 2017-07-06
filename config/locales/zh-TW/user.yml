@@ -11,14 +11,16 @@ zh-TW:
         sign_in_count: 登入次數
         current_sign_in_at: 登入時間
         last_sign_in_at: 上次登入時間
-        current_sign_in_ip: 登入IP
-        last_sign_in_ip: 上次登入IP
+        current_sign_in_ip: 登入 IP
+        last_sign_in_ip: 上次登入 IP
         created_at: 建立時間
         updated_at: 更新時間
         invitation_created_at: 被新增時間
         invitation_accepted_at: 接受邀請時間
         locked_at: 被鎖定時間
         invited_by: 新增人
+        group_ids: 權限
+        lock_status: 鎖定狀態
   help:
     user:
       change_password: 需要您目前密碼來完成變更

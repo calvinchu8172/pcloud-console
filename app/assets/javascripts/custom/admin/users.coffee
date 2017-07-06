@@ -30,3 +30,9 @@ window.PPush.admin_users =
         null
         { orderable: false }
       ]
+
+  init: ->
+
+    $('select[id*=group_ids]').select2()
+
+    # $('select[id=user_group_ids]').select2()

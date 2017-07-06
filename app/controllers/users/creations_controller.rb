@@ -6,10 +6,7 @@ class Users::CreationsController < Devise::InvitationsController
     # CanCanCan
     authorize! :create, User
 
-    self.resource = resource_class.new
-    self.resource.build_profile if self.resource.profile.nil?
-
-    render :new
+    super
   end
 
   def create
@@ -18,14 +15,14 @@ class Users::CreationsController < Devise::InvitationsController
 
     super do |resource|
       # 紀錄新增人員事件
-      Log.write(current_user, resource, 'create_user') if resource.errors.empty?
+      Log.write(current_user, resource, request.remote_ip, 'create_user') if resource.errors.empty?
     end
   end
 
   def update
     super do |resource|
       # 紀錄接受新增事件
-      Log.write(resource, resource.invited_by, 'accept_creation') if resource.errors.empty?
+      Log.write(resource, resource.invited_by, resource, request.remote_ip, 'accept_creation') if resource.errors.empty?
     end
   end
 
@@ -36,9 +33,7 @@ class Users::CreationsController < Devise::InvitationsController
   protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:invite, keys: [
-        { profile_attributes: [:id, :role] }
-      ])
+      devise_parameter_sanitizer.permit(:invite, keys: [{ group_ids: [] }])
     end
 
     def translation_scope

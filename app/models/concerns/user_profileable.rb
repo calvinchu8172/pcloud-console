@@ -14,20 +14,25 @@ module UserProfileable
       joins(:profile).merge(Profile.not_super_admin)
     }
 
+    before_create do
+      build_profile unless self.profile
+    end
+
     def super_admin!
-      self.create_profile unless self.profile
-      self.profile.super_admin!
+      create_profile unless self.profile
+      self.profile.update(super_admin: true)
     end
 
     def super_admin?
       self.profile.super_admin?
     end
 
+    def not_super_admin?
+      !super_admin?
+    end
+
     def name
       self.profile.name || self.email.split(/@/).first
     end
-  end
-
-  class_methods do
   end
 end

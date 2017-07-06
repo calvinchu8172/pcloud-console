@@ -14,10 +14,11 @@
           = f.input :email, input_wrapper_html: { class: 'col-sm-9' } do
             %p.form-control-static
               = @user.email
-          = f.fields_for :profile, wrapper: :horizontal_form do |p|
-            = p.input :role, collection: Profile.role_select_options, input_wrapper_html: { class: 'col-sm-3' }
+          = f.input :group_ids, collection: Group.select_options, input_html: { multiple: true }, input_wrapper_html: { class: 'col-sm-5' }
+          / = f.fields_for :profile, wrapper: :horizontal_form do |p|
+          /   = p.input :role, collection: Profile.role_select_options, input_wrapper_html: { class: 'col-sm-3' }
           .ln_solid
           .form-group
-            .col-sm-6.col-xs-12.col-md-offset-3
+            .col-sm-6.col-xs-12.col-sm-offset-3
               = f.button :submit, t('common.labels.submit'), class: 'btn-success'
               = link_to t('common.labels.cancel'), admin_user_url(@user), class: 'btn btn-default'

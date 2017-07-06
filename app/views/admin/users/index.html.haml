@@ -27,19 +27,21 @@
           %thead
             %tr
               %th= User.human_attribute_name(:email)
-              %th= Profile.human_attribute_name(:name)
-              %th= Profile.human_attribute_name(:role)
+              / %th= Profile.human_attribute_name(:name)
               %th= User.human_attribute_name(:sign_in_count)
-              %th= User.human_attribute_name(:current_sign_in_at)
+              %th= User.human_attribute_name(:created_at)
+              / %th= User.human_attribute_name(:current_sign_in_at)
+              %th= User.human_attribute_name(:lock_status)
               %th
           %tbody
             - @users.each do |user|
               %tr
                 %td= user.email
-                %td= user.profile.name
-                %td= Profile.human_attribute_name("role.#{user.profile.role}")
+                / %td= user.profile.name
                 %td= user.sign_in_count
-                %td= user.current_sign_in_at
+                %td= user.created_at
+                / %td= user.current_sign_in_at
+                %td= user.lock_status
                 %td
                   = link_to admin_user_url(user), class: 'btn btn-primary btn-xs' do
                     = fa_icon('folder')
