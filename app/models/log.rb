@@ -24,4 +24,8 @@ class Log < ActiveRecord::Base
       create(source: source, target: target, source_ip: ip, event: event, extra: extra)
     end
   end
+
+  def localized_event
+    I18n.t("log.events.#{self.event}")
+  end
 end

@@ -75,6 +75,9 @@ class Ability
       can :unlock, User do |u|
         u.access_locked? && u != user && !u.super_admin?
       end
+
+      can :read, Log
+      can :download_csv, Log
     end
 
     # -------------------- #

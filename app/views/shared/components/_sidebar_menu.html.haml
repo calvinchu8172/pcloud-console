@@ -3,12 +3,17 @@
     %ul.nav.side-menu
 
       - if can? :read, User
-        = sidebar_menu_item controller: ['admin/users', 'users/invitations'] do
+        = sidebar_menu_item controller: ['admin/users', 'users/creations', 'admin/logs'] do
           = link_to '#' do
-            = fa_icon('users')
-            %label= t('user.labels.management')
+            = fa_icon('cog')
+            %label= t('group.names.system_management')
             %span.fa.fa-chevron-down
           %ul.nav.child_menu
-            = sidebar_child_menu_item controller: 'admin/users', action: :index do
+            = sidebar_child_menu_item controller: ['admin/users', 'users/creations'], action: [:index, :new] do
               = link_to admin_users_url do
-                = t('user.titles.index')
+                = fa_icon('users')
+                %span= t('user.titles.index')
+            = sidebar_child_menu_item controller: 'admin/logs', action: :index do
+              = link_to admin_logs_url do
+                = fa_icon('pencil-square-o')
+                %span= t('log.labels.record')

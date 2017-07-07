@@ -1,4 +1,4 @@
-window.PPush.admin_users =
+window.PPush.admin_logs =
 
   index: ->
 
@@ -22,13 +22,13 @@ window.PPush.admin_users =
           sortAscending: ": 升冪排列"
           sortDescending: ": 降冪排列"
       pagingType: "full_numbers"
-      order: [[0, 'desc']]
+      order: [[4, 'desc']]
       columns: [
         null
         null
         null
         null
-        { orderable: false }
+        null
       ]
 
   init: ->

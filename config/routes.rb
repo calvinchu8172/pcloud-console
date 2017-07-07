@@ -52,5 +52,10 @@ Rails.application.routes.draw do
         put    'unlock', to: 'users#unlock'
       end
     end
+    resources :logs, only: [:index] do
+      collection do
+        get 'download', to: 'logs#download_csv'
+      end
+    end
   end
 end

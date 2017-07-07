@@ -26,7 +26,7 @@ class Users::SessionsController < Devise::SessionsController
     @resource = current_user
     @ip = request.remote_ip
     super do
-      Log.write(@resource, @resource, @ip, 'user_sign_out')
+      Log.write(@resource, nil, @ip, 'user_sign_out')
     end
   end
 

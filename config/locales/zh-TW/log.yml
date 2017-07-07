@@ -1,0 +1,23 @@
+zh-TW:
+  activerecord:
+    attributes:
+      log:
+        source_type: 來源物件
+        source_id: 來源 ID
+        source_ip: 來源 IP
+        target_type: 目標物件
+        target_id: 目標 ID
+        event: 動作事件
+        created_at: 建立時間
+  log:
+    labels:
+      record: 使用記錄
+      download_csv: 下載 CSV
+    titles:
+      index: 使用記錄列表
+    events:
+      user_sign_in: 登入
+      user_sign_out: 登出
+      create_user: 新增使用者
+      update_user: 更新使用者
+      super_admin_sign_up: 超級使用者註冊

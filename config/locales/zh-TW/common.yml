@@ -26,6 +26,7 @@ zh-TW:
       generate: 產生
       close: 關閉
       next: 下一步
+      last: 回上一頁
       abort: 略過
       created_at: 建立日期
       creator: 建立者
