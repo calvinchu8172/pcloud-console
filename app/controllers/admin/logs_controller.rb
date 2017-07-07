@@ -30,6 +30,7 @@ class Admin::LogsController < ApplicationController
       end
     end
     send_data(csv_string, filename: filename, type: 'text/csv; charset=utf-8')
+    Log.write(current_user, nil, request.remote_ip, 'download_csv')
   end
 
   private
