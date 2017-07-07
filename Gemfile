@@ -71,10 +71,10 @@ group :test do
   gem 'rspec-rails', '3.6.0'
   gem 'selenium-webdriver', '3.4.3'
   gem 'simplecov', '0.14.1', require: false
+  gem 'spring-commands-cucumber', '1.0.1'
   gem 'timecop', '0.9.0'
   gem 'webmock', '3.0.1'
   gem 'webrat', '0.7.3'
-  gem 'spring-commands-cucumber', '1.0.1'
 end
 
 # --------- #
