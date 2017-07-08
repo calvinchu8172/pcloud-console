@@ -8,13 +8,24 @@
     %meta{ name: 'apple-mobile-web-app-status-bar-style', content: 'black' }
     %title RailsApp
     = csrf_meta_tags
+    = cdn_css 'font-awesome/4.7.0/css/font-awesome.min.css'
+    = cdn_css 'flag-icon-css/2.8.0/css/flag-icon.min.css'
+    = cdn_css 'select2/4.0.3/css/select2.min.css'
+    = cdn_css 'select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css'
+    = yield :head_cdn_css
+    = cdn_js 'jquery/2.2.4/jquery.min.js'
+    = cdn_js 'js-cookie/2.1.4/js.cookie.min.js'
+    = cdn_js 'moment.js/2.18.1/moment.min.js'
+    = cdn_js 'moment-timezone/0.5.13/moment-timezone-with-data.min.js'
+    = cdn_js 'select2/4.0.3/js/select2.min.js'
+    = yield :head_cdn_js
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     / HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
     / WARNING: Respond.js doesn't work if you view the page via file://
     / [if lt IE 9]
-      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js'
-      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js'
+      = cdn_js 'html5shiv/3.7.3/html5shiv.min.js'
+      = cdn_js 'respond.js/1.4.2/respond.min.js'
     = yield :head_css
     = yield :head_js
     = render 'shared/bootlint' if Rails.env.development?
