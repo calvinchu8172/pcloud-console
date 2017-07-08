@@ -8,6 +8,7 @@
     %meta{ name: 'apple-mobile-web-app-status-bar-style', content: 'black' }
     %title RailsApp
     = csrf_meta_tags
+    = cdn_css 'font-awesome/4.7.0/css/font-awesome.min.css'
     = yield :head_cdn_css
     = cdn_js 'jquery/2.2.4/jquery.min.js'
     = yield :head_cdn_js
