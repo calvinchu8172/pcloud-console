@@ -1,4 +1,3 @@
-#= require jquery2
 #= require jquery_ujs
 #= require js-cookie/src/js.cookie
 #= require moment/min/moment.min

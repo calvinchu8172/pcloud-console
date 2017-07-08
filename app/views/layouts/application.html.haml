@@ -8,6 +8,9 @@
     %meta{ name: 'apple-mobile-web-app-status-bar-style', content: 'black' }
     %title RailsApp
     = csrf_meta_tags
+    = yield :head_cdn_css
+    = cdn_js 'jquery/2.2.4/jquery.min.js'
+    = yield :head_cdn_js
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     / HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
