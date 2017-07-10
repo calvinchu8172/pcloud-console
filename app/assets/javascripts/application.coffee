@@ -1,10 +1,5 @@
 #= require jquery_ujs
 
-#= require bootstrap-sass/assets/javascripts/bootstrap/dropdown
-#= require bootstrap-sass/assets/javascripts/bootstrap/modal
-#= require bootstrap-sass/assets/javascripts/bootstrap/tooltip
-#= require bootstrap-sass/assets/javascripts/bootstrap/popover
-
 #= require datatables.net/js/jquery.dataTables
 #= require datatables.net-bs/js/dataTables.bootstrap
 #= require datatables.net-responsive/js/dataTables.responsive
