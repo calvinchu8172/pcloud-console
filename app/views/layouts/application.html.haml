@@ -13,6 +13,7 @@
     = cdn_css 'flag-icon-css/2.8.0/css/flag-icon.min.css'
     = cdn_css 'select2/4.0.3/css/select2.min.css'
     = cdn_css 'select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css'
+    = cdn_css 'datatables/1.10.15/css/dataTables.bootstrap.min.css'
     = yield :head_cdn_css
     = cdn_js 'jquery/2.2.4/jquery.min.js'
     = cdn_js 'twitter-bootstrap/3.3.7/js/bootstrap.min.js'
@@ -20,6 +21,8 @@
     = cdn_js 'moment.js/2.18.1/moment.min.js'
     = cdn_js 'moment-timezone/0.5.13/moment-timezone-with-data.min.js'
     = cdn_js 'select2/4.0.3/js/select2.min.js'
+    = cdn_js 'datatables/1.10.15/js/jquery.dataTables.min.js'
+    = cdn_js 'datatables/1.10.15/js/dataTables.bootstrap.min.js'
     = yield :head_cdn_js
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
