@@ -1,5 +1,1 @@
 asset 'bootstrap-sass', '3.3.7'
-asset 'datatables.net', '1.10.13'
-asset 'datatables.net-bs', '1.10.13'
-asset 'datatables.net-responsive', '2.1.1'
-asset 'datatables.net-responsive-bs', '2.1.1'
