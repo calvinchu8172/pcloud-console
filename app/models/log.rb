@@ -1,4 +1,4 @@
-class Log < ActiveRecord::Base
+class Log < ApplicationRecord
 
   strip_attributes
 
@@ -7,8 +7,12 @@ class Log < ActiveRecord::Base
   belongs_to :source, polymorphic: true
   belongs_to :target, polymorphic: true
 
-  scope :source, -> (source) { where(source_id: source.id, source_type: source.class.base_class.name) }
-  scope :target, -> (target) { where(target_id: target.id, target_type: target.class.base_class.name) }
+  scope :source, -> (source) {
+    where(source_id: source.id, source_type: source.class.base_class.name)
+  }
+  scope :target, -> (target) {
+    where(target_id: target.id, target_type: target.class.base_class.name)
+  }
   scope :event, -> (event) { where(event: event.to_s.split(/\s*,\s*/)) }
   scope :since, -> (since_time) {
     # created_at >= since_time

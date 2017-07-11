@@ -1,4 +1,4 @@
-window.PPush.users_creations =
+window.RailsApp.users_creations =
 
   init: ->
 

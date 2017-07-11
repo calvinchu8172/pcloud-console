@@ -4,17 +4,8 @@ class User < ApplicationRecord
   include UserOmniauth
   include UserProfileable
 
-  # Include default devise modules. Others available are:
-  # :omniauthable
-  devise :database_authenticatable, :registerable,
-         :trackable, :validatable,
-         :timeoutable, :invitable, :lockable,
-         :omniauthable, omniauth_providers: [:myzyxel]
-
-  # 使用者登入紀錄
-  def after_database_authentication
-    Log.write(self, self, self.current_sign_in_ip, 'user_sign_in')
-  end
+  devise :database_authenticatable, :registerable, :trackable, :validatable, :timeoutable,
+         :invitable, :lockable, :omniauthable, omniauth_providers: [:myzyxel]
 
   def lock_status
     if self.access_locked?

@@ -1,43 +1,25 @@
 class Users::SessionsController < Devise::SessionsController
 
-  def new
-    # # 當無任何超級管理員時，則跳轉到超級管理員註冊頁面
-    # redirect_to super_admin_sign_up_url and return if User.super_admin.blank?
-    # 載入上次登入的 Email 資訊
-    if cookies[:email].present?
-      params[:user] = { email: cookies[:email] }
-      params[:remember_me] = '1'
-    end
-    super
-  end
-
-  def create
-    super do |resource|
-      # 儲存此次登入的 Email 資訊
-      if params[:remember_me] == '1'
-        cookies.permanent[:email] = { value: params[:user][:email], httponly: true }
-      else
-        cookies.delete(:email)
-      end
-    end
-  end
-
   def destroy
-    @resource = current_user
-    @ip = request.remote_ip
-    super do
-      Log.write(@resource, nil, @ip, 'user_sign_out')
-    end
+    resource = current_user
+    remote_ip = request.remote_ip
+    # 取得 access_token
+    access_token = session[:credentials]['token']
+    # 取得 logout_redirect_uri
+    uri = URI.parse(request.url.gsub(/\?.*$/, ''))
+    uri.path = ''
+    logout_redirect_uri = uri.to_s
+    # 生成 oauth_logout_url
+    oauth_logout_url = "#{Rails.configuration.omniauth_myzyxel[:provider_url]}/oauth/logout"
+    oauth_logout_query_strings = {
+      access_token: access_token,
+      logout_redirect_uri: logout_redirect_uri
+    }.to_query
+    # 清空登入 session
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    # 紀錄
+    Log.write(resource, nil, remote_ip, 'user_sign_out')
+    # 登出 accounts
+    redirect_to "#{oauth_logout_url}?#{oauth_logout_query_strings}"
   end
-
-  def unauthenticate
-    # redirect_to user_myzyxel_omniauth_authorize_url
-    redirect_to user_zyxel_omniauth_authorize_url
-  end
-
-  protected
-
-    def after_sign_out_path_for(resource_or_scope)
-      new_user_session_url
-    end
 end

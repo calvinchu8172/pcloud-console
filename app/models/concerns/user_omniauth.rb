@@ -6,7 +6,12 @@ module UserOmniauth
     has_many :omniauths, dependent: :destroy
 
     def bind_omniauth_service(auth)
-      self.omniauths.create(user_id: self.id, provider: auth.provider, uid: auth.uid, image: auth.info.image)
+      self.omniauths.create(
+        user_id: self.id,
+        provider: auth.provider,
+        uid: auth.uid,
+        image: auth.info.image
+      )
     end
   end
 
@@ -20,7 +25,6 @@ module UserOmniauth
       unless user = find_by_omniauth(auth)
         unless user = find_by_email(auth.info.email)
           user = create_by_omniauth(auth)
-          profile = create_by_user(user)
         end
         user.bind_omniauth_service(auth)
       end
@@ -32,11 +36,11 @@ module UserOmniauth
     end
 
     def create_by_omniauth(auth)
-      create(email: auth.info.email, password: Devise.friendly_token[0, 20], confirmed_at: Time.now)
-    end
-
-    def create_by_user(user)
-      Profile.create(user_id: user.id)
+      create(
+        email: auth.info.email,
+        password: Devise.friendly_token[0, 20],
+        confirmed_at: Time.now
+      )
     end
   end
 end

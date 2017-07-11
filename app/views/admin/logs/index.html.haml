@@ -12,7 +12,7 @@
           .clearfix
         .x_content
           = link_to download_admin_logs_url, class: 'btn btn-app btn-sm' do
-            = fa_icon('user-plus')
+            = fa_icon('download')
             = t('log.labels.download_csv')
   .col-md-12.col-sm-12.col-xs-12
     .x_panel
@@ -27,10 +27,8 @@
           %thead
             %tr
               %th= Log.human_attribute_name(:source_type)
-              / %th= Log.human_attribute_name(:source_id)
               %th= Log.human_attribute_name(:source_ip)
               %th= Log.human_attribute_name(:target_type)
-              / %th= Log.human_attribute_name(:target_id)
               %th= Log.human_attribute_name(:event)
               %th= Log.human_attribute_name(:created_at)
 
@@ -38,10 +36,7 @@
             - @logs.each do |log|
               %tr
                 %td= log.source.email
-                / %td= log.source_id
                 %td= log.source_ip
                 %td= log.target.try(:email)
-                / %td= log.target_id
-                / %td= log.event
                 %td= log.localized_event
                 %td= log.created_at

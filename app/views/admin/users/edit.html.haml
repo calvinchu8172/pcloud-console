@@ -15,8 +15,6 @@
             %p.form-control-static
               = @user.email
           = f.input :group_ids, collection: Group.select_options, input_html: { multiple: true }, input_wrapper_html: { class: 'col-sm-5' }
-          / = f.fields_for :profile, wrapper: :horizontal_form do |p|
-          /   = p.input :role, collection: Profile.role_select_options, input_wrapper_html: { class: 'col-sm-3' }
           .ln_solid
           .form-group
             .col-sm-6.col-xs-12.col-sm-offset-3

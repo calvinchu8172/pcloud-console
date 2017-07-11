@@ -46,11 +46,6 @@
             .col-sm-10.col-xs-12
               %p.form-control-static
                 = @user.email
-          / .form-group
-          /   = label_tag :user, Profile.human_attribute_name(:name), class: 'control-label col-sm-2 col-xs-12'
-          /   .col-sm-10.col-xs-12
-          /     %p.form-control-static
-          /       = @user.profile.name
           .form-group
             = label_tag :user, User.human_attribute_name(:lock_status), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
