@@ -1,4 +1,4 @@
-# Rails App
+# myZyxel Push Console
 
 ## BDD - Cucumber
 
