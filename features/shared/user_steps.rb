@@ -1,6 +1,12 @@
 Given /^the super admin has already signed up$/ do
-  @super_admin_profile = FactoryGirl.create(:super_admin_profile)
-  @super_admin = @super_admin_profile.user
+  @super_admin = FactoryGirl.create(:super_admin)
+end
+
+Given /^the (.+) has already signed in$/ do |username|
+  username = username.parameterize.underscore
+  @current_user = instance_variable_get("@#{username}")
+  login_as @current_user
+  visit '/'
 end
 
 Given /^the (.+) has already been created by (.+)$/ do |user, user_manager|

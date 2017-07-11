@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # for CanCanCan AccessDenied
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
-      format.html { redirect_to :back, notice: t('common.messages.unauthorized') }
+      format.html { redirect_to root_url, notice: t('common.messages.unauthorized') }
       format.json { head :forbidden, content_type: 'text/html' }
       format.js   { head :forbidden, content_type: 'text/html' }
     end
