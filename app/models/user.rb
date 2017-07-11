@@ -9,7 +9,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :trackable, :validatable,
          :timeoutable, :invitable, :lockable,
-         :omniauthable, omniauth_providers: [:zyxel]
+         :omniauthable, omniauth_providers: [:myzyxel]
 
   # 使用者登入紀錄
   def after_database_authentication

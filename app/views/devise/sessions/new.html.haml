@@ -1,25 +1,4 @@
 - content_for :console_name, t('common.main.title')
 - content_for :title, t('devise.titles.sign_in')
 
-/ = simple_form_for resource, as: resource_name, url: session_url(resource_name) do |f|
-/   = f.input :email, label: false, wrapper_html: { class: 'has-feedback' } do
-/     = f.input_field :email, placeholder: User.human_attribute_name(:email), autofocus: true, class: 'form-control has-feedback-left'
-/     %span.fa.fa-envelope-o.form-control-feedback.left
-/   = f.input :password, label: false, wrapper_html: { class: 'has-feedback' } do
-/     = f.input_field :password, placeholder: User.human_attribute_name(:password), autocomplete: 'off', class: 'form-control has-feedback-left'
-/     %span.fa.fa-key.form-control-feedback.left
-/   .form-group.remember_me
-/     .checkbox
-/       = check_box_tag :remember_me, '1', params[:remember_me], class: 'flat'
-/       = label_tag :remember_me do
-/         = User.human_attribute_name(:remember_me)
-/   .form-group
-/     = f.button :submit, t('common.labels.submit'), class: 'btn-block btn-success'
-/   %br
-/     .separator
-/       .links
-/         - unless User.super_admin.first.try(:confirmed?)
-/           = link_to t('devise.labels.resend_confirmation_email'), super_admin_confirmation_resend_url
-/         = link_to t('devise.labels.forgot_password'), new_password_url(resource_name)
-
-= button_to t('devise.labels.sign_in'), user_zyxel_omniauth_authorize_url, class: 'btn btn-block btn-success'
+= button_to t('devise.labels.sign_in'), user_myzyxel_omniauth_authorize_url, class: 'btn btn-block btn-success'
