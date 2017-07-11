@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       invitation: 'creation'
     },
     skip: [
-      :sessions, :registrations, :passwords, :confirmations, :invitations
+      :sessions, :registrations, :passwords, :confirmations, :invitations, :unlocks
     ]
 
   devise_scope :user do
