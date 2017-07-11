@@ -1,5 +1,5 @@
 @timecop
-Feature: SM-01 - 06 - User Detail
+Feature: System Management - User Detail
 
   Background:
     Given Time now is "2017-01-01 12:00:00"
@@ -7,7 +7,7 @@ Feature: SM-01 - 06 - User Detail
     Given the user manager has already been created by super admin
 
   @javascript
-  Scenario: [SM-01-06-01]
+  Scenario: [02-03-01]
     1. 查看人員帳號詳細資訊
     2. 編輯人員帳號
     # 1

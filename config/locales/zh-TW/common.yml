@@ -49,6 +49,7 @@ zh-TW:
       toolbar: 工具列
       lock: 鎖定
       unlock: 解鎖
+      none: 無
     confirms:
       activate: 您確定要啟用？
       delete: 您確定要刪除？
@@ -65,7 +66,6 @@ zh-TW:
       not_found: 找不到
       check_one_at_least: 請至少選擇一列。
       confirm: 您確定要執行？
-
     placeholders:
       select_options: 請選擇
       select_one_option: 請選擇一個選項

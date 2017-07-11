@@ -1,9 +1,9 @@
-Feature: SM-01 - 04 - User List
+Feature: System Management - User List
 
   Background:
     Given the super admin has already signed up
 
-  Scenario: [SM-01-04-01]
+  Scenario: [02-01-01]
     查看人員帳號列表
     When the user goes to page - "/"
     Then the user should be at page - "/users/sign_in"

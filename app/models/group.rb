@@ -5,19 +5,11 @@ class Group < ApplicationRecord
   class << self
 
     def select_options
-      all.map{ |group| [group.localized_name, group.id] }
-    end
-
-    def options
-      all.map{ |group| group.localized_name }
+      all.map{ |group| [human_attribute_name("name.#{group.i18n_name}"), group.id] }
     end
   end
 
   def i18n_name
     self.name.parameterize.underscore
-  end
-
-  def localized_name
-    I18n.t("group.names.#{self.i18n_name}")
   end
 end

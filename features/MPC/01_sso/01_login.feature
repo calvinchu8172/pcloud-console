@@ -1,7 +1,7 @@
 @proxy @webmock
-Feature: myZyxel Push Console - SSO - Login
+Feature: SSO - Login
 
-  Scenario: [MPC_01_01_01]
+  Scenario: [01-01-01]
     User logs in SSO, authorizes Console and logs out
     When the user goes to page - "/"
     Then the user should see "myZyxel 推播後台"
@@ -16,7 +16,7 @@ Feature: myZyxel Push Console - SSO - Login
     Then the user should be at page - "/users/sign_in"
      And should see "您需要先登入後才能繼續。"
 
-  Scenario: [MPC_01_01_02]
+  Scenario: [01-01-02]
     User denies authorization
     When the user goes to page - "/"
     Then the user should see "myZyxel 推播後台"

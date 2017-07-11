@@ -72,8 +72,10 @@ Before '@proxy' do
     Proc.new { |params, headers, body|
       # 從 body 取得 params
       params = Rack::Utils.parse_nested_query(body).deep_symbolize_keys
+      @users ||= []
+      @users << params[:user][:email] unless @users.include? params[:user][:email]
       @current_resource_owner = OpenStruct.new(
-        id: 1,
+        id: @users.index(params[:user][:email]) + 1,
         email: params[:user][:email]
       )
       # 轉址至 Authorize 頁面

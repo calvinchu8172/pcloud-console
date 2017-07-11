@@ -1,11 +1,11 @@
 @timecop
-Feature: SM-01 - 05 - Create User
+Feature: System Management - Create User
 
   Background:
     Given the super admin has already signed up
 
   @javascript
-  Scenario: [SM-01-05-01]
+  Scenario: [02-02-01]
     1. 新增人員帳號
     2. 重寄認證信
     3. 人員帳號進行認證及設定密碼

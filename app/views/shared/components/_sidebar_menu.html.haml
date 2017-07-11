@@ -6,7 +6,7 @@
         = sidebar_menu_item controller: ['admin/users', 'users/creations', 'admin/logs'] do
           = link_to '#' do
             = fa_icon('cog')
-            %label= t('group.names.system_management')
+            %label= Group.human_attribute_name('name.system_management')
             %span.fa.fa-chevron-down
           %ul.nav.child_menu
             = sidebar_child_menu_item controller: ['admin/users', 'users/creations'], action: [:index, :new] do

@@ -1,9 +1,9 @@
-Feature: SM-01 - 08 - Change Password
+Feature: System Management - Update User
 
   Background:
     Given the super admin has already signed up
 
-  Scenario: [SM-01-08-01]
+  Scenario: [02-05-01]
     1. 修改密碼
     2. 使用新密碼登入
     # 1

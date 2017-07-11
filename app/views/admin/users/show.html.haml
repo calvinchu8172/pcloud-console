@@ -55,11 +55,11 @@
                   = Profile.human_attribute_name(:super_admin)
               - elsif @user.groups.empty?
                 %p.form-control-static
-                  = I18n.t('group.names.none')
+                  = I18n.t('common.labels.none')
               - else
-                - @user.groups.options.each do |option|
+                - @user.groups.each do |group|
                   %p.form-control-static
-                    = option
+                    = Group.human_attribute_name("name.#{group.i18n_name}")
           .form-group
             = label_tag :user, User.human_attribute_name(:sign_in_count), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
