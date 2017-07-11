@@ -3,14 +3,10 @@ class Admin::LogsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @logs = Log.includes(:source, :target).all
+    @logs = @logs.includes(:source, :target).reverse_order
   end
 
   def download_csv
-
-    logs = Log.where(created_at: Time.now - 1.years..Time.now).order(id: :desc)
-    # logs = Log.where(created_at: Time.now - 12.hours..Time.now).order(id: :desc)
-
     csv_string = CSV.generate do |csv|
       csv << [
         Log.human_attribute_name(:source_type),
@@ -19,7 +15,7 @@ class Admin::LogsController < ApplicationController
         Log.human_attribute_name(:event),
         Log.human_attribute_name(:created_at)
       ]
-      logs.each do |log|
+      Log.since(begin_time).until(end_time).reverse_order.each do |log|
         csv << [
           log.source.email,
           log.source_ip,
@@ -30,13 +26,20 @@ class Admin::LogsController < ApplicationController
       end
     end
     send_data(csv_string, filename: filename, type: 'text/csv; charset=utf-8')
-    Log.write(current_user, nil, request.remote_ip, 'download_csv')
+    Log.write(current_user, nil, request.remote_ip, 'download_logs')
   end
 
   private
 
-  def filename
-    "Logs-List-#{Time.now.strftime("%Y%m%d%H%M%S")}.csv"
+  def begin_time
+    Time.now - 1.years
   end
 
+  def end_time
+    Time.now
+  end
+
+  def filename
+    "logs-#{Time.now.utc.strftime("%Y-%m-%dT%H%M%SZ")}.csv"
+  end
 end

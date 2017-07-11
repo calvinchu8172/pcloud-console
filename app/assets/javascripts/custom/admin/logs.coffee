@@ -30,9 +30,3 @@ window.RailsApp.admin_logs =
         null
         null
       ]
-
-  init: ->
-
-    $('select[id*=group_ids]').select2()
-
-    # $('select[id=user_group_ids]').select2()

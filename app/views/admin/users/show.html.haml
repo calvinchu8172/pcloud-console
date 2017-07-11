@@ -13,10 +13,6 @@
         = link_to admin_users_url, class: 'btn btn-app btn-sm' do
           = fa_icon('caret-square-o-left')
           = t('common.labels.back')
-        - if can?(:resend_creation, @user)
-          = link_to creation_resend_admin_user_url(@user), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm') do
-            = fa_icon('envelope-o')
-            = t('user.labels.resend_creation')
         - if can?(:update, @user)
           = link_to edit_admin_user_url(@user), class: 'btn btn-app btn-sm' do
             = fa_icon('pencil')

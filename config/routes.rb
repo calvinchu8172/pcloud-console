@@ -2,56 +2,39 @@ Rails.application.routes.draw do
 
   root 'admin/dashboard#index'
 
-  # 首頁
-  # authenticated do
-  #   # root 'dashboard#index'
-  #   root 'admin/dashboard#index'
-  # end
-
-  # unauthenticated do
-  #   devise_scope :user do
-  #     root 'users/sessions#unauthenticate', as: 'unauthenticate'
-  #   end
-  # end
-
   devise_for :users,
     controllers: {
-      passwords:   'users/passwords',
-      sessions:    'users/sessions',
-      invitations: 'users/creations',
       omniauth_callbacks: 'users/omniauth_callbacks'
     },
     path_names: {
       invitation: 'creation'
     },
-    skip: [:registrations, :confirmations]
+    skip: [
+      :sessions, :registrations, :passwords, :confirmations, :invitations
+    ]
 
   devise_scope :user do
-    # 超級管理員註冊
-    get  'super_admin/sign_up', to: 'super_admin/registrations#new'
-    post 'super_admin/sign_up', to: 'super_admin/registrations#create'
-    # 重發超級管理員認證信
-    get  'super_admin/confirmation/resend', to: 'super_admin/confirmations#new'
-    get  'super_admin/confirmation',        to: 'super_admin/confirmations#show'
-    post 'super_admin/confirmation',        to: 'super_admin/confirmations#create'
-    # 變更密碼
-    get  'admin/users/edit', to: 'users/registrations#edit',   as: 'edit_user_registration'
-    put  'admin/users',      to: 'users/registrations#update', as: 'user_registration'
+    # 登入登出
+    get    'users/sign_in',  to: 'users/sessions#new',     as: 'new_user_session'
+    delete 'users/sign_out', to: 'users/sessions#destroy', as: 'destroy_user_session'
+    # 更新個人資料
+    get 'admin/users/edit', to: 'users/registrations#edit',   as: 'edit_user_registration'
+    put 'admin/users',      to: 'users/registrations#update', as: 'user_registration'
     # 新增人員
-    get  'admin/users/creation/new', to: 'users/creations#new',    as: 'admin_users_creation_new'
-    post 'admin/users/creation',     to: 'users/creations#create', as: 'admin_users_creation'
+    get  'admin/users/creation/new', to: 'users/creations#new',    as: 'new_users_creation'
+    post 'admin/users/creation',     to: 'users/creations#create', as: 'users_creation'
   end
 
   namespace :admin do
+
     resources :users, only: [:index, :show, :edit, :update] do
       member do
-        # 重寄新增認證信
-        get    'creation/resend', to: 'users#resend_creation'
         # 鎖定與解鎖帳號
         delete 'lock',   to: 'users#lock'
         put    'unlock', to: 'users#unlock'
       end
     end
+
     resources :logs, only: [:index] do
       collection do
         get 'download', to: 'logs#download_csv'

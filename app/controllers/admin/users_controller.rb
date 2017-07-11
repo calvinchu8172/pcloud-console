@@ -10,7 +10,6 @@ class Admin::UsersController < AdminController
   end
 
   def edit
-    @user.build_profile if @user.profile.nil?
   end
 
   def update
@@ -21,13 +20,6 @@ class Admin::UsersController < AdminController
     else
       render :edit
     end
-  end
-
-  def resend_creation
-    @user.invite!
-    # 紀錄重寄認證信事件
-    Log.write(current_user, @user, request.remote_ip, 'resend_creation')
-    redirect_to admin_user_url(@user), notice: t('user.messages.resend_creation_success', email: @user.email)
   end
 
   def lock

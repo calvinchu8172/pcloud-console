@@ -34,5 +34,3 @@ window.RailsApp.admin_users =
   init: ->
 
     $('select[id*=group_ids]').select2()
-
-    # $('select[id=user_group_ids]').select2()
