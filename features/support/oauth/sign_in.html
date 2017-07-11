@@ -3,7 +3,7 @@
     OAuth Login Form
   </div>
   <div class="content">
-    <form class="new_user" id="new_user" action="#{ENV['ZYXEL_OAUTH_APP_URL']}/users/sign_in" method="post">
+    <form class="new_user" id="new_user" action="/users/sign_in" method="post">
       <input class="string email required" placeholder="Email" type="email" name="user[email]" id="user_email">
       <input class="password required" placeholder="Password" type="password" name="user[password]" id="user_password">
       <button name="submit" type="submit">Submit</button>

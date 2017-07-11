@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def auth
-    user = User.find_or_create_by_omniauth(env['omniauth.auth'])
+    user = User.find_or_create_by_omniauth(request.env['omniauth.auth'])
     if user.persisted?
       if User.super_admin.count == 0
         # 擢升 user 為 super admin
