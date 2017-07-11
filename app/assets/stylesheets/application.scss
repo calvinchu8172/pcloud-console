@@ -8,18 +8,8 @@
  * Twitter bootstrap
  */
 
-$icon-font-path: 'bootstrap-sass/assets/fonts/bootstrap/';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap-sprockets';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap';
-
-/**
- * Fonts & Font icons
- */
-
-// @import 'fonts/*';
-$fa-font-path: 'font-awesome-sass/assets/fonts/font-awesome/';
-@import 'font-awesome-sass/assets/stylesheets/font-awesome-sprockets';
-@import 'font-awesome-sass/assets/stylesheets/font-awesome';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
 /**
  * Mixins css:
@@ -35,9 +25,6 @@ $fa-font-path: 'font-awesome-sass/assets/fonts/font-awesome/';
  * Plugins css:
  */
 
-@import 'select2/dist/css/select2';
-@import 'select2-bootstrap-theme/dist/select2-bootstrap';
-@import 'flag-icon-css/css/flag-icon.min';
 // @import 'plugins/*';
 
 /**

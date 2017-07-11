@@ -1,9 +1,5 @@
 Rails.application.configure do
   config.lograge.enabled = true
-  config.lograge.ignore_actions = [
-    'Api::HealthController#latency',
-    'Api::HealthController#db'
-  ]
 end
 
 # override lograge data with more info

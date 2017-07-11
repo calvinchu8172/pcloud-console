@@ -1,4 +1,4 @@
-window.PPush.admin_logs =
+window.RailsApp.admin_logs =
 
   index: ->
 

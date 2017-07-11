@@ -1,4 +1,4 @@
-window.PPush.admin_users =
+window.RailsApp.admin_users =
 
   index: ->
 

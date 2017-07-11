@@ -25,11 +25,25 @@ group :development do
 end
 
 # ------------ #
+# - Optimize - #
+# ------------ #
+
+# Boot large ruby/rails apps faster
+gem 'bootsnap', '1.1.1'
+
+# ----------- #
+# - Monitor - #
+# ----------- #
+
+# health check apis for latency and db: /health/latency, /health/db
+gem 'rails-health-check', '1.0.0'
+
+# ------------ #
 # - Database - #
 # ------------ #
 
 gem 'mysql2', '0.4.6'
-# optimize database
+# help to kill N+1 queries and unused eager loading
 gem 'bullet', '5.5.1', group: :development
 
 # --------- #
@@ -57,10 +71,10 @@ group :test do
   gem 'rspec-rails', '3.6.0'
   gem 'selenium-webdriver', '3.4.3'
   gem 'simplecov', '0.14.1', require: false
-  gem 'timecop', '0.8.1'
+  gem 'spring-commands-cucumber', '1.0.1'
+  gem 'timecop', '0.9.0'
   gem 'webmock', '3.0.1'
   gem 'webrat', '0.7.3'
-  gem 'spring-commands-cucumber', '1.0.1'
 end
 
 # --------- #
@@ -112,7 +126,7 @@ gem 'devise', '4.3.0'
 gem 'devise-i18n', '1.1.2'
 gem 'devise_invitable', '1.7.2'
 gem 'faker', '1.7.3', group: [:development, :test]
-gem 'hamlit', '2.8.1'
+gem 'hamlit', '2.8.4'
 gem 'i18n-docs', '0.1.0', group: :development
 gem 'letter_opener', '1.4.1', group: :development
 gem 'liquid', '4.0.0'
@@ -137,4 +151,5 @@ gem 'simple_form', '3.5.0'
 # - Project - #
 # ----------- #
 
+gem 'rails-cdn-helper', '1.0.0'
 gem 'sqlite3', '1.3.13'
