@@ -134,7 +134,6 @@ gem 'nokogiri', '1.8.0'
 gem 'rails-config-loaders', '1.0.1'
 gem 'rails_best_practices', '1.18.1'
 gem 'rest-client', '2.0.2'
-# gem 'omniauth-oauth2'
 gem 'omniauth-oauth2', '1.3.1'
 
 # ------ #
