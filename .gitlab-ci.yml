@@ -3,6 +3,7 @@ image: 683422241496.dkr.ecr.us-east-1.amazonaws.com/rails-cd-base-chrome:latest
 stages:
   - test
   - release
+  - deploy
 
 rails_best_practice:
   tags:
