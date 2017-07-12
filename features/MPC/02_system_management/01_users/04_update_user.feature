@@ -1,5 +1,5 @@
 @timecop
-Feature: System Management - Update User
+Feature: System Management - Users - Update User
 
   Background:
     Given Time now is "2017-01-01 12:00:00"
@@ -8,7 +8,7 @@ Feature: System Management - Update User
     Given the system manager has already been created by super admin
 
   @javascript
-  Scenario: [02_04_01]
+  Scenario: [02_01_04_01]
     編輯人員帳號
     Given the super admin has already signed in
      When the super admin clicks "系統管理" within "側邊功能"

@@ -1,5 +1,5 @@
 @timecop
-Feature: System Management - User Detail
+Feature: System Management - Users - User Detail
 
   Background:
     Given Time now is "2017-01-01 12:00:00"
@@ -8,7 +8,7 @@ Feature: System Management - User Detail
     Given the system manager has already been created by super admin
 
   @javascript
-  Scenario: [02_03_01]
+  Scenario: [02_01_03_01]
     查看人員帳號詳細資訊
     Given the super admin has already signed in
      When the super admin clicks "系統管理" within "側邊功能"

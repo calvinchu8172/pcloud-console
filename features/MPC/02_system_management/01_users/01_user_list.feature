@@ -1,12 +1,12 @@
 @timecop
-Feature: System Management - User List
+Feature: System Management - Users - User List
 
   Background:
     Given Time now is "2017-01-01 12:00:00"
     Given the super admin has already signed up
 
   @javascript
-  Scenario: [02_01_01]
+  Scenario: [02_01_01_01]
     查看人員帳號列表
     Given the super admin has already signed in
      Then the user should be at page - "/"

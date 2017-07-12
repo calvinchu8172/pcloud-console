@@ -1,12 +1,12 @@
 @timecop
-Feature: System Management - Create User
+Feature: System Management - Users - Create User
 
   Background:
     Given Time now is "2017-01-01 12:00:00"
     Given the super admin has already signed up
 
   @javascript
-  Scenario: [02_02_01]
+  Scenario: [02_01_02_01]
     新增人員帳號
     Given Time now is "2017-01-02 12:00:00"
     Given the super admin has already signed in

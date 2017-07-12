@@ -1,5 +1,5 @@
 @timecop
-Feature: System Management - Lock Unlock User
+Feature: System Management - Users - Lock Unlock User
 
   Background:
     Given Time now is "2017-01-01 12:00:00"
@@ -8,7 +8,7 @@ Feature: System Management - Lock Unlock User
     Given the system manager has already been created by super admin
 
   @proxy @webmock
-  Scenario: [02_05_01]
+  Scenario: [02_01_05_01]
     1. 鎖定人員帳號
     2. 解鎖人員帳號
     # 1. 鎖定人員帳號
