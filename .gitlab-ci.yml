@@ -38,13 +38,12 @@ cucumber:
     - develop
     - /^parallel.*$/
 
-release:alpha-beta:
+release:unstable:
   tags:
     - ruby
   stage: release
   script:
     - docker pull 683422241496.dkr.ecr.us-east-1.amazonaws.com/rails-passenger:latest
-    - docker pull $AWS_ECR_REPOSITORY:develop
     - docker build -t $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME .
     - docker push $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME
   only:
@@ -56,11 +55,19 @@ release:stable:
     - ruby
   stage: release
   script:
-    - docker pull $AWS_ECR_REPOSITORY:master
     - docker build -t $AWS_ECR_REPOSITORY:$CI_BUILD_TAG .
     - docker push $AWS_ECR_REPOSITORY:$CI_BUILD_TAG
   only:
     - tags
+
+deploy:alpha:
+  tags:
+    - ruby
+  stage: deploy
+  script:
+    - ecs-deploy -c $AWS_ECS_CLUSTER_NAME -n $AWS_ECS_SERVICE_NAME -i $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME -t 600
+  only:
+    - develop
 
 release:build:
   tags:
@@ -70,5 +77,14 @@ release:build:
     - docker pull 683422241496.dkr.ecr.us-east-1.amazonaws.com/rails-passenger:latest
     - docker build -t $AWS_ECR_REPOSITORY:build .
     - docker push $AWS_ECR_REPOSITORY:build
+  only:
+    - /^build.*$/
+
+deploy:build:
+  tags:
+    - ruby
+  stage: deploy
+  script:
+    - ecs-deploy -c $AWS_ECS_CLUSTER_NAME -n $AWS_ECS_SERVICE_NAME -i $AWS_ECR_REPOSITORY:build -t 600
   only:
     - /^build.*$/
