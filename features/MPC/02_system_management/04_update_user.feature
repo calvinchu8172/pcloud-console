@@ -8,7 +8,7 @@ Feature: System Management - Update User
     Given the system manager has already been created by super admin
 
   @javascript
-  Scenario: [02-04-01]
+  Scenario: [02_04_01]
     編輯人員帳號
     Given the super admin has already signed in
      When the super admin clicks "系統管理" within "側邊功能"

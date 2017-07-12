@@ -1,7 +1,7 @@
 @proxy @webmock
 Feature: Common - Super Admin
 
-  Scenario: [01-02-01]
+  Scenario: [01_02_01]
     1. 第一個登入的使用者將成為超級管理員
     2. 第二個登入的使用者無任何權限
     # 1. 第一個登入的使用者將成為超級管理員

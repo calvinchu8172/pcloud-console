@@ -4,7 +4,7 @@ Feature: Common - User Profile Update
   Background:
     Given the super admin has already signed up
 
-  Scenario: [01-03-01]
+  Scenario: [01_03_01]
     修改個人檔案
     Given the super admin has already signed in
      Then the super admin should be at page - "/"

@@ -6,7 +6,7 @@ Feature: System Management - Create User
     Given the super admin has already signed up
 
   @javascript
-  Scenario: [02-02-01]
+  Scenario: [02_02_01]
     新增人員帳號
     Given Time now is "2017-01-02 12:00:00"
     Given the super admin has already signed in

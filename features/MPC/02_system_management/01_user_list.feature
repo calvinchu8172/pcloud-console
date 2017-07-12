@@ -6,7 +6,7 @@ Feature: System Management - User List
     Given the super admin has already signed up
 
   @javascript
-  Scenario: [02-01-01]
+  Scenario: [02_01_01]
     查看人員帳號列表
     Given the super admin has already signed in
      Then the user should be at page - "/"

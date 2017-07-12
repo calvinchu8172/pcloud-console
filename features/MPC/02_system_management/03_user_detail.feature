@@ -8,7 +8,7 @@ Feature: System Management - User Detail
     Given the system manager has already been created by super admin
 
   @javascript
-  Scenario: [02-03-01]
+  Scenario: [02_03_01]
     查看人員帳號詳細資訊
     Given the super admin has already signed in
      When the super admin clicks "系統管理" within "側邊功能"

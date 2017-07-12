@@ -8,7 +8,7 @@ Feature: System Management - Lock Unlock User
     Given the system manager has already been created by super admin
 
   @proxy @webmock
-  Scenario: [02-05-01]
+  Scenario: [02_05_01]
     1. 鎖定人員帳號
     2. 解鎖人員帳號
     # 1. 鎖定人員帳號

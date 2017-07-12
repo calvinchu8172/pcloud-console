@@ -1,7 +1,7 @@
 @proxy @webmock
 Feature: Common - SSO Login
 
-  Scenario: [01-01-01]
+  Scenario: [01_01_01]
     User logs in SSO, authorizes Console and logs out
     When the customer goes to page - "/"
     Then the customer should see "myZyxel 推播後台"
