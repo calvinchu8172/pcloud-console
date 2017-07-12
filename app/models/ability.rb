@@ -3,17 +3,18 @@ class Ability
 
   def initialize(user)
     if user
-      if user.super_admin?
-        can :manage, :all
-      else
-        user.groups.each do |group|
-          send("load_#{group.i18n_name}_permissions", user)
-        end
+      groups = user.super_admin? ? Group.all : user.groups
+      groups.each do |group|
+        send("load_#{group.i18n_name}_permissions", user)
       end
     end
   end
 
   private
+
+    # ------------------ #
+    # - 載入系統管理權限 - #
+    # ------------------ #
 
     def load_system_management_permissions(user)
 
