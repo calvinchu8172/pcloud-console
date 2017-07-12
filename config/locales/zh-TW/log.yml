@@ -11,10 +11,10 @@ zh-TW:
         created_at: 建立時間
   log:
     labels:
-      record: 使用記錄
+      record: 使用紀錄
       download_csv: 下載 CSV
     titles:
-      index: 使用記錄列表
+      index: 使用紀錄列表
     events:
       super_admin_sign_up: 超級管理員註冊
       user_sign_in: 登入
@@ -23,4 +23,4 @@ zh-TW:
       update_user: 更新使用者
       lock_user: 鎖定使用者
       unlock_user: 解除鎖定使用者
-      download_logs: 下載使用記錄
+      download_logs: 下載使用紀錄

@@ -56,7 +56,7 @@ zh-TW:
       revoke: 您確定要註銷？
     messages:
       error: 發生錯誤，請聯絡管理員。
-      no_record_found: 找不到記錄
+      no_record_found: 找不到紀錄
       import_empty_csv: 匯入空白檔案
       unauthorized: 您無權存取此頁面。
       all_unauthorized: 您無任何權限。
