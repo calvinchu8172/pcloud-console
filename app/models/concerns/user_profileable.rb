@@ -19,7 +19,6 @@ module UserProfileable
     end
 
     def super_admin!
-      create_profile unless self.profile
       self.profile.update(super_admin: true)
     end
 

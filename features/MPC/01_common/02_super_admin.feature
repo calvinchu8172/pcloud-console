@@ -1,5 +1,5 @@
 @proxy @webmock
-Feature: SSO - Super Admin
+Feature: Common - Super Admin
 
   Scenario: [01-02-01]
     1. 第一個登入的使用者將成為超級管理員

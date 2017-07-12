@@ -1,5 +1,5 @@
 @proxy @webmock
-Feature: SSO - Login
+Feature: Common - SSO Login
 
   Scenario: [01-01-01]
     User logs in SSO, authorizes Console and logs out
