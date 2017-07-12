@@ -10,15 +10,15 @@ module Select2Helper
 
     from = options.delete(:from)
     if options[:index].blank?
-      select2 = find("span[id=select2-#{from}-container]")
+      select2 = find("div[class*=#{from}] span[class*=select2-container]")
     else
       index = options.delete(:index)
-      select2s = all("span[id=select2-#{from}-container]")
+      select2s = all("div[class*=#{from}] span[class*=select2-container]")
       select2 = select2s[index]
     end
     select2.click
+    select2.find('.select2-search input').set(value)
     select2_drop = find('.select2-dropdown')
-    select2_drop.find('.select2-search input').set(value)
     select2_results = select2_drop.all('li.select2-results__option')
     if select2_results.count > 1
       select2_results.find{ |x| x.text == value }.click

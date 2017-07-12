@@ -12,8 +12,6 @@
           = f.input :email, wrapper_html: { class: 'has-feedback' }, input_wrapper_html: { class: 'col-sm-4' }, required: true do
             = f.input_field :email, autofocus: true, class: 'form-control has-feedback-left'
             %span.fa.fa-envelope-o.form-control-feedback.left
-          / = f.fields_for :profile, wrapper: :horizontal_form do |p|
-          /   = p.input :role, collection: Profile.role_select_options, input_wrapper_html: { class: 'col-sm-3' }
           = f.input :group_ids, collection: Group.select_options, input_html: { multiple: true }, input_wrapper_html: { class: 'col-sm-5' }
           .ln_solid
           .form-group

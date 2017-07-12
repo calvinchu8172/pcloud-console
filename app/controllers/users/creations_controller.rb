@@ -23,6 +23,10 @@ class Users::CreationsController < Devise::InvitationsController
 
   protected
 
+    def after_invite_path_for(resource)
+      admin_users_url
+    end
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:invite, keys: [{ group_ids: [] }])
     end

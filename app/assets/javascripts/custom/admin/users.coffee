@@ -22,7 +22,7 @@ window.RailsApp.admin_users =
           sortAscending: ": 升冪排列"
           sortDescending: ": 降冪排列"
       pagingType: "full_numbers"
-      order: [[0, 'desc']]
+      order: [[2, 'desc']]
       columns: [
         null
         null
