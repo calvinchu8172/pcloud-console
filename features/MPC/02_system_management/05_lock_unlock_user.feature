@@ -7,7 +7,7 @@ Feature: System Management - Lock Unlock User
     Given the user manager has already been created by super admin
 
   @javascript
-  Scenario: [02-04-01]
+  Scenario: [02-05-01]
     1. 鎖定人員帳號
     2. 解鎖人員帳號
     # 1
