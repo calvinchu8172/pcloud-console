@@ -9,19 +9,36 @@ Before '@proxy' do
         h
       end
       if @current_resource_owner
-        # 取得 oauth_authorize_template
-        oauth_authorize_template = File.read(
-          Rails.root.join('features','support','oauth', 'authorize.html')
-        )
-        # 使用 Liquid parse oauth_authorize_template
-        oauth_authorize = Liquid::Template.parse(oauth_authorize_template)
-        # 返回 oauth_authorize_html
-        {
-          body: oauth_authorize.render(params.merge(
-            { 'email' => @current_resource_owner.email }
-          )),
-          content_type: 'text/html'
-        }
+        unless @current_resource_owner.authorized
+          # 取得 oauth_authorize_template
+          oauth_authorize_template = File.read(
+            Rails.root.join('features','support','oauth', 'authorize.html')
+          )
+          # 使用 Liquid parse oauth_authorize_template
+          oauth_authorize = Liquid::Template.parse(oauth_authorize_template)
+          # 返回 oauth_authorize_html
+          {
+            body: oauth_authorize.render(params.merge(
+              { 'email' => @current_resource_owner.email }
+            )),
+            content_type: 'text/html'
+          }
+        else
+          params = params.deep_symbolize_keys
+          # 從 params 取得參數
+          client_id     = params[:client_id]
+          redirect_uri  = params[:redirect_uri]
+          response_type = params[:response_type]
+          state         = params[:state]
+          # 指定 grant_code
+          grant_code = '1f0618afbc735c766359e07ebccbd435e9c6388e2195d8d76e0eb758639a4a15'
+          # 檢查 client_id 和 response_type
+          if client_id == Rails.configuration.omniauth_myzyxel[:client_id] && response_type == 'code'
+            { redirect_to: "#{redirect_uri}?code=#{grant_code}&state=#{state}" }
+          else
+            { redirect_to: "#{redirect_uri}?error=access_denied&error_description=invalid_credentials" }
+          end
+        end
       else
         @stored_location = "#{Rails.configuration.omniauth_myzyxel[:provider_url]}/oauth/authorize?#{params.to_query}"
         { redirect_to: "#{Rails.configuration.omniauth_myzyxel[:provider_url]}/users/sign_in" }
@@ -40,7 +57,7 @@ Before '@proxy' do
       state         = params[:state]
       commit        = params[:commit]
       # 指定 grant_code
-      grant_code    = '1f0618afbc735c766359e07ebccbd435e9c6388e2195d8d76e0eb758639a4a15'
+      grant_code = '1f0618afbc735c766359e07ebccbd435e9c6388e2195d8d76e0eb758639a4a15'
       if commit == 'Authorize'
         # 檢查 client_id 和 response_type
         if client_id == Rails.configuration.omniauth_myzyxel[:client_id] && response_type == 'code'
@@ -72,11 +89,16 @@ Before '@proxy' do
     Proc.new { |params, headers, body|
       # 從 body 取得 params
       params = Rack::Utils.parse_nested_query(body).deep_symbolize_keys
+      @user_email = params[:user][:email]
       @users ||= []
-      @users << params[:user][:email] unless @users.include? params[:user][:email]
+      # 是否認證過
+      authorized = @users.include? @user_email
+      # 如果沒有登入過則將 user 加入名單
+      @users << @user_email unless @users.include? @user_email
       @current_resource_owner = OpenStruct.new(
-        id: @users.index(params[:user][:email]) + 1,
-        email: params[:user][:email]
+        id: @users.index(@user_email) + 1,
+        email: @user_email,
+        authorized: authorized
       )
       # 轉址至 Authorize 頁面
       { redirect_to: @stored_location }
