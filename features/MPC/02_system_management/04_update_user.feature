@@ -1,7 +1,10 @@
+@timecop
 Feature: System Management - Update User
 
   Background:
+    Given Time now is "2017-01-01 12:00:00"
     Given the super admin has already signed up
+    Given Time now is "2017-01-02 12:00:00"
     Given the system manager has already been created by super admin
 
   @javascript
