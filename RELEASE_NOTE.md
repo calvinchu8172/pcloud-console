@@ -1,4 +1,4 @@
-# myZyxel Push Console 各版本發佈內容
+# myZyxel Console 各版本發佈內容
 
 ## Version：
 

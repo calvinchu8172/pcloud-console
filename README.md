@@ -1,4 +1,4 @@
-# myZyxel Push Console
+# myZyxel Console
 
 ## BDD - Cucumber
 

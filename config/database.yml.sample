@@ -16,7 +16,7 @@ test:
   username: root
   password:
   host: mysql
-  database: myzyxel-push-console_test
+  database: myzyxel-console_test
 production:
   adapter: sqlite3
   pool: 5
