@@ -9,17 +9,13 @@ Given /^the (.+) has already signed in$/ do |username|
   visit '/'
 end
 
-Given /^the (.+) has already been created by (.+)$/ do |user, user_manager|
-  user = user.parameterize.underscore
-  user_manager = instance_variable_get("@#{user_manager.parameterize.underscore}")
-
-  user_profile = FactoryGirl.create("#{user}_profile")
-  user_profile.user.update(
+Given /^the (.+) has already been created by (.+)$/ do |username, creator|
+  username = username.parameterize.underscore
+  creator = instance_variable_get("@#{creator.parameterize.underscore}")
+  user = FactoryGirl.create(username)
+  user.update(
     invitation_created_at: Time.now,
-    invitation_sent_at: Time.now,
-    invitation_accepted_at: Time.now,
-    invited_by: user_manager
+    invited_by: creator
   )
-  instance_variable_set("@#{user}_profile", user_profile)
-  instance_variable_set("@#{user}", user_profile.user)
+  instance_variable_set("@#{username}", user)
 end

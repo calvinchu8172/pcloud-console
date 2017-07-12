@@ -8,6 +8,10 @@ FactoryGirl.define do
       email 'super_admin@example.com'
     end
 
+    trait :system_manager do
+      email 'system_manager@example.com'
+    end
+
     trait :confirmed do
       confirmed_at Time.now
     end
@@ -15,6 +19,13 @@ FactoryGirl.define do
     factory :super_admin, traits: [:super_admin, :confirmed] do
       after(:create) do |user|
         user.super_admin!
+      end
+    end
+
+    factory :system_manager, traits: [:system_manager, :confirmed] do
+      after(:create) do |user|
+        group = Group.find_by(name: 'System Management')
+        user.groups << group
       end
     end
   end
