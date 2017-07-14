@@ -40,5 +40,9 @@ Rails.application.routes.draw do
         get 'download', to: 'logs#download_csv'
       end
     end
+
+    resources :app_groups, :except => [:destroy] do
+    end
+
   end
 end

@@ -54,5 +54,6 @@ class Ability
     # ------------------ #
 
     def load_push_management_permissions(user)
+      can :manage, :push_management
     end
 end

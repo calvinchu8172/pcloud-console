@@ -1,0 +1,43 @@
+- content_for :title, t('app_group.titles.index')
+
+.row
+  .col-md-12.col-sm-12.col-xs-12.toolbar
+    .x_panel
+      .x_title
+        %h2= t('common.labels.toolbar')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = link_to new_admin_app_group_url, class: 'btn btn-app btn-sm' do
+          = fa_icon('plus')
+          = t('app_group.events.create_app_group')
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('log.titles.index')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        %table.table.table-bordered.dt-responsive.nowrap
+          %thead
+            %tr
+              %th= AppGroup.human_attribute_name(:name)
+              %th= AppGroup.human_attribute_name(:description)
+              %th= AppGroup.human_attribute_name(:created_at)
+              %th= AppGroup.human_attribute_name(:updated_at)
+              %th
+          %tbody
+            - @data.each do |data|
+              %tr
+                %td= data['name']
+                %td= data['description']
+                %td= data['created_at']
+                %td= data['updated_at']
+                %td
+                  = link_to admin_app_group_url(data['app_group_id']), class: 'btn btn-primary btn-xs' do
+                    = fa_icon('folder')
+                    = t('common.labels.view')
