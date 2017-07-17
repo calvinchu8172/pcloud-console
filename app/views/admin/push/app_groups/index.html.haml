@@ -38,6 +38,6 @@
                 %td= app_group.created_at
                 %td= app_group.updated_at
                 %td
-                  = link_to admin_push_app_group_url(app_group.app_group_id), class: 'btn btn-primary btn-xs' do
+                  = link_to admin_push_app_group_url(app_group), class: 'btn btn-primary btn-xs' do
                     = fa_icon('folder')
                     = t('common.labels.view')

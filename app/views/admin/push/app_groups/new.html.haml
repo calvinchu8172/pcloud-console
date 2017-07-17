@@ -8,3 +8,11 @@
             %a.collapse-link= fa_icon('chevron-up')
         .clearfix
       .x_content
+        = simple_form_for @app_group, url: admin_push_app_groups_url, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.input :name, input_wrapper_html: { class: 'col-sm-3' }
+          = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = link_to t('common.labels.cancel'), admin_push_app_groups_url, class: 'btn btn-default'
