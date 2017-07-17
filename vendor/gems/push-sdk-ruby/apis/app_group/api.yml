@@ -1,0 +1,264 @@
+swagger: '2.0'
+info:
+  title: Push Console App Group APIs
+  description: |
+    Push Console App Group APIs
+
+    ###  Revision History
+
+    **v1.0.0 - Jul. 17 2017**
+
+    1. Initial Release
+
+  version: 1.0.0
+  contact:
+    email: chouandy@ecoworkinc.com
+schemes:
+  - https
+host: push.myzyxel.com
+paths:
+  /v1/app_groups:
+    get:
+      summary: 取得 App Group 列表
+      description: 取得 App Group 列表
+      tags:
+        - console
+      operationId: list_app_groups
+      produces:
+        - application/json
+      parameters:
+        - name: X-Eco-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Eco-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: query
+          description: Access Key 識別碼
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: array
+                items:
+                  properties:
+                    app_group_id:
+                      type: string
+                      description: App Group ID
+                    name:
+                      type: string
+                      description: App Group 名稱
+                    description:
+                      type: string
+                      description: App Group 描述
+                    topic_arn:
+                      type: string
+                      description: App Group SNS Topic
+                    created_at:
+                      type: string
+                      description: App Group 建立時間
+                    updated_at:
+                      type: string
+                      description: App Group 更新時間
+    post:
+      summary: 新增 App Group
+      description: 新增 App Group
+      tags:
+        - console
+      operationId: create_app_group
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Eco-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Eco-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: formData
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: App Group 名稱
+          required: true
+          type: string
+        - name: description
+          in: formData
+          description: App Group 描述
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  app_group_id:
+                    type: string
+                    description: App Group ID
+  /v1/app_groups/{app_group_id}:
+    get:
+      summary: 取得 App Group 詳細資訊
+      description: 取得 App Group 詳細資訊
+      tags:
+        - console
+      operationId: get_app_group
+      produces:
+        - application/json
+      parameters:
+        - name: X-Eco-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Eco-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: query
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: app_group_id
+          in: path
+          description: App Group ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  app_group_id:
+                    type: string
+                    description: App Group ID
+                  name:
+                    type: string
+                    description: App Group 名稱
+                  description:
+                    type: string
+                    description: App Group 描述
+                  topic_arn:
+                    type: string
+                    description: App Group SNS Topic
+                  created_at:
+                    type: string
+                    description: App Group 建立時間
+                  updated_at:
+                    type: string
+                    description: App Group 更新時間
+    put:
+      summary: 更新 App Group
+      description: 更新 App Group
+      tags:
+        - console
+      operationId: put_app_group
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Eco-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Eco-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: formData
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: app_group_id
+          in: path
+          description: App Group ID
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: App Group 名稱
+          required: true
+          type: string
+        - name: description
+          in: formData
+          description: App Group 描述
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  app_group_id:
+                    type: string
+                    description: App Group ID

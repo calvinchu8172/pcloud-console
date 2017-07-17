@@ -11,9 +11,19 @@
           %ul.nav.child_menu
             = sidebar_child_menu_item controller: ['admin/users', 'users/creations'], action: [:index, :new] do
               = link_to admin_users_url do
-                = fa_icon('users')
                 %span= t('user.titles.index')
-            = sidebar_child_menu_item controller: 'admin/logs', action: :index do
-              = link_to admin_logs_url do
-                = fa_icon('pencil-square-o')
-                %span= t('log.labels.record')
+            - if can? :read, Log
+              = sidebar_child_menu_item controller: 'admin/logs', action: :index do
+                = link_to admin_logs_url do
+                  %span= t('log.labels.record')
+
+      - if can? :read, :push_management
+        = sidebar_menu_item controller: ['admin/push/app_groups'] do
+          = link_to '#' do
+            = fa_icon('commenting-o')
+            %label= Group.human_attribute_name('name.push_management')
+            %span.fa.fa-chevron-down
+          %ul.nav.child_menu
+            = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :index do
+              = link_to admin_push_app_groups_url do
+                %span= t('push.app_group.titles.index')

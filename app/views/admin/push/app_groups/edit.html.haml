@@ -1,0 +1,20 @@
+- content_for :title, t('push.app_group.labels.management')
+
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.titles.edit')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = simple_form_for @app_group, url: admin_push_app_group_url(@app_group), method: :put, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.input :name, input_wrapper_html: { class: 'col-sm-3' }
+          = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = link_to t('common.labels.cancel'), admin_push_app_group_url(@app_group), class: 'btn btn-default'

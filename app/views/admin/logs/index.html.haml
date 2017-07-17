@@ -1,7 +1,7 @@
 - content_for :title, t('log.labels.record')
 
 .row
-  - if can? :create, User
+  - if can? :download_csv, Log
     .col-md-12.col-sm-12.col-xs-12.toolbar
       .x_panel
         .x_title
