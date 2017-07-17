@@ -1,4 +1,4 @@
-window.RailsApp.admin_app_groups =
+window.RailsApp.admin_push_app_groups =
 
   index: ->
 
@@ -30,7 +30,3 @@ window.RailsApp.admin_app_groups =
         null
         { orderable: false }
       ]
-
-  init: ->
-
-    $('select[id*=group_ids]').select2()

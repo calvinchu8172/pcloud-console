@@ -25,8 +25,13 @@ Rails.application.routes.draw do
     post 'admin/users/creation',     to: 'users/creations#create', as: 'users_creation'
   end
 
+  # ----------- #
+  # - 管理後台 - #
+  # ----------- #
+
   namespace :admin do
 
+    # - 系統管理 / 人員帳號列表 - #
     resources :users, only: [:index, :show, :edit, :update] do
       member do
         # 鎖定與解鎖帳號
@@ -35,14 +40,19 @@ Rails.application.routes.draw do
       end
     end
 
+    # - 系統管理 / 使用紀錄 - #
     resources :logs, only: [:index] do
       collection do
         get 'download', to: 'logs#download_csv'
       end
     end
 
-    resources :app_groups, :except => [:destroy] do
-    end
+    # - 推播管理 - #
+    namespace :push do
 
+      # - 推播管理 / App Group 列表 - #
+      resources :app_groups, except: [:destroy]
+
+    end
   end
 end

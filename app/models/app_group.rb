@@ -1,2 +1,0 @@
-class AppGroup < ApplicationRecord
-end

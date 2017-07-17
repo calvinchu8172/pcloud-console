@@ -29,14 +29,14 @@ zh-TW:
       management: 人員帳號管理
       edit_profile: 修改個人檔案
       resend_creation: 重寄認證信
-      create_user: 新增人員
+      new: 新增人員
     titles:
       super_admin_sign_up: 註冊超級管理員
       index: 人員帳號列表
       show: 人員帳號資訊
+      new: 新增人員
       edit: 編輯人員帳號
     messages:
-      # super_admin_sign_up_success: 超級管理員註冊成功，請先前往 %{email} 信箱完成驗證手續。
       super_admin_sign_up_success: 超級管理員註冊成功。
       resend_creation_success: 已成功重新寄送認證信件給 %{email}。
       lock_success: 已成功鎖定 %{email}。
