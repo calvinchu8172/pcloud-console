@@ -1,0 +1,92 @@
+swagger: '2.0'
+info:
+  title: Push Console Access Key APIs
+  description: |
+    Push Console Access Key APIs
+
+    ###  Revision History
+
+    **v1.0.0 - Jul. 18 2017**
+
+    1. Initial Release
+
+  version: 1.0.0
+  contact:
+    email: chouandy@ecoworkinc.com
+schemes:
+  - https
+host: push.myzyxel.com
+paths:
+  /v1/app_groups/{app_group_id}/access_keys:
+      get:
+        summary: 取得 App Group Access Key 列表
+        description: 取得 App Group Access Key 列表
+        tags:
+          - console
+        operationId: list_app_group_access_keys
+        produces:
+          - application/json
+        parameters:
+          - name: X-Eco-Signature
+            in: header
+            description: 簽證驗證碼
+            required: true
+            type: string
+          - name: X-Eco-Timestamp
+            in: header
+            description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+            required: true
+            type: integer
+          - name: access_key_id
+            in: query
+            description: Access Key 識別碼
+            required: true
+            type: string
+          - name: app_group_id
+            in: path
+            description: App Group ID
+            required: true
+            type: string
+        responses:
+          200:
+            description: Response from server.
+            schema:
+              type: object
+              required:
+                - code
+                - message
+              properties:
+                code:
+                  type: string
+                  description: 訊息回應碼
+                message:
+                  type: string
+                  description: 系統回應訊息
+                data:
+                  type: array
+                  items:
+                    properties:
+                      access_key_id:
+                        type: string
+                        description: Access Key ID
+                      type:
+                        type: string
+                        description: Access Key 類型
+                      app_group_id:
+                        type: string
+                        description: App Group ID
+                      status:
+                        type: string
+                        description: Access Key 狀態
+                      app_group_topic_arn:
+                        type: string
+                        description: App Group SNS Topic
+                      description:
+                        type: string
+                        description: Access Key 描述
+                      created_at:
+                        type: string
+                        description: Access Key 建立時間
+                      updated_at:
+                        type: string
+                        description: Access Key 更新時間
