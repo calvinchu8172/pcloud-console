@@ -7,6 +7,7 @@ module Push
     include ActiveModel::AttributeMethods
     include ActiveModel::Dirty
     include ActiveModel::Model
+    include ActiveModel::Serialization
 
     define_model_callbacks :save
     define_model_callbacks :update
