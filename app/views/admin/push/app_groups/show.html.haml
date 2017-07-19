@@ -78,3 +78,27 @@
             %a.collapse-link= fa_icon('chevron-up')
         .clearfix
       .x_content
+        %table.table.table-bordered.dt-responsive.nowrap
+          %thead
+            %tr
+              %th= Push::AccessKey.human_attribute_name(:id)
+              %th= Push::AccessKey.human_attribute_name(:status)
+              %th= Push::AccessKey.human_attribute_name(:description)
+              %th= Push::AccessKey.human_attribute_name(:created_at)
+              %th= Push::AccessKey.human_attribute_name(:updated_at)
+              %th
+          %tbody
+            - @access_keys.each do |access_key|
+              %tr
+                %td= access_key.access_key_id
+                %td= access_key.status
+                %td= access_key.description
+                %td= access_key.created_at
+                %td= access_key.updated_at
+                %td
+                  = link_to '#', class: 'btn btn-info btn-xs' do
+                    = fa_icon('pencil')
+                    = t('common.labels.edit')
+                  = link_to '#', class: 'btn btn-warning btn-xs' do
+                    = fa_icon('download')
+                    = t('common.labels.download')
