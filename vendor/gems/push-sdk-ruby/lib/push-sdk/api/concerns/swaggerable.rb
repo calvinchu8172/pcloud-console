@@ -20,10 +20,7 @@ module Push
 
       # 取得 path
       def path
-        if matches = @path.match(/\/{([a-z_]+)}/)
-          @path = @path.gsub("{#{matches[1]}}", instance_variable_get("@#{matches[1]}"))
-        end
-        @path
+        @path.gsub(/{[a-z_]+}/){ |match| instance_variable_get("@#{match[1..-2]}") }
       end
 
       # 取得 base_url
