@@ -1,0 +1,19 @@
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.titles.new')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = simple_form_for @access_key, url: admin_push_app_group_access_keys_url, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.input :name, input_wrapper_html: { class: 'col-sm-3' }
+          = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
+          = f.hidden_field :app_group_id, value: @app_group.app_group_id
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = link_to t('common.labels.cancel'), admin_push_app_group_url(@app_group.app_group_id), class: 'btn btn-default'

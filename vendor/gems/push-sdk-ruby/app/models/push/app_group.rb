@@ -34,16 +34,10 @@ module Push
       run_callbacks :save do
         if valid?
           client = AppGroupClient.new
-          options = {
-            name: self.name,
-            description: self.description
-          }
           response = if new_record?
-            client.create_app_group(options)
+            client.create_app_group(attributes)
           else
-            client.put_app_group(options.merge(
-              app_group_id: self.app_group_id
-            ))
+            client.put_app_group(attributes)
           end
           assign_attributes(response['data'])
           changes_applied

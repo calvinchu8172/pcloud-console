@@ -31,6 +31,7 @@
               %th= Push::AppGroup.human_attribute_name(:updated_at)
               %th
           %tbody
+            / 這邊之後要處理 @app_groups 為 nil 之狀況
             - @app_groups.each do |app_group|
               %tr
                 %td= app_group.name
