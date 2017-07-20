@@ -1,0 +1,63 @@
+- content_for :title, t('push.app_group.access_key.labels.management', app_group_name: @app_group.name)
+
+.row
+  .col-md-12.col-sm-12.col-xs-12.toolbar
+    .x_panel
+      .x_title
+        %h2= t('common.labels.toolbar')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = link_to admin_push_app_group_url(@app_group.app_group_id), class: 'btn btn-app btn-sm' do
+          = fa_icon('caret-square-o-left')
+          = t('common.labels.back')
+        = link_to edit_admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm' do
+          = fa_icon('pencil')
+          = t('common.labels.edit')
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.access_key.titles.show', app_group_name: @app_group.name)
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        .form-horizontal
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:access_key_id), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.access_key_id
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:name), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.name
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:description), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.description
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:status), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.status
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:app_group_topic_arn), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.app_group_topic_arn
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:created_at), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.created_at
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:updated_at), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.updated_at

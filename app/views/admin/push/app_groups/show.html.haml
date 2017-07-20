@@ -13,7 +13,7 @@
         = link_to admin_push_app_groups_url, class: 'btn btn-app btn-sm' do
           = fa_icon('caret-square-o-left')
           = t('common.labels.back')
-        = link_to edit_admin_push_app_group_url(@app_group.app_group_id), class: 'btn btn-app btn-sm' do
+        = link_to edit_admin_push_app_group_url(@app_group), class: 'btn btn-app btn-sm' do
           = fa_icon('pencil')
           = t('common.labels.edit')
   .col-md-12.col-sm-12.col-xs-12
@@ -66,7 +66,7 @@
             %a.collapse-link= fa_icon('chevron-up')
         .clearfix
       .x_content
-        = link_to admin_push_app_groups_url, class: 'btn btn-app btn-sm' do
+        = link_to new_admin_push_app_group_access_key_url(@app_group), class: 'btn btn-app btn-sm' do
           = fa_icon('plus')
           = t('push.app_group.access_key.labels.new')
   .col-md-12.col-sm-12.col-xs-12
@@ -78,3 +78,27 @@
             %a.collapse-link= fa_icon('chevron-up')
         .clearfix
       .x_content
+        %table.table.table-bordered.dt-responsive.nowrap
+          %thead
+            %tr
+              %th= Push::AccessKey.human_attribute_name(:access_key_id)
+              %th= Push::AccessKey.human_attribute_name(:status)
+              %th= Push::AccessKey.human_attribute_name(:description)
+              %th= Push::AccessKey.human_attribute_name(:created_at)
+              %th= Push::AccessKey.human_attribute_name(:updated_at)
+              %th
+          %tbody
+            - @access_keys.each do |access_key|
+              %tr
+                %td= access_key.access_key_id
+                %td= access_key.status
+                %td= access_key.description
+                %td= access_key.created_at
+                %td= access_key.updated_at
+                %td
+                  = link_to admin_push_app_group_access_key_url(@app_group, access_key), class: 'btn btn-primary btn-xs' do
+                    = fa_icon('folder')
+                    = t('common.labels.view')
+                  = link_to '#', class: 'btn btn-warning btn-xs' do
+                    = fa_icon('download')
+                    = t('common.labels.download')
