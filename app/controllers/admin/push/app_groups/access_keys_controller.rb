@@ -2,7 +2,7 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
 
   before_action { authorize! :manage, :push_management }
   before_action :set_app_group
-  before_action :set_app_group_access_key, only: [:show, :edit, :update]
+  before_action :set_app_group_access_key, only: [:show, :edit, :update, :download]
 
   def show
   end
@@ -37,6 +37,14 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
     else
       render :edit
     end
+  end
+
+  def download
+    Log.write(current_user, nil, request.remote_ip, 'download_app_group_access_key', {
+      app_group_id: @app_group.app_group_id,
+      access_key_id: @access_key.access_key_id
+    })
+    redirect_to @access_key.download_url
   end
 
   private

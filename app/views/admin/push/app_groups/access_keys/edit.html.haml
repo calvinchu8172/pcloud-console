@@ -19,7 +19,7 @@
                 = @app_group.app_group_id
           .form-group
             = f.input :status, input_wrapper_html: { class: 'col-sm-9' }, required: true do
-              = f.input_field :status, as: :radio_buttons, collection: [[t('common.labels.active'), 'active'], [t('common.labels.inactive'), 'inactive'], [t('common.labels.revoke'), 'revoke']]
+              = f.input_field :status, as: :radio_buttons, collection: [[t('common.labels.active'), 'active'], [t('common.labels.inactive'), 'inactive'], [t('common.labels.revoke'), 'revoked']]
           = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
           = f.hidden_field :app_group_id, value: @app_group.app_group_id
           .ln_solid
