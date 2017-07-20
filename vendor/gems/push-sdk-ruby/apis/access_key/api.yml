@@ -228,3 +228,59 @@ paths:
                   updated_at:
                     type: string
                     description: Access Key 更新時間
+  /v1/app_groups/{app_group_id}/access_keys/{id}/download:
+    get:
+      summary: 取得 App Group Access Key private key 下載網址
+      description: 取得 App Group Access Key private key 下載網址
+      tags:
+        - console
+      operationId: get_app_group_access_key_download_url
+      produces:
+        - application/json
+      parameters:
+        - name: X-Eco-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Eco-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: query
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: app_group_id
+          in: path
+          description: App Group ID
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: Access Key ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  download_url:
+                    type: string
+                    description: Access Key private key 下載網址
