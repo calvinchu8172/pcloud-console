@@ -39,12 +39,22 @@ module Push
           'get_app_group_access_key'
         end
       end
+
+      def status_radio_options
+        ['active', 'inactive', 'revoked'].map do |status|
+          [I18n.t("common.labels.#{status}"), status]
+        end
+      end
     end
 
     def download_url
       client = AccessKeyClient.new
       response = client.get_app_group_access_key_download_url(api_options)
       response.dig('data', 'download_url')
+    end
+
+    def localized_status
+      I18n.t("common.labels.#{self.status}")
     end
 
     # 1. validate attributes

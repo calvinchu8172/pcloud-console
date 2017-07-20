@@ -91,7 +91,7 @@
             - @access_keys.each do |access_key|
               %tr
                 %td= access_key.access_key_id
-                %td= access_key.status
+                %td= access_key.localized_status
                 %td= access_key.description
                 %td= access_key.created_at
                 %td= access_key.updated_at
@@ -99,6 +99,6 @@
                   = link_to admin_push_app_group_access_key_url(@app_group, access_key), class: 'btn btn-primary btn-xs' do
                     = fa_icon('folder')
                     = t('common.labels.view')
-                  = link_to '#', class: 'btn btn-warning btn-xs' do
+                  = link_to download_admin_push_app_group_access_key_url(@app_group, access_key), class: 'btn btn-warning btn-xs' do
                     = fa_icon('download')
                     = t('common.labels.download')
