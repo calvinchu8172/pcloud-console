@@ -28,6 +28,15 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
   end
 
   def update
+    if @access_key.update(push_access_key_params)
+      Log.write(current_user, nil, request.remote_ip, 'update_app_group_access_key', {
+        app_group_id: @app_group.app_group_id,
+        access_key_id: @access_key.access_key_id
+      })
+      redirect_to admin_push_app_group_access_key_url(@app_group, @access_key)
+    else
+      render :edit
+    end
   end
 
   private
@@ -44,6 +53,6 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
   end
 
   def push_access_key_params
-    params.require(:push_access_key).permit(:name, :description, :app_group_id)
+    params.require(:push_access_key).permit(:name, :description, :app_group_id, :status)
   end
 end

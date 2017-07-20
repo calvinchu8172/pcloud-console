@@ -1,1 +1,29 @@
-edit
+- content_for :title, t('push.app_group.access_key.labels.management', app_group_name: @app_group.name)
+
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.access_key.titles.edit', app_group_name: @app_group.name)
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = simple_form_for @access_key, url: admin_push_app_group_access_key_url(@app_group, @access_key), method: :put, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.input :name, input_wrapper_html: { class: 'col-sm-3' }
+          .form-group
+            = label_tag :access_key, Push::AppGroup.human_attribute_name(:app_group_id), class: 'control-label col-sm-3 col-xs-12'
+            .col-sm-9.col-xs-12
+              %p.form-control-static
+                = @app_group.app_group_id
+          .form-group
+            = f.input :status, input_wrapper_html: { class: 'col-sm-9' }, required: true do
+              = f.input_field :status, as: :radio_buttons, collection: [[t('common.labels.active'), 'active'], [t('common.labels.inactive'), 'inactive'], [t('common.labels.revoke'), 'revoke']]
+          = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
+          = f.hidden_field :app_group_id, value: @app_group.app_group_id
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = link_to t('common.labels.cancel'), admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-default'
