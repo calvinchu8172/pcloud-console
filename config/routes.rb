@@ -51,8 +51,11 @@ Rails.application.routes.draw do
     namespace :push do
 
       # - 推播管理 / App Group 列表 - #
-      resources :app_groups, except: [:destroy]
+      resources :app_groups, except: [:destroy] do
 
+        # - 推播管理 / App Group / Access Key - #
+        resources :access_keys, module: :app_groups, except: [:destroy]
+      end
     end
   end
 end

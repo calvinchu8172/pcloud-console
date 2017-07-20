@@ -9,11 +9,10 @@ zh-TW:
         created_at: 建立時間
         updated_at: 更新時間
       push/access_key:
-        id: Access Key ID
+        access_key_id: Access Key ID
         status: 狀態
         description: 描述
         app_group_topic_arn: APP Group Topic ARN
-        access_key_id: Access Key ID
         created_at: 建立時間
         updated_at: 更新時間
   push:
@@ -28,6 +27,7 @@ zh-TW:
         edit: 編輯 App Group
       access_key:
         labels:
+          management: "%{app_group_name} - Access Key 管理"
           new: 新增 Access Key
         titles:
           index: "%{app_group_name} - Access Keys 列表"

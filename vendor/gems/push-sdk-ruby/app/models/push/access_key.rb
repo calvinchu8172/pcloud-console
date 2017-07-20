@@ -2,8 +2,8 @@ module Push
   class AccessKey < ApplicationModel
 
     permit_attributes :access_key_id, :name, :description,
-    :public_key, :status, :type, :app_group_id, :app_group_topic_arn,
-    :app_id, :created_at, :updated_at
+      :public_key, :status, :type, :app_group_id, :app_group_topic_arn,
+      :app_id, :created_at, :updated_at
     permit_primary_key :access_key_id
 
     validates :name, presence: true
@@ -20,9 +20,9 @@ module Push
         end
       end
 
-      def find(app_access_key_id)
+      def find(app_group_id, app_group_access_key_id)
         client = AccessKeyClient.new
-        response = client.get_app_group(app_group_id: app_group_id)
+        response = client.get_app_group_access_key(app_group_id: app_group_id, id: app_group_access_key_id)
         record = AccessKey.new
         record.assign_attributes(response['data'])
         record
@@ -37,12 +37,13 @@ module Push
           client = AccessKeyClient.new
           options = {
             name: self.name,
-            description: self.description
+            description: self.description,
+            app_group_id: self.app_group_id
           }
           response = if new_record?
-            client.create_app_group(options)
+            client.create_app_group_access_key(options)
           else
-            client.put_app_group(options.merge(
+            client.put_app_group_access_key(options.merge(
               app_group_id: self.app_group_id
             ))
           end
