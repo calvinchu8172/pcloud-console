@@ -91,7 +91,7 @@
             - @access_keys.each do |access_key|
               %tr
                 %td= access_key.access_key_id
-                %td= access_key.status
+                %td= access_key.localized_status
                 %td= access_key.description
                 %td= access_key.created_at
                 %td= access_key.updated_at
