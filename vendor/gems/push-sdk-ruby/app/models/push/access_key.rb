@@ -41,18 +41,22 @@ module Push
       end
     end
 
+    def download_url
+      client = AccessKeyClient.new
+      response = client.get_app_group_access_key_download_url(api_options)
+      response.dig('data', 'download_url')
+    end
+
     # 1. validate attributes
     # 2. return boolean
     def save
       run_callbacks :save do
         if valid?
-          options = attributes
-          options[:id] = options.delete(:access_key_id)
           client = AccessKeyClient.new
           response = if new_record?
-            client.send(create_operator(options), options)
+            client.send(create_operator(api_options), api_options)
           else
-            client.send(update_operator(options), options)
+            client.send(update_operator(api_options), api_options)
           end
           assign_attributes(response['data'])
           changes_applied
@@ -61,6 +65,12 @@ module Push
           false
         end
       end
+    end
+
+    def api_options
+      @api_options = attributes
+      @api_options[:id] = @api_options.delete(:access_key_id)
+      @api_options
     end
 
     def create_operator(options = {})
