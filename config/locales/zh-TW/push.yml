@@ -9,6 +9,7 @@ zh-TW:
         created_at: 建立時間
         updated_at: 更新時間
       push/access_key:
+        name: 名稱
         access_key_id: Access Key ID
         status: 狀態
         description: 描述
@@ -34,3 +35,9 @@ zh-TW:
           show: "%{app_group_name} - Access Key 資訊"
           new: "%{app_group_name} - 新增 Access Key"
           edit: "%{app_group_name} - 編輯 Access Key"
+  log:
+    events:
+      create_app_group: 新增 App Group
+      update_app_group: 更新 App Group
+      create_app_group_access_key: 新增 App Group Access Key
+      update_app_group_access_key: 更新 App Group Access Key

@@ -16,11 +16,4 @@ zh-TW:
     titles:
       index: 使用紀錄列表
     events:
-      super_admin_sign_up: 超級管理員註冊
-      user_sign_in: 登入
-      user_sign_out: 登出
-      create_user: 新增使用者
-      update_user: 更新使用者
-      lock_user: 鎖定使用者
-      unlock_user: 解除鎖定使用者
       download_logs: 下載使用紀錄
