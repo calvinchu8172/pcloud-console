@@ -10,9 +10,9 @@ module Push
 
     class << self
 
-      def all(app_group_id)
+      def where(options = {})
         client = AccessKeyClient.new
-        response = client.list_app_group_access_keys(app_group_id: app_group_id)
+        response = client.send(where_operator(options), options)
         response['data'].map do |access_key|
           record = AccessKey.new
           record.assign_attributes(access_key)
@@ -20,12 +20,24 @@ module Push
         end
       end
 
-      def find(app_group_id, app_group_access_key_id)
+      def find_by(options = {})
         client = AccessKeyClient.new
-        response = client.get_app_group_access_key(app_group_id: app_group_id, id: app_group_access_key_id)
+        response = client.send(find_by_operator(options), options)
         record = AccessKey.new
         record.assign_attributes(response['data'])
         record
+      end
+
+      def where_operator(options = {})
+        unless options[:app_id]
+          'list_app_group_access_keys'
+        end
+      end
+
+      def find_by_operator(options = {})
+        unless options[:app_id]
+          'get_app_group_access_key'
+        end
       end
     end
 
@@ -34,18 +46,13 @@ module Push
     def save
       run_callbacks :save do
         if valid?
+          options = attributes
+          options[:id] = options.delete(:access_key_id)
           client = AccessKeyClient.new
-          options = {
-            name: self.name,
-            description: self.description,
-            app_group_id: self.app_group_id
-          }
           response = if new_record?
-            client.create_app_group_access_key(options)
+            client.send(create_operator(options), options)
           else
-            client.put_app_group_access_key(options.merge(
-              app_group_id: self.app_group_id
-            ))
+            client.send(update_operator(options), options)
           end
           assign_attributes(response['data'])
           changes_applied
@@ -53,6 +60,18 @@ module Push
         else
           false
         end
+      end
+    end
+
+    def create_operator(options = {})
+      unless options[:app_id]
+        'create_app_group_access_key'
+      end
+    end
+
+    def update_operator(options = {})
+      unless options[:app_id]
+        'put_app_group_access_key'
       end
     end
   end
