@@ -40,11 +40,12 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
   end
 
   def download
+    download_url = @access_key.download_url
     Log.write(current_user, nil, request.remote_ip, 'download_app_group_access_key', {
       app_group_id: @app_group.app_group_id,
       access_key_id: @access_key.access_key_id
     })
-    redirect_to @access_key.download_url
+    redirect_to download_url
   end
 
   private
