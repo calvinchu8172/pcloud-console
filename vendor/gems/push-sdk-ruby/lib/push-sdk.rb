@@ -21,4 +21,5 @@ module Push
   autoload :Client,          'push-sdk/client'
   autoload :AppGroupClient,  'push-sdk/app_group_client'
   autoload :AccessKeyClient, 'push-sdk/access_key_client'
+  autoload :AppClient,       'push-sdk/app_client'
 end

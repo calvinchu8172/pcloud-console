@@ -1,4 +1,5 @@
-- content_for :title, t('push.app_group.access_key.labels.management', app_group_name: @app_group.name)
+- content_for :title do
+  = t('push.app_group.access_key.labels.management', app_group_name: @app_group.name)
 
 .row
   .col-md-12.col-sm-12.col-xs-12
