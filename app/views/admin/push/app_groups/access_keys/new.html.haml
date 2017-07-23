@@ -5,7 +5,7 @@
   .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_title
-        %h2= t('push.app_group.access_key.titles.new')
+        %h2= t('push.app_group.access_key.titles.new', app_group_name: @app_group.name)
         %ul.nav.navbar-right.panel_toolbox
           %li
             %a.collapse-link= fa_icon('chevron-up')
