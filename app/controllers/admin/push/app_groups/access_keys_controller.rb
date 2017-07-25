@@ -62,6 +62,6 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
   end
 
   def push_access_key_params
-    params.require(:push_access_key).permit(:name, :description, :app_group_id, :status)
+    params.require(:push_access_key).permit(:app_group_id, :name, :status, :description)
   end
 end

@@ -17,7 +17,7 @@ zh-TW:
       reset: 重設
       active: 啟用
       inactive: 停用
-      revoke: 註銷
+      revoked: 註銷
       search: 搜尋
       submit: 提交
       ok: 好

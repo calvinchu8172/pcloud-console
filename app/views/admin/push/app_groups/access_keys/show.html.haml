@@ -48,7 +48,7 @@
             = label_tag :access_key, Push::AccessKey.human_attribute_name(:status), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
               %p.form-control-static
-                = @access_key.status
+                = @access_key.localized_status
           .form-group
             = label_tag :access_key, Push::AccessKey.human_attribute_name(:app_group_topic_arn), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
