@@ -15,7 +15,7 @@ Feature: Push Management - App Groups - Update App Group
     """
 
   @javascript @webmock
-  Scenario: [03_03_01]
+  Scenario: [03_01_03]
     編輯 App Group
     Given the super admin has already signed in
      When the super admin clicks "推播管理" within "側邊功能"

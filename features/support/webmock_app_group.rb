@@ -18,6 +18,7 @@ Before '@webmock' do
       body: response.to_json
     }
   }
+
   # App Group - Create
   stub_request(:post, "https://#{ENV['PUSH_HOST']}/v1/app_groups").to_return{ |request|
     params = Rack::Utils.parse_nested_query(request.body)
@@ -48,11 +49,10 @@ Before '@webmock' do
       body: response.to_json
     }
   }
-  # App Group - Show / Edit
+  # App Group - Show / Edit for c1e7371a-7b2e-401a-8f86-480a88d2230f
   stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f").with(
     query: hash_including({ access_key_id: ENV['PUSH_ACCESS_KEY_ID'] })
   ).to_return{ |request|
-    # binding.pry
     @app_groups ||= []
     app_group = @app_groups.find{ |x| x.app_group_id == 'c1e7371a-7b2e-401a-8f86-480a88d2230f' }
     # 產生 response
@@ -69,6 +69,28 @@ Before '@webmock' do
       body: response.to_json
     }
   }
+
+  # App Group - Show / Edit for 569e2004-6ad8-4681-81dd-8769d2ea9b0b
+  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b").with(
+    query: hash_including({ access_key_id: ENV['PUSH_ACCESS_KEY_ID'] })
+  ).to_return{ |request|
+    @app_groups ||= []
+    app_group = @app_groups.find{ |x| x.app_group_id == '569e2004-6ad8-4681-81dd-8769d2ea9b0b' }
+    # 產生 response
+    response = {
+      code: '0000',
+      message: 'OK',
+      data: app_group.serializable_hash
+    }
+    # 返回
+    {
+      headers: {
+        'Content-Type' => 'application/json'
+      },
+      body: response.to_json
+    }
+  }
+
   # App Group - Update
   stub_request(:put, "https://#{ENV['PUSH_HOST']}/v1/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f").to_return{ |request|
     # binding.pry
