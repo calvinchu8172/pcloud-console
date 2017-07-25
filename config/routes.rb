@@ -55,6 +55,7 @@ Rails.application.routes.draw do
         resources :access_keys, module: :app_groups, except: [:destroy] do
           member do
             get :download
+            put :revoke
           end
         end
       end

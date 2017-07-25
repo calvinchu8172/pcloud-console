@@ -29,7 +29,7 @@ Feature: Push Management - App Groups - Download App Group Access Key
     }
     """
 
-  @javascript @webmock
+  @javascript @webmock @proxy
   Scenario: [03_02_04]
     下載 App Group Access Key
     Given the super admin has already signed in

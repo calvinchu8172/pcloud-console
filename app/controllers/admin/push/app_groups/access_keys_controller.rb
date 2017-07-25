@@ -2,7 +2,7 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
 
   before_action { authorize! :manage, :push_management }
   before_action :set_app_group
-  before_action :set_app_group_access_key, only: [:show, :edit, :update, :download]
+  before_action :set_app_group_access_key, only: [:show, :edit, :update, :download, :revoke]
 
   def show
   end
@@ -46,6 +46,15 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
       access_key_id: @access_key.access_key_id
     })
     redirect_to download_url
+  end
+
+  def revoke
+    @access_key.update(status: 'revoked')
+    Log.write(current_user, nil, request.remote_ip, 'revoke_app_group_access_key', {
+      app_group_id: @app_group.app_group_id,
+      access_key_id: @access_key.access_key_id
+    })
+    redirect_to admin_push_app_group_access_key_url(@app_group, @access_key)
   end
 
   private

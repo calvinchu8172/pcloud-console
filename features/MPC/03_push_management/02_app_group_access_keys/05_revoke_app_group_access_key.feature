@@ -1,4 +1,4 @@
-Feature: Push Management - App Groups - Update App Group Access Key
+Feature: Push Management - App Groups - Revoke App Group Access Key
 
   Background:
     Given the super admin has already signed up
@@ -30,7 +30,7 @@ Feature: Push Management - App Groups - Update App Group Access Key
     """
 
   @javascript @webmock
-  Scenario: [03_02_03]
+  Scenario: [03_02_05]
     編輯 App Group
     Given the super admin has already signed in
      When the super admin clicks "推播管理" within "側邊功能"
@@ -41,19 +41,10 @@ Feature: Push Management - App Groups - Update App Group Access Key
       And clicks "檢視" link on User List table Row "1"
      # When the super admin goes to page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e"
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e"
-      And should see "編輯"
-     When the super admin clicks "編輯"
-     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e/edit"
-      And should see "名稱"
-     When the super admin fills in "名稱" with "APP_GROUP_NAME1_MODIFY"
-     When the super admin fills in "描述" with "APP_GROUP_DESCRIPTION1_MODIFY"
-     When the super admin chooses "停用"
-      And presses "提交"
+      And should see "註銷" within "工具列"
+     When the super admin clicks "註銷"
+      And accepts a confirm message - "您確定要執行？"
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e"
-      And should see "Access Key ID c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e"
-      And should see "名稱 APP_GROUP_NAME1_MODIFY"
-      And should see "描述 APP_GROUP_DESCRIPTION1_MODIFY"
-      And should see "狀態 停用"
-      And should see "APP Group Topic ARN arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b"
-      And should see "建立時間 2017-07-18T06:52:47.031Z"
-      And should see "更新時間 2017-07-19T06:52:47.031Z"
+     Then should not see "編輯" within "工具列"
+     Then should not see "下載" within "工具列"
+     Then should not see "註銷" within "工具列"

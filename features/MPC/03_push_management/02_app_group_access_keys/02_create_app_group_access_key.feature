@@ -35,7 +35,7 @@ Feature: Push Management - App Groups - Create App group Access Key
       And should see "Access Key ID c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e"
       And should see "名稱 Access Key 1"
       And should see "描述 Access Key Description 1"
-      And should see "狀態 active"
+      And should see "狀態 啟用"
       And should see "APP Group Topic ARN arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b"
       And should see "建立時間 2017-07-18T06:52:47.031Z"
       And should see "更新時間 2017-07-18T06:52:47.031Z"
