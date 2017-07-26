@@ -81,8 +81,7 @@
             %a.collapse-link= fa_icon('chevron-up')
         .clearfix
       .x_content
-        %table.table.table-bordered.dt-responsive.nowrap
-        / %table.table.table-bordered.nowrap
+        %table.table.table-bordered{ class: (Rails.env.production? ? 'dt-responsive nowrap' : '') }
           %thead
             %tr
               %th= Push::AccessKey.human_attribute_name(:access_key_id)
