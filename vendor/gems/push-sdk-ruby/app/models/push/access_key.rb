@@ -41,7 +41,6 @@ module Push
       end
 
       def status_radio_options
-        # ['active', 'inactive', 'revoked'].map do |status|
         ['active', 'inactive'].map do |status|
           [I18n.t("common.labels.#{status}"), status]
         end
@@ -64,6 +63,10 @@ module Push
 
     def inactive?
       self.status == 'inactive'
+    end
+
+    def revoked!
+      update(status: 'revoked')
     end
 
     def revoked?
