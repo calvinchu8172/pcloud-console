@@ -27,3 +27,13 @@
             = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :index do
               = link_to admin_push_app_groups_url do
                 %span= t('push.app_group.titles.index')
+        - if @app_group
+          = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/access_keys', 'admin/push/app_groups/apps'] do
+            = link_to '#' do
+              = fa_icon('commenting-o')
+              %label= @app_group.name
+              %span.fa.fa-chevron-down
+            %ul.nav.child_menu
+              = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :index do
+                = link_to admin_push_app_group_apps_url(@app_group) do
+                  %span= t('push.app_group.app.titles.index', app_group_name: @app_group.name)

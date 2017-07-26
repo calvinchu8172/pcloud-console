@@ -35,6 +35,15 @@ zh-TW:
           show: "%{app_group_name} - Access Key 資訊"
           new: "%{app_group_name} - 新增 Access Key"
           edit: "%{app_group_name} - 編輯 Access Key"
+      app:
+        labels:
+          management: "%{app_group_name} - App 管理"
+          new: 新增 Access Key
+        titles:
+          index: "%{app_group_name} - Apps 列表"
+          show: "%{app_group_name} - App 資訊"
+          new: "%{app_group_name} - 新增 App"
+          edit: "%{app_group_name} - 編輯 App"
   log:
     events:
       create_app_group: 新增 App Group

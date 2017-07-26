@@ -58,6 +58,8 @@ Rails.application.routes.draw do
             put :revoke
           end
         end
+        resources :apps, module: :app_groups, except: [:destroy] do
+        end
       end
     end
 
