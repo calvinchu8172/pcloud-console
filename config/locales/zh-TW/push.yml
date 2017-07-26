@@ -9,10 +9,9 @@ zh-TW:
         created_at: 建立時間
         updated_at: 更新時間
       push/access_key:
-        name: 名稱
         access_key_id: Access Key ID
-        status: 狀態
         description: 描述
+        status: 狀態
         app_group_topic_arn: APP Group Topic ARN
         created_at: 建立時間
         updated_at: 更新時間

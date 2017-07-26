@@ -124,11 +124,6 @@ paths:
           description: App Group ID
           required: true
           type: string
-        - name: name
-          in: formData
-          description: Access Key 名稱
-          required: true
-          type: string
         - name: description
           in: formData
           description: Access Key 描述
@@ -265,11 +260,6 @@ paths:
         - name: id
           in: path
           description: Access Key ID
-          required: true
-          type: string
-        - name: name
-          in: formData
-          description: Access Key 名稱
           required: true
           type: string
         - name: status

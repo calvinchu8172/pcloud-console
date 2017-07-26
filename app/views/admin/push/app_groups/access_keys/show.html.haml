@@ -40,11 +40,6 @@
               %p.form-control-static
                 = @access_key.access_key_id
           .form-group
-            = label_tag :access_key, Push::AccessKey.human_attribute_name(:name), class: 'control-label col-sm-2 col-xs-12'
-            .col-sm-10.col-xs-12
-              %p.form-control-static
-                = @access_key.name
-          .form-group
             = label_tag :access_key, Push::AccessKey.human_attribute_name(:description), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
               %p.form-control-static
