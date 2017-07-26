@@ -5,7 +5,7 @@ Feature: Push Management - App Groups - Create App group
     Given the super admin has already signed up
 
   @javascript @webmock
-  Scenario: [03_02_01]
+  Scenario: [03_01_02]
     新增 App Group
     # Given Time now is "2017-01-02 12:00:00"
     Given the super admin has already signed in

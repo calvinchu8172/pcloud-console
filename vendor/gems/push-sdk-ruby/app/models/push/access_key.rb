@@ -41,7 +41,7 @@ module Push
       end
 
       def status_radio_options
-        ['active', 'inactive', 'revoked'].map do |status|
+        ['active', 'inactive'].map do |status|
           [I18n.t("common.labels.#{status}"), status]
         end
       end
@@ -55,6 +55,22 @@ module Push
 
     def localized_status
       I18n.t("common.labels.#{self.status}")
+    end
+
+    def active?
+      self.status == 'active'
+    end
+
+    def inactive?
+      self.status == 'inactive'
+    end
+
+    def revoked!
+      update(status: 'revoked')
+    end
+
+    def revoked?
+      self.status == 'revoked'
     end
 
     # 1. validate attributes

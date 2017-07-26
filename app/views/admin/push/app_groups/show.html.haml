@@ -79,10 +79,12 @@
         .clearfix
       .x_content
         %table.table.table-bordered.dt-responsive.nowrap
+        / %table.table.table-bordered.nowrap
           %thead
             %tr
               %th= Push::AccessKey.human_attribute_name(:access_key_id)
               %th= Push::AccessKey.human_attribute_name(:status)
+              %th= Push::AccessKey.human_attribute_name(:name)
               %th= Push::AccessKey.human_attribute_name(:description)
               %th= Push::AccessKey.human_attribute_name(:created_at)
               %th= Push::AccessKey.human_attribute_name(:updated_at)
@@ -92,6 +94,7 @@
               %tr
                 %td= access_key.access_key_id
                 %td= access_key.localized_status
+                %td= access_key.name
                 %td= access_key.description
                 %td= access_key.created_at
                 %td= access_key.updated_at

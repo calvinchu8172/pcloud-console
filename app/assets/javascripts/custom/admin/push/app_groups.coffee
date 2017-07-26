@@ -61,5 +61,6 @@ window.RailsApp.admin_push_app_groups =
         null
         null
         null
+        { orderable: false }
       ]
 
