@@ -18,7 +18,7 @@
                   %span= t('log.labels.record')
 
       - if can? :read, :push_management
-        = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/access_keys'] do
+        = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/access_keys', 'admin/push/app_groups/apps'] do
           = link_to '#' do
             = fa_icon('commenting-o')
             %label= Group.human_attribute_name('name.push_management')
@@ -28,7 +28,7 @@
               = link_to admin_push_app_groups_url do
                 %span= t('push.app_group.titles.index')
         - if @app_group
-          = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/access_keys', 'admin/push/app_groups/apps'] do
+          = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/apps'] do
             = link_to '#' do
               = fa_icon('commenting-o')
               %label= @app_group.name

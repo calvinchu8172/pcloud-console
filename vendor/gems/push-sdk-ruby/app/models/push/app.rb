@@ -10,11 +10,11 @@ module Push
 
     class << self
 
-      def all
+      def where(options = {})
         client = AppClient.new
-        response = client.list_apps
+        response = client.send('list_apps', options)
         response['data'].map do |app|
-          record = AppGroup.new
+          record = App.new
           record.assign_attributes(app)
           record
         end
@@ -27,6 +27,10 @@ module Push
         record.assign_attributes(response['data'])
         record
       end
+    end
+
+    def localized_platform
+      I18n.t("push.app_group.app.platform.#{self.platform}")
     end
 
     # 1. validate attributes
