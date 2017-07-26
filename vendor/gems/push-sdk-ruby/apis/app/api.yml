@@ -69,30 +69,30 @@ paths:
                     app_id:
                       type: string
                       description: App ID
-                    application_arn:
-                      type: string
-                      description: Application SNS Topic
-                    name:
-                      type: string
-                      description: 名稱
-                    package_name:
-                      type: string
-                      description: Package Name
                     app_group_id:
                       type: string
                       description: App Group ID
+                    name:
+                      type: string
+                      description: 名稱
+                    description:
+                      type: string
+                      description: App 描述
                     platform:
                       type: string
-                      description: 平台
+                      description: App 平台
+                    application_arn:
+                      type: string
+                      description: App SNS Application
                     topic_arn:
                       type: string
                       description: App SNS Topic
-                    description:
-                      type: string
-                      description: Access Key 描述
                     bundle_id:
                       type: string
                       description: iOS Bundle ID
+                    package_name:
+                      type: string
+                      description: Android Package Name
                     created_at:
                       type: string
                       description: Access Key 建立時間

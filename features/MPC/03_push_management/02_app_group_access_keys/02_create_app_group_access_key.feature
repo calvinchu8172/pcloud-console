@@ -23,7 +23,7 @@ Feature: Push Management - App Groups - Create App group Access Key
      When the super admin clicks "推播管理" within "側邊功能"
       And clicks "App Group 列表" within "側邊功能"
      Then the super admin should be at page - "/admin/push/app_groups"
-      And clicks "檢視" link on User List table Row "1"
+      And clicks "檢視" link on App Group List table Row "1"
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b"
      Then the super admin should see "新增 Access Key"
      When the super admin clicks "新增 Access Key"

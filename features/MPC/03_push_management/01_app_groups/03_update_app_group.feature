@@ -21,7 +21,7 @@ Feature: Push Management - App Groups - Update App Group
      When the super admin clicks "推播管理" within "側邊功能"
       And clicks "App Group 列表" within "側邊功能"
      Then the super admin should be at page - "/admin/push/app_groups"
-      And clicks "檢視" link on User List table Row "1"
+      And clicks "檢視" link on App Group List table Row "1"
      Then the super admin should be at page - "/admin/push/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f"
       And should see "編輯"
      When the super admin clicks "編輯"

@@ -1,4 +1,5 @@
-- content_for :title, t('push.app_group.access_key.labels.management', app_group_name: @app_group.name)
+- content_for :title do
+  = t('push.app_group.access_key.labels.management', app_group_name: @app_group.name)
 
 .row
   .col-md-12.col-sm-12.col-xs-12.toolbar
@@ -20,7 +21,7 @@
           = link_to download_admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm' do
             = fa_icon('download')
             = t('common.labels.download')
-          = link_to revoke_admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'put' do
+          = link_to admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
             = fa_icon('minus-circle')
             = t('common.labels.revoked')
   .col-md-12.col-sm-12.col-xs-12

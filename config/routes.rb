@@ -52,10 +52,9 @@ Rails.application.routes.draw do
       # - 推播管理 / App Group 列表 - #
       resources :app_groups, except: [:destroy] do
         # - 推播管理 / App Group / Access Key - #
-        resources :access_keys, module: :app_groups, except: [:destroy] do
+        resources :access_keys, module: :app_groups, except: [:index] do
           member do
             get :download
-            put :revoke
           end
         end
         resources :apps, module: :app_groups, except: [:destroy] do
