@@ -51,7 +51,7 @@ module Push
         signature_data_keys.each{ |key|
           @signature_data[key] = instance_variable_get("@#{key}")
         }
-        @signature_data['X-Eco-Timestamp'] = timestamp
+        @signature_data['X-Timestamp'] = timestamp
         @signature_data
       end
 
@@ -70,8 +70,8 @@ module Push
       # 取得 headers
       def headers
         @headers = {
-          'X-Eco-Timestamp' => timestamp,
-          'X-Eco-Signature' => signature
+          'X-Timestamp' => timestamp,
+          'X-Signature' => signature
         }
         @headers['X-Api-Key'] = ENV['PUSH_API_KEY'] if 'X-Api-Key'.in?(header_keys)
         @headers[:content_type] = content_type if content_type
