@@ -27,6 +27,11 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
         - name: X-Eco-Signature
           in: header
           description: 簽證驗證碼
@@ -90,6 +95,11 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
         - name: X-Eco-Signature
           in: header
           description: 簽證驗證碼
@@ -145,6 +155,11 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
         - name: X-Eco-Signature
           in: header
           description: 簽證驗證碼
@@ -212,6 +227,11 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
         - name: X-Eco-Signature
           in: header
           description: 簽證驗證碼

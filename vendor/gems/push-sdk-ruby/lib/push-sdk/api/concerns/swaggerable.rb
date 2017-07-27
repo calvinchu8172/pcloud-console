@@ -60,12 +60,20 @@ module Push
         @signature ||= Signature.generate(private_key, signature_data)
       end
 
+      # 取得 header_keys
+      def header_keys
+        @header_keys ||= parameters.select{ |x|
+          x['in'] == 'header'
+        }.map{ |x| x['name'] }
+      end
+
       # 取得 headers
       def headers
         @headers = {
           'X-Eco-Timestamp' => timestamp,
           'X-Eco-Signature' => signature
         }
+        @headers['X-Api-Key'] = ENV['PUSH_API_KEY'] if 'X-Api-Key'.in?(header_keys)
         @headers[:content_type] = content_type if content_type
         @headers[:accept] = accept if accept
         @headers

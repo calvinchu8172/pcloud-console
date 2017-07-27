@@ -1,10 +1,12 @@
 ---
 development:
   PUSH_HOST:
+  PUSH_API_KEY:
   PUSH_ACCESS_KEY_ID:
   PUSH_PRIVATE_KEY:
 test:
   PUSH_HOST: push.myzyxel.ecoworkinc.com
+  PUSH_API_KEY: X-Api-Key
   PUSH_ACCESS_KEY_ID: 660ec58a-a0f2-4ac4-8393-c866d813b8d1
   PUSH_PRIVATE_KEY: |
     -----BEGIN RSA PRIVATE KEY-----
@@ -36,5 +38,6 @@ test:
     -----END RSA PRIVATE KEY-----
 production:
   PUSH_HOST:
+  PUSH_API_KEY:
   PUSH_ACCESS_KEY_ID:
   PUSH_PRIVATE_KEY:
