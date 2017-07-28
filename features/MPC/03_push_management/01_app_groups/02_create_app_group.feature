@@ -1,7 +1,6 @@
 Feature: Push Management - App Groups - Create App group
 
   Background:
-    # Given Time now is "2017-01-01 12:00:00"
     Given the super admin has already signed up
 
   @javascript @webmock

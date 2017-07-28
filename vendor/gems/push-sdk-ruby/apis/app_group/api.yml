@@ -27,12 +27,17 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Eco-Signature
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
@@ -90,12 +95,17 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Eco-Signature
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
@@ -145,12 +155,17 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Eco-Signature
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
@@ -212,12 +227,17 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Eco-Signature
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
