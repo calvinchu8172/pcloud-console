@@ -10,11 +10,16 @@
 
   - Feature 功能 #24836: 04.推播管理/APP Group List (含APP Group Key)
 
-    - Feature 功能 #24850: 新增 APP Group
-    - Feature 功能 #24851: 查看 APP Group 詳細資訊
-    - Feature 功能 #24852: 編輯 APP Group
-    - Feature 功能 #24853: 查看 APP Group 列表
-    - Feature 功能 #24870: 新增 APP Group Access Key (列表、詳細資訊、編輯、下載、狀態切換)
+    - 查看 APP Group 列表
+    - 新增 APP Group
+    - 查看 APP Group 詳細資訊
+    - 編輯 APP Group
+    - 查看 APP Group Access Key 列表
+    - 新增 APP Group Access Key
+    - 查看 APP Group Access Key 詳細資訊
+    - 編輯 APP Group Access Key
+    - 下載 APP Group Access Key
+    - 切換 APP Group Access Key 狀態
 
 #### notes：none
 
