@@ -2,8 +2,8 @@ module Push
   class App < ApplicationModel
 
     permit_attributes :app_id, :name, :description,
-      :application_arn, :platform, :topic_arn, :app_group_id, :bundle_id,
-      :package_name, :created_at, :updated_at
+      :application_arn, :platform, :topic_arn, :app_group_id, :app_group_topic_arn,
+      :bundle_id, :package_name, :created_at, :updated_at
     permit_primary_key :app_id
 
     validates :name, presence: true
@@ -12,7 +12,7 @@ module Push
 
       def where(options = {})
         client = AppClient.new
-        response = client.send('list_apps', options)
+        response = client.send('list_app_group_apps', options)
         response['data'].map do |app|
           record = App.new
           record.assign_attributes(app)
@@ -20,13 +20,21 @@ module Push
         end
       end
 
-      def find(app_group_id)
+      def find_by(options = {})
         client = AppClient.new
-        response = client.get_app(app_id: app_id)
+        response = client.send('get_app_group_app', options)
         record = App.new
         record.assign_attributes(response['data'])
         record
       end
+
+      # def find(app_group_id)
+      #   client = AppClient.new
+      #   response = client.get_app(app_id: app_id)
+      #   record = App.new
+      #   record.assign_attributes(response['data'])
+      #   record
+      # end
     end
 
     def localized_platform

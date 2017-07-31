@@ -17,9 +17,13 @@ zh-TW:
         updated_at: 更新時間
       push/app:
         name: 名稱
+        description: 描述
         app_id: APP ID
         platform: 平台
-        description: 描述
+        application_arn: App SNS Application
+        topic_arn: App SNS Topic
+        bundle_id: iOS bundle ID
+        package_name: Android Package Name
         created_at: 建立時間
         updated_at: 更新時間
   push:

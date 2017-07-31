@@ -23,7 +23,7 @@ paths:
       description: 取得 App Group App 列表
       tags:
         - console
-      operationId: list_apps
+      operationId: list_app_group_apps
       produces:
         - application/json
       parameters:
@@ -79,7 +79,7 @@ paths:
                       description: App Group ID
                     name:
                       type: string
-                      description: 名稱
+                      description: App 名稱
                     description:
                       type: string
                       description: App 描述
@@ -92,6 +92,9 @@ paths:
                     topic_arn:
                       type: string
                       description: App SNS Topic
+                    app_group_topic_arn:
+                      type: string
+                      description: App Group Topic ARN
                     bundle_id:
                       type: string
                       description: iOS Bundle ID
@@ -100,10 +103,10 @@ paths:
                       description: Android Package Name
                     created_at:
                       type: string
-                      description: Access Key 建立時間
+                      description: App 建立時間
                     updated_at:
                       type: string
-                      description: Access Key 更新時間
+                      description: App 更新時間
     post:
       summary: 新增所屬 App Group 的 App
       description: 新增所屬 App Group 的 App
@@ -115,6 +118,11 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
         - name: X-Eco-Signature
           in: header
           description: 簽證驗證碼
@@ -165,16 +173,21 @@ paths:
                   access_key_id:
                     type: string
                     description: Access Key ID
-  /v1/app_groups/{app_group_id}/access_keys/{id}:
+  /v1/app_groups/{app_group_id}/apps/{id}:
     get:
-      summary: 取得 App Group Access Key 詳細資訊
-      description: 取得 App Group Access Key 詳細資訊
+      summary: 取得 App Group App 詳細資訊
+      description: 取得 App Group App 詳細資訊
       tags:
         - console
-      operationId: get_app_group_access_key
+      operationId: get_app_group_app
       produces:
         - application/json
       parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
         - name: X-Eco-Signature
           in: header
           description: 簽證驗證碼
@@ -197,7 +210,7 @@ paths:
           type: string
         - name: id
           in: path
-          description: Access Key ID
+          description: App ID
           required: true
           type: string
       responses:
@@ -218,30 +231,39 @@ paths:
               data:
                 type: object
                 properties:
-                  access_key_id:
+                  app_id:
                     type: string
-                    description: Access Key ID
-                  type:
-                    type: string
-                    description: Access Key 類型
+                    description: App ID
                   app_group_id:
                     type: string
                     description: App Group ID
-                  status:
+                  name:
                     type: string
-                    description: Access Key 狀態
-                  app_group_topic_arn:
-                    type: string
-                    description: App Group SNS Topic
+                    description: App 名稱
                   description:
                     type: string
-                    description: Access Key 描述
+                    description: App 描述
+                  platform:
+                    type: string
+                    description: App 平台
+                  application_arn:
+                    type: string
+                    description: App SNS Application
+                  topic_arn:
+                    type: string
+                    description: App SNS Topic
+                  bundle_id:
+                    type: string
+                    description: iOS Bundle ID
+                  package_name:
+                    type: string
+                    description: Android Package Name
                   created_at:
                     type: string
-                    description: Access Key 建立時間
+                    description: App 建立時間
                   updated_at:
                     type: string
-                    description: Access Key 更新時間
+                    description: App 更新時間
     put:
       summary: 更新 Access Key
       description: 更新 Access Key
