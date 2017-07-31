@@ -27,7 +27,7 @@
             = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :index do
               = link_to admin_push_app_groups_url do
                 %span= t('push.app_group.titles.index')
-        - if @app_group
+        - if @app_group && !@app_group.new_record?
           = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/apps'] do
             = link_to '#' do
               = fa_icon('commenting-o')

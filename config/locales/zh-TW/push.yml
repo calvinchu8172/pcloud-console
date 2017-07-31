@@ -18,11 +18,16 @@ zh-TW:
       push/app:
         name: 名稱
         description: 描述
+        status: 狀態
         app_id: APP ID
         platform: 平台
         application_arn: App SNS Application
         topic_arn: App SNS Topic
         bundle_id: iOS bundle ID
+        password: Password
+        file: Choose P12 file
+        certificate: Certificate
+        private_key: Private Key
         package_name: Android Package Name
         created_at: 建立時間
         updated_at: 更新時間
@@ -49,6 +54,7 @@ zh-TW:
         labels:
           management: "%{app_group_name} - App 管理"
           new: 新增 App
+          load_credentials: Load credentials from file
         titles:
           list: Apps 列表
           index: "%{app_group_name} - Apps 列表"
@@ -58,6 +64,9 @@ zh-TW:
         platform:
           ios: iOS
           android: Android
+          apns: APNS
+          apns_sandbox: APNS Sandbox
+          gcm: GCM
   log:
     events:
       create_app_group: 新增 App Group

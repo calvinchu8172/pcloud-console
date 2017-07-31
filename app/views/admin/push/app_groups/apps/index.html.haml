@@ -13,7 +13,13 @@
         = link_to admin_push_app_group_url(@app_group), class: 'btn btn-app btn-sm' do
           = fa_icon('caret-square-o-left')
           = t('common.labels.back') + ' ' + @app_group.name
-        = link_to new_admin_push_app_group_app_url(@app_group), class: 'btn btn-app btn-sm' do
+        = link_to new_admin_push_app_group_app_url(@app_group, platform: 'ios'), class: 'btn btn-app btn-sm' do
+          = fa_icon('plus')
+          = t('push.app_group.app.labels.new.ios')
+        = link_to new_admin_push_app_group_app_url(@app_group, platform: 'android'), class: 'btn btn-app btn-sm' do
+          = fa_icon('plus')
+          = t('push.app_group.app.labels.new.android')
+        = link_to new_admin_push_app_group_app_url(@app_group, platform: 'ios'), class: 'btn btn-app btn-sm' do
           = fa_icon('plus')
           = t('push.app_group.app.labels.new')
   .col-md-12.col-sm-12.col-xs-12

@@ -37,6 +37,11 @@
               %p.form-control-static
                 = @app.description
           .form-group
+            = label_tag :app, Push::App.human_attribute_name(:status), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @app.localized_status
+          .form-group
             = label_tag :app, Push::App.human_attribute_name(:platform), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12
               %p.form-control-static

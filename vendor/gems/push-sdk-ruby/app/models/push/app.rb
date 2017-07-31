@@ -3,7 +3,7 @@ module Push
 
     permit_attributes :app_id, :name, :description,
       :application_arn, :platform, :topic_arn, :app_group_id, :app_group_topic_arn,
-      :bundle_id, :package_name, :created_at, :updated_at
+      :bundle_id, :package_name, :api_key, :created_at, :updated_at, :status, :certificate, :privateKey, :file
     permit_primary_key :app_id
 
     validates :name, presence: true
@@ -35,10 +35,20 @@ module Push
       #   record.assign_attributes(response['data'])
       #   record
       # end
+
+      def platform_radio_options
+        ['gcm', 'apns', 'apns_sandbox'].map do |platform|
+          [I18n.t("push.app_group.app.platform.#{platform}"), platform.upcase]
+        end
+      end
     end
 
     def localized_platform
       I18n.t("push.app_group.app.platform.#{self.platform}")
+    end
+
+    def localized_status
+      I18n.t("common.labels.#{self.status}")
     end
 
     # 1. validate attributes
@@ -48,9 +58,11 @@ module Push
         if valid?
           client = AppClient.new
           response = if new_record?
-            client.create_app(attributes)
+            # client.create_app(attributes)
+            client.send('create_app_group_app', attributes)
           else
-            client.put_app(attributes)
+            # client.put_app(attributes)
+            client.send('put_app_group_app', attributes)
           end
           assign_attributes(response['data'])
           changes_applied

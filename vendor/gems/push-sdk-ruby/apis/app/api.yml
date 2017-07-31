@@ -112,7 +112,7 @@ paths:
       description: 新增所屬 App Group 的 App
       tags:
         - console
-      operationId: create_app
+      operationId: create_app_group_app
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -123,12 +123,12 @@ paths:
           description: Api Gateway Api Key
           required: true
           type: string
-        - name: X-Eco-Signature
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
@@ -145,12 +145,32 @@ paths:
           type: string
         - name: name
           in: formData
-          description: Access Key 名稱
+          description: App 名稱
           required: true
           type: string
         - name: description
           in: formData
-          description: Access Key 描述
+          description: App 描述
+          type: string
+        - name: platform
+          in: formData
+          description: App 平台
+          type: string
+        - name: package_name
+          in: formData
+          description: Android Package Name
+          type: string
+        - name: bundle_id
+          in: formData
+          description: iOS Bundle ID
+          type: string
+        - name: certificate
+          in: formData
+          description: Certificate of iOS App
+          type: string
+        - name: privateKey
+          in: formData
+          description: Private Key of iOS App
           type: string
       responses:
         200:
@@ -170,9 +190,9 @@ paths:
               data:
                 type: object
                 properties:
-                  access_key_id:
+                  app_id:
                     type: string
-                    description: Access Key ID
+                    description: App ID
   /v1/app_groups/{app_group_id}/apps/{id}:
     get:
       summary: 取得 App Group App 詳細資訊
@@ -188,12 +208,12 @@ paths:
           description: Api Gateway Api Key
           required: true
           type: string
-        - name: X-Eco-Signature
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
@@ -275,12 +295,12 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Eco-Signature
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
@@ -345,12 +365,12 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Eco-Signature
+        - name: X-Signature
           in: header
           description: 簽證驗證碼
           required: true
           type: string
-        - name: X-Eco-Timestamp
+        - name: X-Timestamp
           in: header
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
