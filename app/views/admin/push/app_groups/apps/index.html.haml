@@ -12,14 +12,8 @@
       .x_content
         = link_to admin_push_app_group_url(@app_group), class: 'btn btn-app btn-sm' do
           = fa_icon('caret-square-o-left')
-          = t('common.labels.back') + ' ' + @app_group.name
-        = link_to new_admin_push_app_group_app_url(@app_group, platform: 'ios'), class: 'btn btn-app btn-sm' do
-          = fa_icon('plus')
-          = t('push.app_group.app.labels.new.ios')
-        = link_to new_admin_push_app_group_app_url(@app_group, platform: 'android'), class: 'btn btn-app btn-sm' do
-          = fa_icon('plus')
-          = t('push.app_group.app.labels.new.android')
-        = link_to new_admin_push_app_group_app_url(@app_group, platform: 'ios'), class: 'btn btn-app btn-sm' do
+          = t('common.labels.back')
+        = link_to new_admin_push_app_group_app_url(@app_group), class: 'btn btn-app btn-sm' do
           = fa_icon('plus')
           = t('push.app_group.app.labels.new')
   .col-md-12.col-sm-12.col-xs-12
@@ -41,12 +35,10 @@
               %th= Push::App.human_attribute_name(:updated_at)
               %th
           %tbody
-            / 這邊之後要處理 @app_groups 為 nil 之狀況
             - @apps.each do |app|
               %tr
                 %td= app.name
                 %td= app.description
-                / %td= app.localized_platform
                 %td= app.platform
                 %td= app.created_at
                 %td= app.updated_at

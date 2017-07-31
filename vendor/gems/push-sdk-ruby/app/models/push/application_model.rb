@@ -12,6 +12,8 @@ module Push
     define_model_callbacks :save
     define_model_callbacks :update
 
+    attr_accessor :api_error_message
+
     class << self
 
       attr_accessor :primary_key
@@ -64,6 +66,10 @@ module Push
         self.attributes = params
         save
       end
+    end
+
+    def api_error?
+      !!@api_error_message
     end
   end
 end

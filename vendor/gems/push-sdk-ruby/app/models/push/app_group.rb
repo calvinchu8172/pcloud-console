@@ -1,9 +1,9 @@
 module Push
   class AppGroup < ApplicationModel
 
+    permit_primary_key :app_group_id
     permit_attributes :app_group_id, :name, :description, :topic_arn,
       :created_at, :updated_at
-    permit_primary_key :app_group_id
 
     validates :name, presence: true
 

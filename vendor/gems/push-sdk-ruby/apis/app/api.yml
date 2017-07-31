@@ -23,7 +23,7 @@ paths:
       description: 取得 App Group App 列表
       tags:
         - console
-      operationId: list_app_group_apps
+      operationId: list_apps
       produces:
         - application/json
       parameters:
@@ -112,7 +112,7 @@ paths:
       description: 新增所屬 App Group 的 App
       tags:
         - console
-      operationId: create_app_group_app
+      operationId: create_app
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -164,13 +164,17 @@ paths:
           in: formData
           description: iOS Bundle ID
           type: string
+        - name: privateKey
+          in: formData
+          description: Private Key of iOS App
+          type: string
         - name: certificate
           in: formData
           description: Certificate of iOS App
           type: string
-        - name: privateKey
+        - name: api_key
           in: formData
-          description: Private Key of iOS App
+          description: Api Key of Android App
           type: string
       responses:
         200:
@@ -199,7 +203,7 @@ paths:
       description: 取得 App Group App 詳細資訊
       tags:
         - console
-      operationId: get_app_group_app
+      operationId: get_app
       produces:
         - application/json
       parameters:

@@ -24,10 +24,11 @@ zh-TW:
         application_arn: App SNS Application
         topic_arn: App SNS Topic
         bundle_id: iOS bundle ID
-        password: Password
-        file: Choose P12 file
-        certificate: Certificate
-        private_key: Private Key
+        password: 密碼
+        file: 選擇 P12 檔案
+        certificate: 憑證
+        privateKey: 私鑰
+        api_key: Api Key
         package_name: Android Package Name
         created_at: 建立時間
         updated_at: 更新時間
