@@ -4,13 +4,13 @@ module Push
     permit_primary_key :app_id
     permit_attributes :app_id, :name, :description, :platform, :status,
       :application_arn, :topic_arn, :app_group_id, :app_group_topic_arn,
-      :bundle_id, :privateKey, :certificate, :package_name, :api_key,
+      :bundle_id, :private_key, :certificate, :package_name, :api_key,
       :created_at, :updated_at
 
     validates :name, presence: true
     validates :platform, presence: true
     validates :bundle_id, presence: true, if: Proc.new { |x| x.platform.in? ['APNS', 'APNS_SANDBOX'] }
-    validates :privateKey, presence: true, if: Proc.new { |x| x.platform.in? ['APNS', 'APNS_SANDBOX'] }
+    validates :private_key, presence: true, if: Proc.new { |x| x.platform.in? ['APNS', 'APNS_SANDBOX'] }
     validates :certificate, presence: true, if: Proc.new { |x| x.platform.in? ['APNS', 'APNS_SANDBOX'] }
     validates :package_name, presence: true, if: Proc.new { |x| x.platform == 'GCM' }
     validates :api_key, presence: true, if: Proc.new { |x| x.platform == 'GCM' }
@@ -18,7 +18,7 @@ module Push
     before_save do
       if self.platform == 'GCM'
         self.bundle_id = nil
-        self.privateKey = nil
+        self.private_key = nil
         self.certificate = nil
       end
       if self.platform.in? ['APNS', 'APNS_SANDBOX']

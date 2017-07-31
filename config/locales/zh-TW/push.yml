@@ -27,7 +27,7 @@ zh-TW:
         password: 密碼
         file: 選擇 P12 檔案
         certificate: 憑證
-        privateKey: 私鑰
+        private_key: 私鑰
         api_key: Api Key
         package_name: Android Package Name
         created_at: 建立時間

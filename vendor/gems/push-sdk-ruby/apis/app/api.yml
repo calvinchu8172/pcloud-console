@@ -164,7 +164,7 @@ paths:
           in: formData
           description: iOS Bundle ID
           type: string
-        - name: privateKey
+        - name: private_key
           in: formData
           description: Private Key of iOS App
           type: string

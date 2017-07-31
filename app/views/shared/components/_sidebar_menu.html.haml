@@ -33,7 +33,7 @@
                 = link_to '#' do
                   = t('push.app_group.titles.index')
                   %span.fa.fa-chevron-down
-                  %ul.nav.child_menu
-                    = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :index do
-                      = link_to admin_push_app_group_apps_url(@app_group) do
-                        %span= t('push.app_group.app.titles.list')
+                %ul.nav.child_menu
+                  = sidebar_child_menu_item controller: 'admin/push/app_groups/apps', action: :index do
+                    = link_to admin_push_app_group_apps_url(@app_group) do
+                      %span= t('push.app_group.app.titles.list')

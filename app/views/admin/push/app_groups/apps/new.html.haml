@@ -28,7 +28,7 @@
                     %button#loadCredentials.btn.btn-default{ type: 'button' }
                       = t('push.app_group.app.labels.load_credentials')
             = f.input :certificate, as: :text, required: true, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 5 }
-            = f.input :privateKey, as: :text, required: true, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 5 }
+            = f.input :private_key, as: :text, required: true, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 5 }
           .gcm.hide
             = f.input :package_name, required: true, input_wrapper_html: { class: 'col-sm-3' }
             = f.input :api_key, required: true, input_wrapper_html: { class: 'col-sm-5' }

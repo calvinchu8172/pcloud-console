@@ -17,9 +17,13 @@ module Push
     autoload :Signature, 'push-sdk/api/signature'
   end
 
-  # clients
+  # client
   autoload :Client,          'push-sdk/client'
-  autoload :AppGroupClient,  'push-sdk/app_group_client'
-  autoload :AccessKeyClient, 'push-sdk/access_key_client'
-  autoload :AppClient,       'push-sdk/app_client'
+
+  # console clients
+  autoload :ConsoleClient,   'push-sdk/console_client'
+  autoload :AppGroupClient,  'push-sdk/console_client/app_group_client'
+  autoload :AccessKeyClient, 'push-sdk/console_client/access_key_client'
+  autoload :AppClient,       'push-sdk/console_client/app_client'
+
 end

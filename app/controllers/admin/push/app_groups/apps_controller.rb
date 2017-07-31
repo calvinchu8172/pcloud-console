@@ -60,7 +60,7 @@ class Admin::Push::AppGroups::AppsController < AdminController
   def push_app_params
     params.require(:push_app).permit(
       :app_group_id, :name, :description, :platform,
-      :bundle_id, :certificate, :privateKey,
+      :bundle_id, :certificate, :private_key,
       :package_name, :api_key
     )
   end

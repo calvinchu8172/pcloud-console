@@ -57,7 +57,7 @@ module Push
 
       # 產生 signature
       def signature
-        @signature ||= Signature.generate(private_key, signature_data)
+        @signature ||= Signature.generate(client.private_key, signature_data)
       end
 
       # 取得 header_keys

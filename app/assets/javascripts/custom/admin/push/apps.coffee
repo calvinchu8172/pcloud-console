@@ -67,7 +67,7 @@ window.RailsApp.admin_push_app_groups_apps =
             privateKey = privateKeyBags[forge.pki.oids.pkcs8ShroudedKeyBag][0].key
             privateKeyPem = forge.pki.privateKeyToPem(privateKey)
             $('#push_app_certificate').val certificatePem
-            $('#push_app_privateKey').val privateKeyPem
+            $('#push_app_private_key').val privateKeyPem
           catch err
             alert err.message
 
