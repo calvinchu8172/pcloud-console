@@ -3,14 +3,6 @@ module Push
 
     class << self
 
-      def access_key_id
-        raise 'Override this method'
-      end
-
-      def private_key
-        raise 'Override this method'
-      end
-
       def swagger_yml
         raise 'Override this method'
       end
@@ -18,6 +10,18 @@ module Push
       def api
         @api ||= Api::Builder.build(swagger_yml)
       end
+    end
+
+    def api_key
+      raise 'Override this method'
+    end
+
+    def access_key_id
+      raise 'Override this method'
+    end
+
+    def private_key
+      raise 'Override this method'
     end
 
     # 根據 method_name 取得 api config 並動態產生 api method

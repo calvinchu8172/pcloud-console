@@ -73,7 +73,7 @@ module Push
           'X-Timestamp' => timestamp,
           'X-Signature' => signature
         }
-        @headers['X-Api-Key'] = ENV['PUSH_API_KEY'] if 'X-Api-Key'.in?(header_keys)
+        @headers['X-Api-Key'] = client.api_key if 'X-Api-Key'.in?(header_keys)
         @headers[:content_type] = content_type if content_type
         @headers[:accept] = accept if accept
         @headers
