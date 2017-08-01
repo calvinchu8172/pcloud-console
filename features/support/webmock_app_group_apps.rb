@@ -34,6 +34,7 @@ Before '@webmock' do
       app_id: '01dd8f4e-df4a-425b-9943-96069c0622aa',
       status: 'active',
       bundle_id: params['bundle_id'],
+      package_name: params['package_name'],
       locales: ['en'],
       created_at: '2017-07-18T06:52:47.031Z',
       updated_at: '2017-07-18T06:52:47.031Z'
