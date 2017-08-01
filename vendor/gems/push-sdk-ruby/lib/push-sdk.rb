@@ -21,9 +21,11 @@ module Push
   autoload :Client,          'push-sdk/client'
 
   # console clients
-  autoload :ConsoleClient,   'push-sdk/console_client'
-  autoload :AppGroupClient,  'push-sdk/console_client/app_group_client'
-  autoload :AccessKeyClient, 'push-sdk/console_client/access_key_client'
-  autoload :AppClient,       'push-sdk/console_client/app_client'
+  autoload :ConsoleClient,   'push-sdk/clients/console_client'
+  autoload :AppGroupClient,  'push-sdk/clients/console/app_group_client'
+  autoload :AccessKeyClient, 'push-sdk/clients/console/access_key_client'
+  autoload :AppClient,       'push-sdk/clients/console/app_client'
 
+  # notification clients
+  autoload :NotificationClient, 'push-sdk/clients/notification_client'
 end
