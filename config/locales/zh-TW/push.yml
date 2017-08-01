@@ -23,7 +23,7 @@ zh-TW:
         platform: 平台
         application_arn: App SNS Application
         topic_arn: App SNS Topic
-        bundle_id: iOS bundle ID
+        bundle_id: iOS Bundle ID
         password: 密碼
         file: 選擇 P12 檔案
         certificate: 憑證
@@ -55,7 +55,7 @@ zh-TW:
         labels:
           management: "%{app_group_name} - App 管理"
           new: 新增 App
-          load_credentials: Load credentials from file
+          load_credentials: 解析成憑證與私鑰
         titles:
           list: Apps 列表
           index: "%{app_group_name} - Apps 列表"
