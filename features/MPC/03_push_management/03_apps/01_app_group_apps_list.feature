@@ -90,4 +90,3 @@ Feature: Push Management - App Group App List
      And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group App List table Row "3"
      When the super admin clicks "返回"
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b"
-

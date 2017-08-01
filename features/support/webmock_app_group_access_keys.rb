@@ -1,7 +1,7 @@
 Before '@webmock' do
   # App Group - Index
   stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys").with(
-    query: hash_including({ access_key_id: ENV['PUSH_ACCESS_KEY_ID'] })
+    query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     @access_keys ||= []
     # 產生 response
@@ -76,7 +76,7 @@ Before '@webmock' do
 
   # App Group Access Key - Show / Edit for 569e2004-6ad8-4681-81dd-8769d2ea9b0b
   stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e").with(
-    query: hash_including({ access_key_id: ENV['PUSH_ACCESS_KEY_ID'] })
+    query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     # @app_groups ||= []
     # app_group = @app_groups.find{ |x| x.app_group_id == '569e2004-6ad8-4681-81dd-8769d2ea9b0b' }
@@ -154,7 +154,7 @@ Before '@webmock' do
 
   # Download App Group Access Key c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem
   stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e/download").with(
-    query: hash_including({ access_key_id: ENV['PUSH_ACCESS_KEY_ID'] })
+    query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     response = {
       code: '0000',
