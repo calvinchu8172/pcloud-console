@@ -5,7 +5,7 @@ Feature: Push Management - App Groups - Update App Group
     Given Push Server has an App Group data as below:
     """
     {
-      "app_group_id": "c1e7371a-7b2e-401a-8f86-480a88d2230f",
+      "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
       "name": "APP_GROUP_NAME1",
       "description": "APP_GROUP_DESCRIPTION1",
       "topic_arn": "arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b",
@@ -22,18 +22,18 @@ Feature: Push Management - App Groups - Update App Group
       And clicks "App Group 列表" within "側邊功能"
      Then the super admin should be at page - "/admin/push/app_groups"
       And clicks "檢視" link on App Group List table Row "1"
-     Then the super admin should be at page - "/admin/push/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f"
+     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b"
       And should see "編輯"
      When the super admin clicks "編輯"
-     Then the super admin should be at page - "/admin/push/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f/edit"
+     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/edit"
       And should see "名稱"
      When the super admin fills in "名稱" with "APP_GROUP_NAME1_MODIFY"
      When the super admin fills in "描述" with "APP_GROUP_DESCRIPTION1_MODIFY"
       And presses "提交"
-     Then the super admin should be at page - "/admin/push/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f"
+     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b"
       And should see "名稱 APP_GROUP_NAME1_MODIFY"
       And should see "描述 APP_GROUP_DESCRIPTION1_MODIFY"
-      And should see "APP Group ID c1e7371a-7b2e-401a-8f86-480a88d2230f"
-      And should see "Topic ARN arn:aws:sns:us-east-1:567710019248:c1e7371a-7b2e-401a-8f86-480a88d2230f"
+      And should see "APP Group ID 569e2004-6ad8-4681-81dd-8769d2ea9b0b"
+      And should see "Topic ARN arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b"
       And should see "建立時間 2017-07-18T06:52:47.031Z"
       And should see "更新時間 2017-07-19T06:52:47.031Z"

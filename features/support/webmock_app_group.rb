@@ -25,8 +25,8 @@ Before '@webmock' do
     attributes = {
       name: params['name'],
       description: params['description'],
-      app_group_id: 'c1e7371a-7b2e-401a-8f86-480a88d2230f',
-      topic_arn: 'arn:aws:sns:us-east-1:567710019248:c1e7371a-7b2e-401a-8f86-480a88d2230f',
+      app_group_id: '569e2004-6ad8-4681-81dd-8769d2ea9b0b',
+      topic_arn: 'arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b',
       created_at: '2017-07-18T06:52:47.031Z',
       updated_at: '2017-07-18T06:52:47.031Z'
     }
@@ -49,12 +49,12 @@ Before '@webmock' do
       body: response.to_json
     }
   }
-  # App Group - Show / Edit for c1e7371a-7b2e-401a-8f86-480a88d2230f
-  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f").with(
+  # App Group - Show / Edit for 569e2004-6ad8-4681-81dd-8769d2ea9b0b
+  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b").with(
     query: hash_including({ access_key_id: ENV['PUSH_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     @app_groups ||= []
-    app_group = @app_groups.find{ |x| x.app_group_id == 'c1e7371a-7b2e-401a-8f86-480a88d2230f' }
+    app_group = @app_groups.find{ |x| x.app_group_id == '569e2004-6ad8-4681-81dd-8769d2ea9b0b' }
     # 產生 response
     response = {
       code: '0000',
@@ -92,18 +92,18 @@ Before '@webmock' do
   }
 
   # App Group - Update
-  stub_request(:put, "https://#{ENV['PUSH_HOST']}/v1/app_groups/c1e7371a-7b2e-401a-8f86-480a88d2230f").to_return{ |request|
+  stub_request(:put, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b").to_return{ |request|
     # binding.pry
     params = Rack::Utils.parse_nested_query(request.body)
     attributes = {
       name: params['name'],
       description: params['description'],
-      app_group_id: 'c1e7371a-7b2e-401a-8f86-480a88d2230f',
-      topic_arn: 'arn:aws:sns:us-east-1:567710019248:c1e7371a-7b2e-401a-8f86-480a88d2230f',
+      app_group_id: '569e2004-6ad8-4681-81dd-8769d2ea9b0b',
+      topic_arn: 'arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b',
       created_at: '2017-07-18T06:52:47.031Z',
       updated_at: '2017-07-19T06:52:47.031Z'
     }
-    app_group = @app_groups.find{ |x| x.app_group_id == 'c1e7371a-7b2e-401a-8f86-480a88d2230f' }
+    app_group = @app_groups.find{ |x| x.app_group_id == '569e2004-6ad8-4681-81dd-8769d2ea9b0b' }
     app_group.attributes = attributes
     # 產生 response
     response = {

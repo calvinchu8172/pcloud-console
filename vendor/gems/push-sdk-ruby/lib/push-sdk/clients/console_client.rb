@@ -11,7 +11,7 @@ module Push
     end
 
     def api_key
-      ENV['CONSOLE_PUSH_API_KEY']
+      ENV['CONSOLE_API_KEY']
     end
 
     def access_key_id
