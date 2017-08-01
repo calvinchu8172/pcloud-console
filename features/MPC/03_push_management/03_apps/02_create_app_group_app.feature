@@ -16,7 +16,7 @@ Feature: Push Management - App Groups - Create App group App
 
   @javascript @webmock
   Scenario: [03_03_02]
-    新增 App Group App
+    新增 App Group App - iOS APNS
     # Given Time now is "2017-01-02 12:00:00"
     Given the super admin has already signed in
      When the super admin clicks "推播管理" within "側邊功能"
@@ -36,8 +36,15 @@ Feature: Push Management - App Groups - Create App group App
      When the super admin fills in "密碼" with "marslin@ecoworkinc.com"
      When the super admin presses "解析成憑證與私鑰"
       And presses "提交"
-     # When debug
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/01dd8f4e-df4a-425b-9943-96069c0622aa"
-     # When debug
+      And should see "名稱 iOS APP Name 1"
+      And should see "描述 iOS APP Description 1"
+      And should see "狀態 啟用"
+      And should see "平台 APNS"
+      And should see "iOS Bundle ID iOS APP Bundle ID 1"
+      And should see "APP SNS Application arn:aws:sns:us-east-1:567710019248:app/APNS/17ac740b-5c0f-4b55-a90e-1d65ec499a46"
+      And should see "APP SNS Topic arn:aws:sns:us-east-1:567710019248:myzyxel-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa"
+      And should see "建立時間 2017-07-18T06:52:47.031Z"
+      And should see "更新時間 2017-07-18T06:52:47.031Z"
 
 

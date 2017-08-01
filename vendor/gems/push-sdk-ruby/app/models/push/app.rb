@@ -2,7 +2,7 @@ module Push
   class App < ApplicationModel
 
     permit_primary_key :app_id
-    permit_attributes :app_id, :name, :description, :platform, :status,
+    permit_attributes :app_id, :name, :description, :platform, :status, :locales,
       :application_arn, :topic_arn, :app_group_id, :app_group_topic_arn,
       :bundle_id, :private_key, :certificate, :package_name, :api_key,
       :created_at, :updated_at

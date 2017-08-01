@@ -21,8 +21,8 @@ zh-TW:
         status: 狀態
         app_id: APP ID
         platform: 平台
-        application_arn: App SNS Application
-        topic_arn: App SNS Topic
+        application_arn: APP SNS Application
+        topic_arn: APP SNS Topic
         bundle_id: iOS Bundle ID
         password: 密碼
         file: 選擇 P12 檔案
