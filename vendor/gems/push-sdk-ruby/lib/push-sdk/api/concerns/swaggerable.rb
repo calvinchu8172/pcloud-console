@@ -57,7 +57,7 @@ module Push
 
       # 產生 signature
       def signature
-        @signature ||= Signature.generate(private_key, signature_data)
+        @signature ||= Signature.generate(client.private_key, signature_data)
       end
 
       # 取得 header_keys
@@ -73,7 +73,7 @@ module Push
           'X-Timestamp' => timestamp,
           'X-Signature' => signature
         }
-        @headers['X-Api-Key'] = ENV['PUSH_API_KEY'] if 'X-Api-Key'.in?(header_keys)
+        @headers['X-Api-Key'] = client.api_key if 'X-Api-Key'.in?(header_keys)
         @headers[:content_type] = content_type if content_type
         @headers[:accept] = accept if accept
         @headers

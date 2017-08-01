@@ -1,0 +1,311 @@
+swagger: '2.0'
+info:
+  title: PrivatePush Server APIs
+  description: |
+    PrivatePush Server APIs
+
+    ###  Revision History
+
+    **v1.0.0 - Aug. 1 2017**
+
+    1. Initial Release
+
+  version: 1.0.0
+  contact:
+    email: chouandy@ecoworkinc.com
+schemes:
+  - https
+host: push.myzyxel.com
+paths:
+  /v1/notifications/broadcast:
+    post:
+      summary: Send Broadcast Notifications
+      description: 對指定 Application 的 Topic 中所有訂閱的裝置發送推播。使用時機：同一訊息發給特定 Application 的所有裝置時，則適合使用此 API。
+      tags:
+        - app_group
+      operationId: broadcast
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: formData
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: title
+          in: formData
+          description: 推播訊息標題
+          required: true
+          type: string
+        - name: body
+          in: formData
+          description: 推播訊息內容
+          type: string
+        - name: gcm_payload
+          in: formData
+          description: 發到 GCM 的 push notification payload
+          type: string
+        - name: apns_payload
+          in: formData
+          description: 發到 APNS 的 push notification payload
+          type: string
+        - name: apns_sandbox_payload
+          in: formData
+          description: 發到 APNS Sandbox 的 push notification payload
+          type: string
+        - name: app_ids
+          in: formData
+          description: 指定對 App Group 中的哪些 App 發送，預設為所有 App。以逗號 ( “,” ) 相連接
+          type: string
+        - name: localizations
+          in: formData
+          description: 指定特定語言對應的 title, body
+          type: string
+        - name: description
+          in: formData
+          description: 描述該次推播任務
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  job_id:
+                    type: string
+                    description: 任務識別碼
+  /v1/notifications/device:
+    post:
+      summary: Send Device Notifications ( 1000 devices / request )
+      description: 此 API 會在指定 Application 下以給予的裝置識別 (UDID) 查詢出對應裝置並發送推播。使用時機：同一訊息發給多個裝置時，則適合使 API
+      tags:
+        - app_group
+      operationId: device
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: formData
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: udids
+          in: formData
+          description: 由客戶端主機提供裝置識別碼 (UDID)，可同時帶入多組，每個 request 上限 1000 組，每組 udid 以逗號 ( “,” ) 相連接
+          required: true
+          type: string
+        - name: title
+          in: formData
+          description: 推播訊息標題
+          required: true
+          type: string
+        - name: body
+          in: formData
+          description: 推播訊息內容
+          type: string
+        - name: gcm_payload
+          in: formData
+          description: 發到 GCM 的 push notification payload
+          type: string
+        - name: apns_payload
+          in: formData
+          description: 發到 APNS 的 push notification payload
+          type: string
+        - name: apns_sandbox_payload
+          in: formData
+          description: 發到 APNS Sandbox 的 push notification payload
+          type: string
+        - name: app_ids
+          in: formData
+          description: 指定對 App Group 中的哪些 App 發送，預設為所有 App。以逗號 ( “,” ) 相連接
+          type: string
+        - name: localizations
+          in: formData
+          description: 指定特定語言對應的 title, body
+          type: string
+        - name: description
+          in: formData
+          description: 描述該次推播任務
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  job_id:
+                    type: string
+                    description: 任務識別碼
+                  total_ids:
+                    type: integer
+                    description: 傳入的 udids 數量
+                  total:
+                    type: integer
+                    description: 總發送裝置數
+                  success:
+                    type: integer
+                    description: 發送成功數
+                  failure:
+                    type: integer
+                    description: 發送失敗數
+  /v1/notifications/personal:
+    post:
+      summary: Send Personal Notifications ( 100 users / request )
+      description: 此 API 會在指定 Application 下以給予的「去識別化」之使用者識別碼 (User ID) 查詢出對應使用者裝置並發送推播。Mobile 向 ESUN server 登入完之後，ESUN server 須對 PrivatePush 發送去識別化的 user_id，Push Server 記錄 user_id 與 udid 的 mapping 關係。使用時機：同一訊息發給多個使用者的所有裝置時，則適合使用此 API
+      tags:
+        - app_group
+      operationId: personal
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: formData
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: user_ids
+          in: formData
+          description: 由客戶端主機提供「去識別化」之使用者識別碼 (User ID)，可同時帶入多組，每個 request 上限 100 組，每組 user_id 以逗號 ( “,” ) 相連接
+          required: true
+          type: string
+        - name: title
+          in: formData
+          description: 推播訊息標題
+          required: true
+          type: string
+        - name: body
+          in: formData
+          description: 推播訊息內容
+          type: string
+        - name: gcm_payload
+          in: formData
+          description: 發到 GCM 的 push notification payload
+          type: string
+        - name: apns_payload
+          in: formData
+          description: 發到 APNS 的 push notification payload
+          type: string
+        - name: apns_sandbox_payload
+          in: formData
+          description: 發到 APNS Sandbox 的 push notification payload
+          type: string
+        - name: app_ids
+          in: formData
+          description: 指定對 App Group 中的哪些 App 發送，預設為所有 App。以逗號 ( “,” ) 相連接
+          type: string
+        - name: localizations
+          in: formData
+          description: 指定特定語言對應的 title, body
+          type: string
+        - name: description
+          in: formData
+          description: 描述該次推播任務
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  job_id:
+                    type: string
+                    description: 任務識別碼
+                  total_ids:
+                    type: integer
+                    description: 傳入的 user_ids 數量
+                  total:
+                    type: integer
+                    description: 總發送裝置數
+                  success:
+                    type: integer
+                    description: 發送成功數
+                  failure:
+                    type: integer
+                    description: 發送失敗數

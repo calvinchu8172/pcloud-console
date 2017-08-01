@@ -57,6 +57,12 @@ Rails.application.routes.draw do
             get :download
           end
         end
+        resources :apps, module: :app_groups, except: [:destroy] do
+          member do
+            get :new_ios
+            get :new_android
+          end
+        end
       end
     end
 

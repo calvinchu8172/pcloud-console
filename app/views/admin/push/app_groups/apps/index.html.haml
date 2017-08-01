@@ -1,0 +1,48 @@
+- content_for :title, t('push.app_group.app.labels.management', app_group_name: @app_group.name)
+
+.row
+  .col-md-12.col-sm-12.col-xs-12.toolbar
+    .x_panel
+      .x_title
+        %h2= t('common.labels.toolbar')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = link_to admin_push_app_group_url(@app_group), class: 'btn btn-app btn-sm' do
+          = fa_icon('caret-square-o-left')
+          = t('common.labels.back')
+        = link_to new_admin_push_app_group_app_url(@app_group), class: 'btn btn-app btn-sm' do
+          = fa_icon('plus')
+          = t('push.app_group.app.labels.new')
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.app.titles.index', app_group_name: @app_group.name)
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        %table.table.table-bordered.dt-responsive.nowrap
+          %thead
+            %tr
+              %th= Push::App.human_attribute_name(:name)
+              %th= Push::App.human_attribute_name(:description)
+              %th= Push::App.human_attribute_name(:platform)
+              %th= Push::App.human_attribute_name(:created_at)
+              %th= Push::App.human_attribute_name(:updated_at)
+              %th
+          %tbody
+            - @apps.each do |app|
+              %tr
+                %td= app.name
+                %td= app.description
+                %td= app.platform
+                %td= app.created_at
+                %td= app.updated_at
+                %td
+                  = link_to admin_push_app_group_app_url(@app_group, app), class: 'btn btn-primary btn-xs' do
+                    = fa_icon('folder')
+                    = t('common.labels.view')

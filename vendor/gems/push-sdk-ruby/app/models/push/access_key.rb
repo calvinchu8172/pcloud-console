@@ -1,10 +1,10 @@
 module Push
   class AccessKey < ApplicationModel
 
+    permit_primary_key :access_key_id
     permit_attributes :access_key_id, :name, :description,
       :public_key, :status, :type, :app_group_id, :app_group_topic_arn,
       :app_id, :created_at, :updated_at
-    permit_primary_key :access_key_id
 
     class << self
 

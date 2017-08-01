@@ -18,6 +18,7 @@ module Push
         # 進行驗證
         validate_access_key_id
         validate_private_key
+        assign_access_key_id
         validate_parameters
         # 透過 RestClient 執行 api
         response = RestClient::Request.execute(rest_client_options)
