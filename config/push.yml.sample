@@ -1,6 +1,7 @@
 ---
 development:
   PUSH_HOST:
+  PUSH_CONSOLE_HOST:
   CONSOLE_API_KEY:
   CONSOLE_ACCESS_KEY_ID:
   CONSOLE_PRIVATE_KEY:
@@ -9,6 +10,7 @@ development:
   NOTIFICATION_PRIVATE_KEY:
 test:
   PUSH_HOST: push.myzyxel.ecoworkinc.com
+  PUSH_CONSOLE_HOST: push-console.myzyxel.ecoworkinc.com
   CONSOLE_API_KEY: console api key
   CONSOLE_ACCESS_KEY_ID: console access key id
   CONSOLE_PRIVATE_KEY: |
@@ -71,6 +73,7 @@ test:
     -----END RSA PRIVATE KEY-----
 production:
   PUSH_HOST:
+  PUSH_CONSOLE_HOST:
   CONSOLE_API_KEY:
   CONSOLE_ACCESS_KEY_ID:
   CONSOLE_PRIVATE_KEY:

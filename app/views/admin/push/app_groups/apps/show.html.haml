@@ -45,7 +45,7 @@
             = label_tag :app, Push::App.human_attribute_name(:platform), class: 'control-label col-sm-3 col-xs-12'
             .col-sm-9.col-xs-12
               %p.form-control-static
-                = @app.platform
+                = @app.localized_platform
           .form-group
             = label_tag :app, Push::App.human_attribute_name(:bundle_id), class: 'control-label col-sm-3 col-xs-12'
             .col-sm-9.col-xs-12

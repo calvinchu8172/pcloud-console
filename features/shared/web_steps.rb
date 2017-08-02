@@ -148,7 +148,7 @@ end
 
 When /^(?:|the .+ )attaches the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do |path, field, selector_name|
   with_scope(to_selector(selector_name)) do
-    attach_file(field, path)
+    attach_file(field, File.join(Rails.root, 'features', 'files', path))
   end
 end
 

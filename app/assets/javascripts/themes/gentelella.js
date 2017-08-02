@@ -35,17 +35,17 @@ $(document).ready(function() {
     $SIDEBAR_MENU.find('a').on('click', function(ev) {
         var $li = $(this).parent();
 
-        if ($li.is('.active')) {
+        if ($li.is('.active') && !$li.parent().is('.child_menu')) {
             $li.removeClass('active active-sm');
             $('ul:first', $li).slideUp(function() {
                 setContentHeight();
             });
         } else {
             // prevent closing menu if we are on child menu
-            if (!$li.parent().is('.child_menu')) {
-                $SIDEBAR_MENU.find('li').removeClass('active active-sm');
-                $SIDEBAR_MENU.find('li ul').slideUp();
-            }
+            // if (!$li.parent().is('.child_menu')) {
+            //     $SIDEBAR_MENU.find('li').removeClass('active active-sm');
+            //     $SIDEBAR_MENU.find('li ul').slideUp();
+            // }
 
             $li.addClass('active');
 
