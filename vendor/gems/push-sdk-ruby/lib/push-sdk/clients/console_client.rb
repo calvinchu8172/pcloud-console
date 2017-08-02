@@ -6,6 +6,10 @@ module Push
       end
     end
 
+    def host
+      ENV['PUSH_CONSOLE_HOST']
+    end
+
     def api_key
       ENV['CONSOLE_API_KEY']
     end

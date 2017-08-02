@@ -2,7 +2,7 @@ module Push
   module Api
     module Swaggerable
 
-      attr_accessor :scheme, :host, :path, :method, :content_type, :accept, :parameters
+      attr_accessor :scheme, :path, :method, :content_type, :accept, :parameters
 
       # 檢查 parameters
       def validate_parameters
@@ -14,10 +14,6 @@ module Push
         true
       end
 
-      def host
-        ENV['PUSH_HOST']
-      end
-
       # 取得 path
       def path
         @path.gsub(/{[a-z_]+}/){ |match| instance_variable_get("@#{match[1..-2]}") }
@@ -25,7 +21,7 @@ module Push
 
       # 取得 base_url
       def base_url
-        "#{scheme}://#{host.gsub(/\/+/, '/')}".sub(/\/+\z/, '')
+        "#{scheme}://#{client.host.gsub(/\/+/, '/')}".sub(/\/+\z/, '')
       end
 
       # 取得 url

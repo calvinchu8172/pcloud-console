@@ -1,6 +1,6 @@
 Before '@webmock' do
   # App Group - Index
-  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys").with(
+  stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys").with(
     query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     @access_keys ||= []
@@ -20,7 +20,7 @@ Before '@webmock' do
   }
 
   # App Group - Create
-  stub_request(:post, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys").to_return{ |request|
+  stub_request(:post, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys").to_return{ |request|
     params = Rack::Utils.parse_nested_query(request.body)
     attributes = {
       name: params['name'],
@@ -75,7 +75,7 @@ Before '@webmock' do
   }
 
   # App Group Access Key - Show / Edit for 569e2004-6ad8-4681-81dd-8769d2ea9b0b
-  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e").with(
+  stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e").with(
     query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     # @app_groups ||= []
@@ -99,7 +99,7 @@ Before '@webmock' do
   }
 
   # App Group Access Key - Update
-  stub_request(:put, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e").to_return{ |request|
+  stub_request(:put, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e").to_return{ |request|
     params = Rack::Utils.parse_nested_query(request.body)
     attributes = {
       name: params['name'],
@@ -153,7 +153,7 @@ Before '@webmock' do
   }
 
   # Download App Group Access Key c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem
-  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e/download").with(
+  stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/access_keys/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e/download").with(
     query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     response = {
