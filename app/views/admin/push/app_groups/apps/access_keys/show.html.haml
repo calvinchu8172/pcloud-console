@@ -1,5 +1,5 @@
 - content_for :title do
-  = t('push.app_group.access_key.labels.management', app_group_name: @app_group.name)
+  = t('push.app_group.app.access_key.labels.management', app_name: @app.name)
 
 .row
   .col-md-12.col-sm-12.col-xs-12.toolbar
@@ -11,23 +11,23 @@
             %a.collapse-link= fa_icon('chevron-up')
         .clearfix
       .x_content
-        = link_to admin_push_app_group_url(@app_group), class: 'btn btn-app btn-sm' do
+        = link_to admin_push_app_group_app_url(@app_group, @app), class: 'btn btn-app btn-sm' do
           = fa_icon('caret-square-o-left')
           = t('common.labels.back')
-        - unless @access_key.revoked?
-          = link_to edit_admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm' do
-            = fa_icon('pencil')
-            = t('common.labels.edit')
-          = link_to download_admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm' do
-            = fa_icon('download')
-            = t('common.labels.download')
-          = link_to admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
-            = fa_icon('minus-circle')
-            = t('common.labels.revoked')
+        / - unless @access_key.revoked?
+        /   = link_to edit_admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm' do
+        /     = fa_icon('pencil')
+        /     = t('common.labels.edit')
+        /   = link_to download_admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm' do
+        /     = fa_icon('download')
+        /     = t('common.labels.download')
+        /   = link_to admin_push_app_group_access_key_url(@app_group, @access_key), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
+        /     = fa_icon('minus-circle')
+        /     = t('common.labels.revoked')
   .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_title
-        %h2= t('push.app_group.access_key.titles.show', app_group_name: @app_group.name)
+        %h2= t('push.app_group.app.access_key.titles.show', app_name: @app.name)
         %ul.nav.navbar-right.panel_toolbox
           %li
             %a.collapse-link= fa_icon('chevron-up')
@@ -54,6 +54,16 @@
             .col-sm-10.col-xs-12
               %p.form-control-static
                 = @access_key.app_group_topic_arn
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:app_topic_arn), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.app_topic_arn
+          .form-group
+            = label_tag :access_key, Push::AccessKey.human_attribute_name(:application_arn), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @access_key.application_arn
           .form-group
             = label_tag :access_key, Push::AccessKey.human_attribute_name(:created_at), class: 'control-label col-sm-2 col-xs-12'
             .col-sm-10.col-xs-12

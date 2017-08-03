@@ -13,6 +13,8 @@ zh-TW:
         description: 描述
         status: 狀態
         app_group_topic_arn: APP Group Topic ARN
+        app_topic_arn: APP Topic ARN
+        application_arn: Application ARN
         created_at: 建立時間
         updated_at: 更新時間
       push/app:
@@ -68,6 +70,15 @@ zh-TW:
           apns: APNS
           apns_sandbox: APNS Sandbox
           gcm: GCM
+        access_key:
+          labels:
+            management: "%{app_name} - Access Key 管理"
+            new: 新增 Access Key
+          titles:
+            index: "%{app_name} - Access Keys 列表"
+            show: "%{app_name} - Access Key 資訊"
+            new: "%{app_name} - 新增 Access Key"
+            edit: "%{app_name} - 編輯 Access Key"
   log:
     events:
       create_app_group: 新增 App Group

@@ -4,6 +4,7 @@ module Push
     permit_primary_key :access_key_id
     permit_attributes :access_key_id, :name, :description,
       :public_key, :status, :type, :app_group_id, :app_group_topic_arn,
+      :app_topic_arn, :application_arn, :platform,
       :app_id, :created_at, :updated_at
 
     class << self
@@ -29,12 +30,16 @@ module Push
       def where_operator(options = {})
         unless options[:app_id]
           'list_app_group_access_keys'
+        else
+          'list_app_access_keys'
         end
       end
 
       def find_by_operator(options = {})
         unless options[:app_id]
           'get_app_group_access_key'
+        else
+          'get_app_access_key'
         end
       end
 

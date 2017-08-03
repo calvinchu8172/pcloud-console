@@ -373,3 +373,203 @@ paths:
                   download_url:
                     type: string
                     description: Access Key private key 下載網址
+  /v1/app_groups/{app_group_id}/apps/{app_id}/access_keys:
+    get:
+      summary: 取得 App Access Key 列表
+      description: 取得 App Access Key 列表
+      tags:
+        - console
+      operationId: list_app_access_keys
+      produces:
+        - application/json
+      parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: query
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: app_group_id
+          in: path
+          description: App Group ID
+          required: true
+          type: string
+        - name: app_id
+          in: path
+          description: App ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: array
+                items:
+                  properties:
+                    access_key_id:
+                      type: string
+                      description: Access Key ID
+                    name:
+                      type: string
+                      description: Access Key 名稱
+                    type:
+                      type: string
+                      description: Access Key 類型
+                    app_group_id:
+                      type: string
+                      description: App Group ID
+                    app_id:
+                      type: string
+                      description: App ID
+                    status:
+                      type: string
+                      description: Access Key 狀態
+                    app_group_topic_arn:
+                      type: string
+                      description: App Group SNS Topic
+                    app_topic_arn:
+                      type: string
+                      description: App SNS Topic
+                    application_arn:
+                      type: string
+                      description: Application ARN
+                    description:
+                      type: string
+                      description: Access Key 描述
+                    platform:
+                      type: string
+                      description: 平台
+                    created_at:
+                      type: string
+                      description: Access Key 建立時間
+                    updated_at:
+                      type: string
+                      description: Access Key 更新時間
+  /v1/app_groups/{app_group_id}/apps/{app_id}/access_keys/{id}:
+    get:
+      summary: 取得 App Access Key 詳細資訊
+      description: 取得 App Access Key 詳細資訊
+      tags:
+        - console
+      operationId: get_app_access_key
+      produces:
+        - application/json
+      parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: query
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: app_group_id
+          in: path
+          description: App Group ID
+          required: true
+          type: string
+        - name: app_id
+          in: path
+          description: App ID
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: Access Key ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  access_key_id:
+                    type: string
+                    description: Access Key ID
+                  name:
+                    type: string
+                    description: Access Key 名稱
+                  type:
+                    type: string
+                    description: Access Key 類型
+                  app_group_id:
+                    type: string
+                    description: App Group ID
+                  app_id:
+                    type: string
+                    description: App ID
+                  status:
+                    type: string
+                    description: Access Key 狀態
+                  app_group_topic_arn:
+                    type: string
+                    description: App Group SNS Topic
+                  app_topic_arn:
+                    type: string
+                    description: App SNS Topic
+                  application_arn:
+                    type: string
+                    description: Application ARN
+                  description:
+                    type: string
+                    description: Access Key 描述
+                  platform:
+                    type: string
+                    description: 平台
+                  created_at:
+                    type: string
+                    description: Access Key 建立時間
+                  updated_at:
+                    type: string
+                    description: Access Key 更新時間

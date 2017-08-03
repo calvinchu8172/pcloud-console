@@ -9,6 +9,7 @@ class Admin::Push::AppGroups::AppsController < AdminController
   end
 
   def show
+    @access_keys = Push::AccessKey.where(app_group_id: @app_group.app_group_id, app_id: @app.app_id)
   end
 
   def new
