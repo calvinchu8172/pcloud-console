@@ -33,7 +33,6 @@ class Admin::Push::AppGroups::AppsController < AdminController
   end
 
   def update
-    puts params.inspect
     if @app.update(push_app_params)
       Log.write(current_user, nil, request.remote_ip, 'update_app', {
         app_group_id: @app_group.app_group_id,

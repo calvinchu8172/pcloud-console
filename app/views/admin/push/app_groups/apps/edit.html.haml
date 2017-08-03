@@ -17,7 +17,7 @@
           = f.input :status, as: :radio_buttons, collection: Push::App.status_radio_options, input_wrapper_html: { class: 'col-sm-9' }, item_wrapper_class: 'radio-inline', wrapper: :horizontal_radio_and_checkboxes
           = f.input :platform, required: false, input_wrapper_html: { class: 'col-sm-9' } do
             %p.form-control-static
-              = @app.platform
+              = @app.localized_platform
           = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
           = f.input :app_id, required: false, input_wrapper_html: { class: 'col-sm-9' } do
             %p.form-control-static
