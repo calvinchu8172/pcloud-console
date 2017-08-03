@@ -29,7 +29,7 @@
           %thead
             %tr
               %th= Push::App.human_attribute_name(:name)
-              %th= Push::App.human_attribute_name(:description)
+              %th= Push::App.human_attribute_name(:status)
               %th= Push::App.human_attribute_name(:platform)
               %th= Push::App.human_attribute_name(:created_at)
               %th= Push::App.human_attribute_name(:updated_at)
@@ -38,7 +38,7 @@
             - @apps.each do |app|
               %tr
                 %td= app.name
-                %td= app.description
+                %td= app.localized_status
                 %td= app.localized_platform
                 %td= app.created_at
                 %td= app.updated_at

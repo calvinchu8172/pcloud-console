@@ -20,6 +20,7 @@ Feature: Push Management - App Group App List
       "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
       "name": "myzyxel-android",
       "description": "myZyxel Alpha Android 版",
+      "status": "active",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/GCM/myzyxel-android-alpha",
       "package_name": "android_package_name",
       "platform": "GCM",
@@ -35,6 +36,7 @@ Feature: Push Management - App Group App List
       "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
       "name": "myzyxel-ios",
       "description": "myZyxel Alpha iOS 版",
+      "status": "inactive",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/APNS/myzyxel-alpha-ios",
       "bundle_id": "ios_bundle_id",
       "platform": "APNS",
@@ -50,6 +52,7 @@ Feature: Push Management - App Group App List
       "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
       "name": "myzyxel-ios-test",
       "description": "myZyxel Alpha iOS 測試版",
+      "status": "revoked",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/myzyxel-alpha-ios-test",
       "bundle_id": "ios_test_bundle_id",
       "platform": "APNS_SANDBOX",
@@ -74,17 +77,17 @@ Feature: Push Management - App Group App List
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps"
      And should see "APP_GROUP_NAME1 - Apps 列表"
      And should see "名稱" - "myzyxel-ios-test" on App Group App List table Row "1"
-     And should see "描述" - "myZyxel Alpha iOS 測試版" on App Group App List table Row "1"
+     And should see "狀態" - "註銷" on App Group App List table Row "1"
      And should see "平台" - "APNS Sandbox" on App Group App List table Row "1"
      And should see "建立時間" - "2017-07-16T02:56:42.276Z" on App Group App List table Row "1"
      And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group App List table Row "1"
      And should see "名稱" - "myzyxel-ios" on App Group App List table Row "2"
-     And should see "描述" - "myZyxel Alpha iOS 版" on App Group App List table Row "2"
+     And should see "狀態" - "停用" on App Group App List table Row "2"
      And should see "平台" - "APNS" on App Group App List table Row "2"
      And should see "建立時間" - "2017-07-15T02:56:42.276Z" on App Group App List table Row "2"
      And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group App List table Row "2"
      And should see "名稱" - "myzyxel-android" on App Group App List table Row "3"
-     And should see "描述" - "myZyxel Alpha Android 版" on App Group App List table Row "3"
+     And should see "狀態" - "啟用" on App Group App List table Row "3"
      And should see "平台" - "GCM" on App Group App List table Row "3"
      And should see "建立時間" - "2017-07-14T02:56:42.276Z" on App Group App List table Row "3"
      And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group App List table Row "3"

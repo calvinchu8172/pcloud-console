@@ -36,13 +36,22 @@ class Admin::Push::AppGroups::AppsController < AdminController
     if @app.update(push_app_params)
       Log.write(current_user, nil, request.remote_ip, 'update_app', {
         app_group_id: @app_group.app_group_id,
-        app_id: @app.id
+        app_id: @app.app_id
       })
       redirect_to admin_push_app_group_app_url(@app_group, @app)
     else
       flash.now[:error] = @app.api_error_message if @app.api_error?
       render :edit
     end
+  end
+
+  def destroy
+    @app.revoked!
+    Log.write(current_user, nil, request.remote_ip, 'revoke_app_group_app', {
+      app_group_id: @app_group.app_group_id,
+      app_id: @app.app_id
+    })
+    redirect_to admin_push_app_group_app_url(@app_group, @app)
   end
 
   private
@@ -53,7 +62,7 @@ class Admin::Push::AppGroups::AppsController < AdminController
 
   def set_app_group_app
     @app = Push::App.find_by(
-      app_group_id: params[:app_group_id], id: params[:id]
+      app_group_id: params[:app_group_id], app_id: params[:id]
     )
   end
 
@@ -61,7 +70,7 @@ class Admin::Push::AppGroups::AppsController < AdminController
     params.require(:push_app).permit(
       :app_group_id, :name, :description, :platform,
       :bundle_id, :certificate, :private_key,
-      :package_name, :api_key
+      :package_name, :api_key, :status
     )
   end
 end
