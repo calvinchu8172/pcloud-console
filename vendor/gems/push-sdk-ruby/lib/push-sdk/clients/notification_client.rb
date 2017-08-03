@@ -6,6 +6,10 @@ module Push
       end
     end
 
+    def host
+      ENV['PUSH_HOST']
+    end
+
     def api_key
       ENV['NOTIFICATION_API_KEY']
     end

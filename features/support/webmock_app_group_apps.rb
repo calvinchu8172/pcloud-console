@@ -1,6 +1,6 @@
 Before '@webmock' do
   # App - Index
-  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps").with(
+  stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps").with(
     query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     @apps ||= []
@@ -20,7 +20,7 @@ Before '@webmock' do
   }
 
   # App - Create
-  stub_request(:post, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps").to_return{ |request|
+  stub_request(:post, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps").to_return{ |request|
     params = Rack::Utils.parse_nested_query(request.body)
     # binding.pry
     attributes = {
@@ -60,7 +60,7 @@ Before '@webmock' do
   }
 
   # App Group App - Show / Edit for 569e2004-6ad8-4681-81dd-8769d2ea9b0b
-  stub_request(:get, "https://#{ENV['PUSH_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/01dd8f4e-df4a-425b-9943-96069c0622aa").with(
+  stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/01dd8f4e-df4a-425b-9943-96069c0622aa").with(
     query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     # @app_groups ||= []
