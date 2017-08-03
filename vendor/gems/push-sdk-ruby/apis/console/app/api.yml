@@ -197,7 +197,7 @@ paths:
                   app_id:
                     type: string
                     description: App ID
-  /v1/app_groups/{app_group_id}/apps/{id}:
+  /v1/app_groups/{app_group_id}/apps/{app_id}:
     get:
       summary: 取得 App Group App 詳細資訊
       description: 取得 App Group App 詳細資訊
@@ -232,7 +232,7 @@ paths:
           description: App Group ID
           required: true
           type: string
-        - name: id
+        - name: app_id
           in: path
           description: App ID
           required: true
@@ -289,16 +289,21 @@ paths:
                     type: string
                     description: App 更新時間
     put:
-      summary: 更新 Access Key
-      description: 更新 Access Key
+      summary: 更新 App
+      description: 更新 App
       tags:
         - console
-      operationId: put_app_group_access_key
+      operationId: put_app
       consumes:
         - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
         - name: X-Signature
           in: header
           description: 簽證驗證碼
@@ -319,24 +324,44 @@ paths:
           description: App Group ID
           required: true
           type: string
-        - name: id
+        - name: app_id
           in: path
-          description: Access Key ID
+          description: App ID
           required: true
           type: string
         - name: name
           in: formData
-          description: Access Key 名稱
+          description: App 名稱
           required: true
           type: string
         - name: status
           in: formData
-          description: Access Key 狀態
+          description: App 狀態
           required: true
           type: string
         - name: description
           in: formData
-          description: Access Key 描述
+          description: App 描述
+          type: string
+        - name: package_name
+          in: formData
+          description: Android Package Name
+          type: string
+        - name: bundle_id
+          in: formData
+          description: iOS Bundle ID
+          type: string
+        - name: private_key
+          in: formData
+          description: Private Key of iOS App
+          type: string
+        - name: certificate
+          in: formData
+          description: Certificate of iOS App
+          type: string
+        - name: api_key
+          in: formData
+          description: Api Key of Android App
           type: string
       responses:
         200:
@@ -356,9 +381,9 @@ paths:
               data:
                 type: object
                 properties:
-                  access_key_id:
+                  app_id:
                     type: string
-                    description: Access Key ID
+                    description: App ID
   /v1/app_groups/{app_group_id}/access_keys/{id}/download:
     get:
       summary: 取得 App Group Access Key private key 下載網址

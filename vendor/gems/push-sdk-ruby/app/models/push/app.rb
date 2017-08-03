@@ -10,10 +10,10 @@ module Push
     validates :name, presence: true
     validates :platform, presence: true
     validates :bundle_id, presence: true, if: Proc.new { |x| x.platform.in? ['APNS', 'APNS_SANDBOX'] }
-    validates :private_key, presence: true, if: Proc.new { |x| x.platform.in? ['APNS', 'APNS_SANDBOX'] }
-    validates :certificate, presence: true, if: Proc.new { |x| x.platform.in? ['APNS', 'APNS_SANDBOX'] }
+    validates :private_key, presence: true, if: Proc.new { |x| x.new_record? && x.platform.in?(['APNS', 'APNS_SANDBOX']) }
+    validates :certificate, presence: true, if: Proc.new { |x| x.new_record? && x.platform.in?(['APNS', 'APNS_SANDBOX']) }
     validates :package_name, presence: true, if: Proc.new { |x| x.platform == 'GCM' }
-    validates :api_key, presence: true, if: Proc.new { |x| x.platform == 'GCM' }
+    validates :api_key, presence: true, if: Proc.new { |x| x.new_record? && x.platform == 'GCM' }
 
     before_save do
       if self.platform == 'GCM'
@@ -52,6 +52,12 @@ module Push
           [I18n.t("push.app_group.app.platform.#{platform.downcase}"), platform]
         end
       end
+
+      def status_radio_options
+        ['active', 'inactive'].map do |status|
+          [I18n.t("common.labels.#{status}"), status]
+        end
+      end
     end
 
     def localized_platform
@@ -60,6 +66,30 @@ module Push
 
     def localized_status
       I18n.t("common.labels.#{self.status}")
+    end
+
+    def active?
+      self.status == 'active'
+    end
+
+    def inactive?
+      self.status == 'inactive'
+    end
+
+    def revoked!
+      update(status: 'revoked')
+    end
+
+    def revoked?
+      self.status == 'revoked'
+    end
+
+    def apns_or_apns_sandbox?
+      self.platform == 'APNS' || self.platform == 'APNS_SANDBOX'
+    end
+
+    def gcm?
+      self.platform == 'GCM'
     end
 
     # 1. validate attributes

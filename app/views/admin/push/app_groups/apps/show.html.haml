@@ -13,9 +13,13 @@
         = link_to admin_push_app_group_apps_url(@app_group), class: 'btn btn-app btn-sm' do
           = fa_icon('caret-square-o-left')
           = t('common.labels.back')
-        = link_to edit_admin_push_app_group_app_url(@app_group, @app), class: 'btn btn-app btn-sm' do
-          = fa_icon('pencil')
-          = t('common.labels.edit')
+        - unless @app.revoked?
+          = link_to edit_admin_push_app_group_app_url(@app_group, @app), class: 'btn btn-app btn-sm' do
+            = fa_icon('pencil')
+            = t('common.labels.edit')
+          = link_to admin_push_app_group_app_url(@app_group, @app), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
+            = fa_icon('minus-circle')
+            = t('common.labels.revoked')
     .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_title
@@ -46,16 +50,18 @@
             .col-sm-9.col-xs-12
               %p.form-control-static
                 = @app.localized_platform
-          .form-group
-            = label_tag :app, Push::App.human_attribute_name(:bundle_id), class: 'control-label col-sm-3 col-xs-12'
-            .col-sm-9.col-xs-12
-              %p.form-control-static
-                = @app.bundle_id
-          .form-group
-            = label_tag :app, Push::App.human_attribute_name(:package_name), class: 'control-label col-sm-3 col-xs-12'
-            .col-sm-9.col-xs-12
-              %p.form-control-static
-                = @app.package_name
+          - if @app.apns_or_apns_sandbox?
+            .form-group
+              = label_tag :app, Push::App.human_attribute_name(:bundle_id), class: 'control-label col-sm-3 col-xs-12'
+              .col-sm-9.col-xs-12
+                %p.form-control-static
+                  = @app.bundle_id
+          - if @app.gcm?
+            .form-group
+              = label_tag :app, Push::App.human_attribute_name(:package_name), class: 'control-label col-sm-3 col-xs-12'
+              .col-sm-9.col-xs-12
+                %p.form-control-static
+                  = @app.package_name
           .form-group
             = label_tag :app, Push::App.human_attribute_name(:application_arn), class: 'control-label col-sm-3 col-xs-12'
             .col-sm-9.col-xs-12

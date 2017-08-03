@@ -36,7 +36,7 @@ Feature: Push Management - App Group App List
       "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
       "name": "myzyxel-ios",
       "description": "myZyxel Alpha iOS 版",
-      "status": "inactive",
+      "status": "active",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/APNS/myzyxel-alpha-ios",
       "bundle_id": "ios_bundle_id",
       "platform": "APNS",
@@ -52,7 +52,7 @@ Feature: Push Management - App Group App List
       "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
       "name": "myzyxel-ios-test",
       "description": "myZyxel Alpha iOS 測試版",
-      "status": "revoked",
+      "status": "active",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/myzyxel-alpha-ios-test",
       "bundle_id": "ios_test_bundle_id",
       "platform": "APNS_SANDBOX",
@@ -63,8 +63,8 @@ Feature: Push Management - App Group App List
     """
 
   @javascript @webmock
-  Scenario: [03_03_01]
-    查看推播 App Group Apps 列表
+  Scenario: [03_03_03]
+    修改推播 App Group APNS App
     Given the super admin has already signed in
      Then the super admin should be at page - "/"
      When the super admin clicks "推播管理" within "側邊功能"
@@ -76,20 +76,30 @@ Feature: Push Management - App Group App List
      When the super admin clicks "Apps 列表"
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps"
      And should see "APP_GROUP_NAME1 - Apps 列表"
-     And should see "名稱" - "myzyxel-ios-test" on App Group App List table Row "1"
-     And should see "狀態" - "註銷" on App Group App List table Row "1"
-     And should see "平台" - "APNS Sandbox" on App Group App List table Row "1"
-     And should see "建立時間" - "2017-07-16T02:56:42.276Z" on App Group App List table Row "1"
-     And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group App List table Row "1"
-     And should see "名稱" - "myzyxel-ios" on App Group App List table Row "2"
-     And should see "狀態" - "停用" on App Group App List table Row "2"
-     And should see "平台" - "APNS" on App Group App List table Row "2"
-     And should see "建立時間" - "2017-07-15T02:56:42.276Z" on App Group App List table Row "2"
-     And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group App List table Row "2"
-     And should see "名稱" - "myzyxel-android" on App Group App List table Row "3"
-     And should see "狀態" - "啟用" on App Group App List table Row "3"
-     And should see "平台" - "GCM" on App Group App List table Row "3"
-     And should see "建立時間" - "2017-07-14T02:56:42.276Z" on App Group App List table Row "3"
-     And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group App List table Row "3"
-     When the super admin clicks "返回"
-     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b"
+     # And debug
+     And clicks "檢視" link on App Group App List table Row "1"
+     # And debug
+     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/17ac740b-5c0f-4b55-a90e-1d65ec499a46"
+      And should see "編輯"
+     When the super admin clicks "編輯"
+     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/17ac740b-5c0f-4b55-a90e-1d65ec499a46/edit"
+     When the super admin fills in "名稱" with "myzyxel-ios-test-modify"
+     When the super admin chooses "停用"
+     When the super admin fills in "描述" with "myZyxel Alpha iOS 測試版 改"
+     When the super admin fills in "iOS Bundle ID" with "ios_test_bundle_id_modify"
+      And presses "提交"
+    Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/17ac740b-5c0f-4b55-a90e-1d65ec499a46"
+      And should see "名稱 myzyxel-ios-test-modify"
+      And should see "描述 myZyxel Alpha iOS 測試版 改"
+      And should see "狀態 停用"
+      And should see "iOS Bundle ID ios_test_bundle_id"
+      And should see "APP SNS Application arn:aws:sns:us-east-1:567710019248:app/APNS/17ac740b-5c0f-4b55-a90e-1d65ec499a46"
+      And should see "APP SNS Topic arn:aws:sns:us-east-1:567710019248:myzyxel-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa"
+      And should see "建立時間 2017-07-18T06:52:47.031Z"
+      And should see "更新時間 2017-07-19T06:52:47.031Z"
+      # And debug
+
+
+
+
+

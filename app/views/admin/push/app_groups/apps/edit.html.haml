@@ -1,0 +1,48 @@
+- content_for :title do
+  = t('push.app_group.app.labels.management', app_group_name: @app_group.name)
+
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.app.titles.edit', app_group_name: @app_group.name)
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = simple_form_for @app, url: admin_push_app_group_app_url(@app_group, @app), method: :put, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.hidden_field :app_group_id, value: @app_group.app_group_id
+          = f.input :name, input_wrapper_html: { class: 'col-sm-3' }
+          = f.input :status, as: :radio_buttons, collection: Push::App.status_radio_options, input_wrapper_html: { class: 'col-sm-9' }, item_wrapper_class: 'radio-inline', wrapper: :horizontal_radio_and_checkboxes
+          = f.input :platform, required: false, input_wrapper_html: { class: 'col-sm-9' } do
+            %p.form-control-static
+              = @app.platform
+          = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
+          = f.input :app_id, required: false, input_wrapper_html: { class: 'col-sm-9' } do
+            %p.form-control-static
+              = @app.app_id
+          - if @app.apns_or_apns_sandbox?
+            = f.input :bundle_id, required: true, input_wrapper_html: { class: 'col-sm-3' }
+            .form-group.file
+              = label_tag :file, Push::App.human_attribute_name(:file), class: 'col-sm-3 control-label'
+              .col-xs-12.col-sm-9
+                = file_field_tag :file
+            .form-group.password
+              = label_tag :password, Push::App.human_attribute_name(:password), class: 'col-sm-3 control-label'
+              .col-xs-12.col-sm-5
+                .input-group
+                  = password_field_tag :password, nil, class: 'form-control'
+                  %span.input-group-btn
+                    %button#loadCredentials.btn.btn-default{ type: 'button' }
+                      = t('push.app_group.app.labels.load_credentials')
+            = f.input :certificate, as: :text, required: false, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 5 }
+            = f.input :private_key, as: :text, required: false, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 5 }
+          - if @app.gcm?
+            = f.input :package_name, required: true, input_wrapper_html: { class: 'col-sm-3' }
+            = f.input :api_key, required: false, input_wrapper_html: { class: 'col-sm-5' }
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = link_to t('common.labels.cancel'), admin_push_app_group_app_url(@app_group, @app), class: 'btn btn-default'
