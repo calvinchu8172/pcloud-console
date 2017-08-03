@@ -471,6 +471,72 @@ paths:
                     updated_at:
                       type: string
                       description: Access Key 更新時間
+    post:
+      summary: 新增所屬 App 的 Access Key
+      description: 新增所屬 App 的 Access Key
+      tags:
+        - console
+      operationId: create_app_access_key
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Api-Key
+          in: header
+          description: Api Gateway Api Key
+          required: true
+          type: string
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: access_key_id
+          in: formData
+          description: Access Key 識別碼
+          required: true
+          type: string
+        - name: app_group_id
+          in: path
+          description: App Group ID
+          required: true
+          type: string
+        - name: app_id
+          in: path
+          description: App ID
+          required: true
+          type: string
+        - name: description
+          in: formData
+          description: Access Key 描述
+          type: string
+      responses:
+        200:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+              data:
+                type: object
+                properties:
+                  access_key_id:
+                    type: string
+                    description: Access Key ID
   /v1/app_groups/{app_group_id}/apps/{app_id}/access_keys/{id}:
     get:
       summary: 取得 App Access Key 詳細資訊

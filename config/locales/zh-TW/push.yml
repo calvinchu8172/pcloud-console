@@ -15,6 +15,7 @@ zh-TW:
         app_group_topic_arn: APP Group Topic ARN
         app_topic_arn: APP Topic ARN
         application_arn: Application ARN
+        app_platform: APP 平台
         created_at: 建立時間
         updated_at: 更新時間
       push/app:

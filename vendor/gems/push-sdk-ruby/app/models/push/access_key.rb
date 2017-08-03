@@ -105,12 +105,16 @@ module Push
     def create_operator(options = {})
       unless options[:app_id]
         'create_app_group_access_key'
+      else
+        'create_app_access_key'
       end
     end
 
     def update_operator(options = {})
       unless options[:app_id]
         'put_app_group_access_key'
+      else
+        'put_app_access_key'
       end
     end
   end

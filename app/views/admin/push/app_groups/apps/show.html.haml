@@ -91,9 +91,9 @@
             %a.collapse-link= fa_icon('chevron-up')
         .clearfix
       .x_content
-        = link_to '#', class: 'btn btn-app btn-sm' do
+        = link_to new_admin_push_app_group_app_access_key_url(@app_group, @app), class: 'btn btn-app btn-sm' do
           = fa_icon('plus')
-          = t('push.app_group.access_key.labels.new')
+          = t('push.app_group.app.access_key.labels.new')
   .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_title
