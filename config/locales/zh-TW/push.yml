@@ -76,3 +76,10 @@ zh-TW:
       update_app_group_access_key: 更新 App Group Access Key
       download_app_group_access_key: 下載 App Group Access Key
       revoke_app_group_access_key: 註銷 App Group Access Key
+      create_app: 新增 App Group App
+      update_app: 更新 App Group App
+      revoke_app: 註銷 App Group App
+      create_app_access_key: 新增 App Access Key
+      update_app_access_key: 更新 App Access Key
+      download_app_access_key: 下載 App Access Key
+      revoke_app_access_key: 註銷 App Access Key
