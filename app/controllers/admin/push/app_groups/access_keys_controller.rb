@@ -29,7 +29,7 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
 
   def update
     if @access_key.update(push_access_key_params)
-      Log.write(current_user, @access_key, request.remote_ip, 'update_app_group_access_key', {
+      Log.write(current_user, nil, request.remote_ip, 'update_app_group_access_key', {
         app_group_id: @app_group.app_group_id,
         access_key_id: @access_key.access_key_id
       })
@@ -41,7 +41,7 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
 
   def destroy
     @access_key.revoked!
-    Log.write(current_user, @access_key, request.remote_ip, 'revoke_app_group_access_key', {
+    Log.write(current_user, nil, request.remote_ip, 'revoke_app_group_access_key', {
       app_group_id: @app_group.app_group_id,
       access_key_id: @access_key.access_key_id
     })
@@ -50,7 +50,7 @@ class Admin::Push::AppGroups::AccessKeysController < AdminController
 
   def download
     download_url = @access_key.download_url
-    Log.write(current_user, @access_key, request.remote_ip, 'download_app_group_access_key', {
+    Log.write(current_user, nil, request.remote_ip, 'download_app_group_access_key', {
       app_group_id: @app_group.app_group_id,
       access_key_id: @access_key.access_key_id
     })

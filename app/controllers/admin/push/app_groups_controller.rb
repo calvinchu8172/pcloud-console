@@ -32,7 +32,7 @@ class Admin::Push::AppGroupsController < AdminController
 
   def update
     if @app_group.update(push_app_group_params)
-      Log.write(current_user, @app_group, request.remote_ip, 'update_app_group', {
+      Log.write(current_user, nil, request.remote_ip, 'update_app_group', {
         app_group_id: @app_group.app_group_id
       })
       redirect_to admin_push_app_group_url(@app_group)

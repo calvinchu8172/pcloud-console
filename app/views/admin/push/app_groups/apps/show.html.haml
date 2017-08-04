@@ -124,6 +124,7 @@
                   = link_to admin_push_app_group_app_access_key_url(@app_group, @app, access_key), class: 'btn btn-primary btn-xs' do
                     = fa_icon('folder')
                     = t('common.labels.view')
-                  = link_to '#', class: 'btn btn-warning btn-xs' do
-                    = fa_icon('download')
-                    = t('common.labels.download')
+                  - unless access_key.revoked?
+                    = link_to download_admin_push_app_group_app_access_key_url(@app_group, @app, access_key), class: 'btn btn-warning btn-xs' do
+                      = fa_icon('download')
+                      = t('common.labels.download')

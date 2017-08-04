@@ -26,6 +26,42 @@ class Admin::Push::AppGroups::Apps::AccessKeysController < AdminController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @access_key.update(push_access_key_params)
+      Log.write(current_user, nil, request.remote_ip, 'update_app_access_key', {
+        app_group_id: @app_group.app_group_id,
+        app_id: @app.app_id,
+        access_key_id: @access_key.access_key_id
+      })
+      redirect_to admin_push_app_group_app_access_key_url(@app_group, @app, @access_key)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @access_key.revoked!
+    Log.write(current_user, nil, request.remote_ip, 'revoke_app_access_key', {
+      app_group_id: @app_group.app_group_id,
+      app_id: @app.app_id,
+      access_key_id: @access_key.access_key_id
+    })
+    redirect_to admin_push_app_group_app_access_key_url(@app_group, @app, @access_key)
+  end
+
+  def download
+    download_url = @access_key.download_url
+    Log.write(current_user, nil, request.remote_ip, 'download_app_access_key', {
+      app_group_id: @app_group.app_group_id,
+      app_id: @app.app_id,
+      access_key_id: @access_key.access_key_id
+    })
+    redirect_to download_url
+  end
+
   private
 
   def set_app_group

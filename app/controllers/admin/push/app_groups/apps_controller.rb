@@ -35,7 +35,7 @@ class Admin::Push::AppGroups::AppsController < AdminController
 
   def update
     if @app.update(push_app_params)
-      Log.write(current_user, @app, request.remote_ip, 'update_app', {
+      Log.write(current_user, nil, request.remote_ip, 'update_app', {
         app_group_id: @app_group.app_group_id,
         app_id: @app.app_id
       })
@@ -48,7 +48,7 @@ class Admin::Push::AppGroups::AppsController < AdminController
 
   def destroy
     @app.revoked!
-    Log.write(current_user, @app, request.remote_ip, 'revoke_app', {
+    Log.write(current_user, nil, request.remote_ip, 'revoke_app', {
       app_group_id: @app_group.app_group_id,
       app_id: @app.app_id
     })

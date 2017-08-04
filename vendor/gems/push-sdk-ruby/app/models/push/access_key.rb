@@ -52,8 +52,16 @@ module Push
 
     def download_url
       client = AccessKeyClient.new
-      response = client.get_app_group_access_key_download_url(api_options)
+      response = client.send(get_download_url, api_options)
       response.dig('data', 'download_url')
+    end
+
+    def get_download_url
+      unless api_options[:app_id]
+        'get_app_group_access_key_download_url'
+      else
+        'get_app_access_key_download_url'
+      end
     end
 
     def localized_status

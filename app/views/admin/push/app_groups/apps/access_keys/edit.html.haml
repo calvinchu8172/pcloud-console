@@ -1,0 +1,29 @@
+- content_for :title do
+  = t('push.app_group.app.access_key.labels.management', app_name: @app.name)
+
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.app.access_key.titles.edit', app_name: @app.name)
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = simple_form_for @access_key, url: admin_push_app_group_app_access_key_url(@app_group, @app, @access_key), method: :put, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.hidden_field :app_group_id, value: @app_group.app_group_id
+          = f.hidden_field :app_id, value: @app.app_id
+          = f.input :access_key_id, input_wrapper_html: { class: 'col-sm-9' } do
+            %p.form-control-static
+              = @access_key.id
+          = f.input :app_platform, input_wrapper_html: { class: 'col-sm-9' } do
+            %p.form-control-static
+              = @app.localized_platform
+          = f.input :description, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
+          = f.input :status, as: :radio_buttons, collection: Push::AccessKey.status_radio_options, input_wrapper_html: { class: 'col-sm-9' }, item_wrapper_class: 'radio-inline', wrapper: :horizontal_radio_and_checkboxes
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = link_to t('common.labels.cancel'), admin_push_app_group_app_access_key_url(@app_group, @app, @access_key), class: 'btn btn-default'
