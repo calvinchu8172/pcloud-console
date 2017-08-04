@@ -57,7 +57,13 @@ Rails.application.routes.draw do
             get :download
           end
         end
-        resources :apps, module: :app_groups
+        resources :apps, module: :app_groups do
+          resources :access_keys, module: :apps, except: [:index] do
+            member do
+              get :download
+            end
+          end
+        end
       end
     end
 
