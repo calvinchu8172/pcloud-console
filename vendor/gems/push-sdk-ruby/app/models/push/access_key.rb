@@ -64,6 +64,10 @@ module Push
       end
     end
 
+    def localized_platform
+      I18n.t("push.app_group.app.platform.#{self.platform.downcase}")
+    end
+
     def localized_status
       I18n.t("common.labels.#{self.status}")
     end

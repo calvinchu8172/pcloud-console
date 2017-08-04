@@ -1,4 +1,4 @@
-Feature: Push Management - App Group App List
+Feature: Push Management - App Group Apps List
 
   Background:
     Given the super admin has already signed up

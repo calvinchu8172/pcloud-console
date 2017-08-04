@@ -60,7 +60,7 @@ Feature: Push Management - App Group Access Key List
       And should see "建立時間" - "2017-07-14T02:57:42.276Z" on App Group Access Key List table Row "1"
       And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group Access Key List table Row "1"
       And should see "Access Key ID" - "c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e" on App Group Access Key List table Row "2"
-      And should see "狀態" - "啟用" on App Group Access Key List table Row "1"
+      And should see "狀態" - "啟用" on App Group Access Key List table Row "2"
       And should see "描述" - "APP_GROUP_ACCESS_KEY_DESCRIPTION1" on App Group Access Key List table Row "2"
       And should see "建立時間" - "2017-07-14T02:56:42.276Z" on App Group Access Key List table Row "2"
       And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group Access Key List table Row "2"
