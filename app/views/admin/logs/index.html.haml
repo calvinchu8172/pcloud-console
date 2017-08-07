@@ -28,7 +28,7 @@
             %tr
               %th= Log.human_attribute_name(:source_type)
               %th= Log.human_attribute_name(:source_ip)
-              %th= Log.human_attribute_name(:target_type)
+              %th.restrict= Log.human_attribute_name(:target_type)
               %th= Log.human_attribute_name(:event)
               %th= Log.human_attribute_name(:created_at)
 
@@ -37,6 +37,7 @@
               %tr
                 %td= log.source.email
                 %td= log.source_ip
-                %td= log.target.try(:email)
+                %td.break_line
+                  %pre.clear_border= log.target.try(:email) || (log.extra.present? ? JSON.pretty_generate(log.extra) : nil)
                 %td= log.localized_event
                 %td= log.created_at

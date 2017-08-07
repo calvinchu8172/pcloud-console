@@ -1,11 +1,21 @@
 .row {
   .x_content {
     table {
-      width: 100% !important;;
+      width: 100% !important;
     }
   }
 }
 
 .dataTables_paginate {
   width: 100%;
+}
+
+td.break_line {
+  white-space: normal !important;
+}
+
+pre.clear_border{
+  color: inherit;
+  background-color: inherit;
+  border: 0px;
 }
