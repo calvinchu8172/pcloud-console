@@ -73,6 +73,11 @@
               %p.form-control-static
                 = @app.topic_arn
           .form-group
+            = label_tag :app, Push::App.human_attribute_name(:locale), class: 'control-label col-sm-3 col-xs-12'
+            .col-sm-9.col-xs-12
+              %p.form-control-static
+                = @app.localized_locales
+          .form-group
             = label_tag :app, Push::App.human_attribute_name(:created_at), class: 'control-label col-sm-3 col-xs-12'
             .col-sm-9.col-xs-12
               %p.form-control-static

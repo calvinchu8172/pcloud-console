@@ -68,6 +68,12 @@ module Push
       I18n.t("common.labels.#{self.status}")
     end
 
+    def localized_locales
+      self.locales.map{ |locale|
+        I18n.t("common.locales.#{locale}")
+      }.try(:join, '、')
+    end
+
     def active?
       self.status == 'active'
     end
