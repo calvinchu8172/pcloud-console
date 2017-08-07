@@ -19,7 +19,7 @@ class Admin::LogsController < AdminController
         csv << [
           log.source.email,
           log.source_ip,
-          log.target.try(:email) || (log.extra.present? ? JSON.pretty_generate(log.extra) : nil),
+          log.target.try(:email) || (log.extra? ? JSON.pretty_generate(log.extra) : nil),
           log.localized_event,
           log.created_at
         ]
