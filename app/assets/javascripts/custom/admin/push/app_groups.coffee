@@ -63,8 +63,14 @@ window.RailsApp.admin_push_app_groups =
         { orderable: false }
       ]
 
-  notification: ->
+  init: ->
 
-    $('select[id*=push_notification_app_ids]').select2()
-    $('select[id*=push_notification_email]').select2()
+    $('select[id*=app_ids]').select2()
+    $('select[id*=user_ids]').select2()
 
+    # 取得 elements
+    form = $('#notification-test')
+    # 設定 form validator
+    form.validator().on 'submit', (e) ->
+      if !e.isDefaultPrevented()
+        form.submit()

@@ -42,21 +42,26 @@ class Admin::Push::AppGroupsController < AdminController
   end
 
   def notification
-    @notification = Push::Notification.new
     @apps = Push::App.where(app_group_id: @app_group.app_group_id)
-    @notification.app_ids = @apps.map(&:app_id)
-    @users = User.all
-    access_keys = Push::AccessKey.where(app_group_id: @app_group.app_group_id)
-    @access_key = access_keys.first
-    download_url = @access_key.download_url
-    @private_key = Net::HTTP.get(URI.parse(download_url))
-
   end
 
   def send_notification
-    response = Push::Notification.send_personal(push_notification_params)
-    flash[:notice] = t('push.app_group.titles.notification_success', response: response.to_json)
+    access_key = Push::AccessKey.where(app_group_id: @app_group.app_group_id).first
+    private_key = Net::HTTP.get(URI.parse(access_key.download_url))
+    notification = Push::NotificationClient.new(
+      access_key_id: access_key.access_key_id,
+      private_key: private_key
+    )
+    response = notification.personal(
+      title: params[:title],
+      body: params[:body],
+      user_ids: params[:user_ids].join(',')
+    )
+    flash[:notice] = t('push.app_group.messages.notification_success', response: response.to_json)
     redirect_to notification_admin_push_app_group_url(@app_group)
+  rescue
+    flash.now[:error] = I18n.t('common.messages.error')
+    render :notification
   end
 
   private

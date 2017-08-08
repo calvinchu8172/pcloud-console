@@ -4,19 +4,37 @@
   .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_content
-        = simple_form_for @notification, url: send_notification_admin_push_app_group_url, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
-          / = f.input :app_ids, collection: [['a', 'aaa'], ['b', 'bbb']], input_html: { multiple: true }, input_wrapper_html: { class: 'col-sm-5' }
-          = f.input :app_ids, collection: Push::Notification.select_options(@apps), input_html: { multiple: true }, input_wrapper_html: { class: 'col-sm-5' }
-          = f.input :access_key_id, required: false, input_wrapper_html: { class: 'col-sm-9' } do
-            %p.form-control-static
-              = @access_key.access_key_id
-          = f.hidden_field :access_key_id, value: @access_key.access_key_id
-          = f.hidden_field :private_key, value: @private_key
-          = f.input :email, collection: User.select_options, input_html: { multiple: true }, input_wrapper_html: { class: 'col-sm-5' }
-          = f.input :title, input_wrapper_html: { class: 'col-sm-5' }
-          = f.input :body, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 }
+        = form_tag notification_admin_push_app_group_url, id: 'notification-test', class: 'form-horizontal' do
+          .form-group
+            = label_tag :app_ids, class: 'col-sm-3 control-label col-xs-12' do
+              %span.required *
+              = I18n.t('push.app_group.labels.apps')
+            .col-xs-12.col-sm-5
+              = select_tag :app_ids, options_from_collection_for_select(@apps, :app_id, :name, (params[:app_ids] || @apps.map(&:app_id))), multiple: true, class: 'form-control', required: true
+              .help-block.with-errors
+          .form-group
+            = label_tag :user_ids, class: 'col-sm-3 control-label col-xs-12' do
+              %span.required *
+              = I18n.t('push.app_group.labels.users')
+            .col-xs-12.col-sm-5
+              = select_tag :user_ids, options_for_select(Omniauth.uid_select_options, params[:user_ids]), multiple: true, class: 'form-control', required: true
+              .help-block.with-errors
+          .form-group
+            = label_tag :title, class: 'col-sm-3 control-label col-xs-12' do
+              %span.required *
+              = I18n.t('push.app_group.labels.title')
+            .col-xs-12.col-sm-5
+              = text_field_tag :title, params[:title], class: 'form-control', required: true
+              .help-block.with-errors
+          .form-group
+            = label_tag :body, class: 'col-sm-3 control-label col-xs-12' do
+              %span.required *
+              = I18n.t('push.app_group.labels.body')
+            .col-xs-12.col-sm-5
+              = text_area_tag :body, params[:body], class: 'form-control', rows: 7, required: true
+              .help-block.with-errors
           .ln_solid
           .form-group
             .col-sm-6.col-xs-12.col-sm-offset-3
-              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = button_tag t('common.labels.submit'), class: 'btn btn-success'
               = link_to t('common.labels.cancel'), admin_push_app_group_url(@app_group), class: 'btn btn-default'
