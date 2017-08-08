@@ -64,6 +64,12 @@ Rails.application.routes.draw do
             end
           end
         end
+
+        member do
+          get :notification
+          post :send_notification
+        end
+
       end
     end
 

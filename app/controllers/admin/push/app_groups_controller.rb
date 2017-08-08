@@ -1,7 +1,7 @@
 class Admin::Push::AppGroupsController < AdminController
 
   before_action { authorize! :manage, :push_management }
-  before_action :set_app_group, only: [:show, :edit, :update]
+  before_action :set_app_group, only: [:show, :edit, :update, :notification, :send_notification]
 
   def index
     @app_groups = Push::AppGroup.all
@@ -41,6 +41,24 @@ class Admin::Push::AppGroupsController < AdminController
     end
   end
 
+  def notification
+    @notification = Push::Notification.new
+    @apps = Push::App.where(app_group_id: @app_group.app_group_id)
+    @notification.app_ids = @apps.map(&:app_id)
+    @users = User.all
+    access_keys = Push::AccessKey.where(app_group_id: @app_group.app_group_id)
+    @access_key = access_keys.first
+    download_url = @access_key.download_url
+    @private_key = Net::HTTP.get(URI.parse(download_url))
+
+  end
+
+  def send_notification
+    response = Push::Notification.send_personal(push_notification_params)
+    flash[:notice] = t('push.app_group.titles.notification_success', response: response.to_json)
+    redirect_to notification_admin_push_app_group_url(@app_group)
+  end
+
   private
 
   def set_app_group
@@ -49,5 +67,9 @@ class Admin::Push::AppGroupsController < AdminController
 
   def push_app_group_params
     params.require(:push_app_group).permit(:name, :description)
+  end
+
+  def push_notification_params
+    params.require(:push_notification).permit({ app_ids: [] }, :user_ids, { email: [] }, :title, :body, :access_key_id, :private_key)
   end
 end

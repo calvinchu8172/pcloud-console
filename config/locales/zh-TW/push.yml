@@ -36,16 +36,25 @@ zh-TW:
         locale: 語系
         created_at: 建立時間
         updated_at: 更新時間
+      push/notification:
+        app_ids: APP
+        access_key_id: Access Key
+        email: Email
+        title: 訊息主旨
+        body: 訊息內容
   push:
     app_group:
       labels:
         management: App Group 管理
         new: 新增 App Group
+        notification: "%{app_group_name} - 發送測試推播"
       titles:
         index: App Group 列表
         show: App Group 資訊
         new: 新增 App Group
         edit: 編輯 App Group
+        notification: 發送測試推播
+        notification_success: "發送測試推播成功 - %{response}"
       access_key:
         labels:
           management: "%{app_group_name} - Access Key 管理"

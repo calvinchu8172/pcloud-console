@@ -63,3 +63,8 @@ window.RailsApp.admin_push_app_groups =
         { orderable: false }
       ]
 
+  notification: ->
+
+    $('select[id*=push_notification_app_ids]').select2()
+    $('select[id*=push_notification_email]').select2()
+
