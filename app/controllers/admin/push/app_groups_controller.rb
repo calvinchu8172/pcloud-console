@@ -55,7 +55,8 @@ class Admin::Push::AppGroupsController < AdminController
     response = notification.personal(
       title: params[:title],
       body: params[:body],
-      user_ids: params[:user_ids].join(',')
+      user_ids: params[:user_ids].join(','),
+      app_ids: params[:app_ids].join(',')
     )
     flash[:notice] = t('push.app_group.messages.notification_success', response: response.to_json)
     redirect_to notification_admin_push_app_group_url(@app_group)
@@ -74,7 +75,4 @@ class Admin::Push::AppGroupsController < AdminController
     params.require(:push_app_group).permit(:name, :description)
   end
 
-  def push_notification_params
-    params.require(:push_notification).permit({ app_ids: [] }, :user_ids, { email: [] }, :title, :body, :access_key_id, :private_key)
-  end
 end
