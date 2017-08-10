@@ -104,3 +104,4 @@ zh-TW:
       update_app_access_key: 更新 App Access Key
       download_app_access_key: 下載 App Access Key
       revoke_app_access_key: 註銷 App Access Key
+      send_app_group_notification: 發送測試推播

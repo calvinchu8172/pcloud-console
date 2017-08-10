@@ -58,6 +58,12 @@ class Admin::Push::AppGroupsController < AdminController
       user_ids: params[:user_ids].join(','),
       app_ids: params[:app_ids].join(',')
     )
+    Log.write(current_user, nil, request.remote_ip, 'send_app_group_notification', {
+      app_group_id: @app_group.app_group_id,
+      access_key_id: access_key.access_key_id,
+      user_ids: params[:user_ids],
+      app_ids: params[:app_ids]
+    })
     flash[:notice] = t('push.app_group.messages.notification_success', response: response.to_json)
     redirect_to notification_admin_push_app_group_url(@app_group)
   rescue
