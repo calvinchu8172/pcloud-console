@@ -49,15 +49,27 @@ Rails.application.routes.draw do
 
     # - 推播管理 - #
     namespace :push do
+
       # - 推播管理 / App Group 列表 - #
       resources :app_groups, except: [:destroy] do
+
+        # - 推播管理 / App Group / 發送測試推播 - #
+        member do
+          get  :notification
+          post :notification, to: 'app_groups#send_notification'
+        end
+
         # - 推播管理 / App Group / Access Key - #
         resources :access_keys, module: :app_groups, except: [:index] do
           member do
             get :download
           end
         end
+
+        # - 推播管理 / App Group / App - #
         resources :apps, module: :app_groups do
+
+          # - 推播管理 / App Group / App / Access Key - #
           resources :access_keys, module: :apps, except: [:index] do
             member do
               get :download
@@ -66,6 +78,5 @@ Rails.application.routes.draw do
         end
       end
     end
-
   end
 end

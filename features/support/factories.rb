@@ -19,6 +19,11 @@ FactoryGirl.define do
     factory :super_admin, traits: [:super_admin, :confirmed] do
       after(:create) do |user|
         user.super_admin!
+        user.bind_omniauth_service(OpenStruct.new(
+          provider: 'cucumber',
+          uid: user.cloud_id,
+          info: OpenStruct.new
+        ))
       end
     end
 
@@ -26,6 +31,11 @@ FactoryGirl.define do
       after(:create) do |user|
         group = Group.find_by(name: 'System Management')
         user.groups << group
+        user.bind_omniauth_service(OpenStruct.new(
+          provider: 'cucumber',
+          uid: user.cloud_id,
+          info: OpenStruct.new
+        ))
       end
     end
   end

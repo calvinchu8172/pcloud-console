@@ -1,7 +1,7 @@
 class Admin::Push::AppGroupsController < AdminController
 
   before_action { authorize! :manage, :push_management }
-  before_action :set_app_group, only: [:show, :edit, :update]
+  before_action :set_app_group, only: [:show, :edit, :update, :notification, :send_notification]
 
   def index
     @app_groups = Push::AppGroup.all
@@ -41,6 +41,36 @@ class Admin::Push::AppGroupsController < AdminController
     end
   end
 
+  def notification
+    @apps = Push::App.where(app_group_id: @app_group.app_group_id)
+  end
+
+  def send_notification
+    access_key = Push::AccessKey.where(app_group_id: @app_group.app_group_id).first
+    private_key = Net::HTTP.get(URI.parse(access_key.download_url))
+    notification = Push::NotificationClient.new(
+      access_key_id: access_key.access_key_id,
+      private_key: private_key
+    )
+    response = notification.personal(
+      title: params[:title],
+      body: params[:body],
+      user_ids: params[:user_ids].join(','),
+      app_ids: params[:app_ids].join(',')
+    )
+    Log.write(current_user, nil, request.remote_ip, 'send_app_group_notification', {
+      app_group_id: @app_group.app_group_id,
+      access_key_id: access_key.access_key_id,
+      user_ids: params[:user_ids],
+      app_ids: params[:app_ids]
+    })
+    flash[:notice] = t('push.app_group.messages.notification_success', response: response.to_json)
+    redirect_to notification_admin_push_app_group_url(@app_group)
+  rescue
+    flash.now[:error] = I18n.t('common.messages.error')
+    render :notification
+  end
+
   private
 
   def set_app_group
@@ -50,4 +80,5 @@ class Admin::Push::AppGroupsController < AdminController
   def push_app_group_params
     params.require(:push_app_group).permit(:name, :description)
   end
+
 end

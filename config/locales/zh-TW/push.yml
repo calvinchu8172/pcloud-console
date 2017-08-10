@@ -41,11 +41,19 @@ zh-TW:
       labels:
         management: App Group 管理
         new: 新增 App Group
+        notification: "%{app_group_name} - 發送測試推播"
+        apps: Apps
+        users: 發送對象
+        title: 訊息主旨
+        body: 訊息內容
       titles:
         index: App Group 列表
         show: App Group 資訊
         new: 新增 App Group
         edit: 編輯 App Group
+        notification: 發送測試推播
+      messages:
+        notification_success: 發送測試推播成功 - %{response}
       access_key:
         labels:
           management: "%{app_group_name} - Access Key 管理"
@@ -96,3 +104,4 @@ zh-TW:
       update_app_access_key: 更新 App Access Key
       download_app_access_key: 下載 App Access Key
       revoke_app_access_key: 註銷 App Access Key
+      send_app_group_notification: 發送測試推播
