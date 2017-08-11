@@ -36,3 +36,6 @@
                   = sidebar_child_menu_item controller: 'admin/push/app_groups/apps', action: :index do
                     = link_to admin_push_app_group_apps_url(@app_group) do
                       %span= t('push.app_group.app.titles.list')
+                  = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :notification do
+                    = link_to notification_admin_push_app_group_url(@app_group) do
+                      %span= t('push.app_group.titles.notification')

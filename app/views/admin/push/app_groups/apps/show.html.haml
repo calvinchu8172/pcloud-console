@@ -1,7 +1,7 @@
 - content_for :title, t('push.app_group.app.labels.management', app_group_name: @app_group.name)
 
 .row
-  .col-md-12.col-sm-12.col-xs-12.toolbar
+  .col-md-12.col-sm-12.col-xs-12.toolbar.upper
     .x_panel
       .x_title
         %h2= t('common.labels.toolbar')
@@ -20,7 +20,7 @@
           = link_to admin_push_app_group_app_url(@app_group, @app), class: 'btn btn-app btn-sm', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
             = fa_icon('minus-circle')
             = t('common.labels.revoked')
-    .col-md-12.col-sm-12.col-xs-12
+  .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_title
         %h2= t('push.app_group.app.titles.show', app_group_name: @app_group.name)
@@ -73,6 +73,11 @@
               %p.form-control-static
                 = @app.topic_arn
           .form-group
+            = label_tag :app, Push::App.human_attribute_name(:locale), class: 'control-label col-sm-3 col-xs-12'
+            .col-sm-9.col-xs-12
+              %p.form-control-static
+                = @app.localized_locales
+          .form-group
             = label_tag :app, Push::App.human_attribute_name(:created_at), class: 'control-label col-sm-3 col-xs-12'
             .col-sm-9.col-xs-12
               %p.form-control-static
@@ -82,3 +87,49 @@
             .col-sm-9.col-xs-12
               %p.form-control-static
                 = @app.updated_at
+  .col-md-12.col-sm-12.col-xs-12.toolbar
+    .x_panel
+      .x_title
+        %h2= t('common.labels.toolbar')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = link_to new_admin_push_app_group_app_access_key_url(@app_group, @app), class: 'btn btn-app btn-sm' do
+          = fa_icon('plus')
+          = t('push.app_group.app.access_key.labels.new')
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.app.access_key.titles.index', app_name: @app.name)
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        %table.table.table-bordered{ class: (Rails.env.production? ? 'dt-responsive nowrap' : '') }
+          %thead
+            %tr
+              %th= Push::AccessKey.human_attribute_name(:access_key_id)
+              %th= Push::AccessKey.human_attribute_name(:status)
+              %th= Push::AccessKey.human_attribute_name(:description)
+              %th= Push::AccessKey.human_attribute_name(:created_at)
+              %th= Push::AccessKey.human_attribute_name(:updated_at)
+              %th
+          %tbody
+            - @access_keys.each do |access_key|
+              %tr
+                %td= access_key.access_key_id
+                %td= access_key.localized_status
+                %td= access_key.description
+                %td= access_key.created_at
+                %td= access_key.updated_at
+                %td
+                  = link_to admin_push_app_group_app_access_key_url(@app_group, @app, access_key), class: 'btn btn-primary btn-xs' do
+                    = fa_icon('folder')
+                    = t('common.labels.view')
+                  - unless access_key.revoked?
+                    = link_to download_admin_push_app_group_app_access_key_url(@app_group, @app, access_key), class: 'btn btn-warning btn-xs' do
+                      = fa_icon('download')
+                      = t('common.labels.download')

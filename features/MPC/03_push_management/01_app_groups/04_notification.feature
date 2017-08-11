@@ -1,7 +1,8 @@
-Feature: Push Management - App Group Access Key List
+Feature: Push Management - App Group Notification
 
   Background:
     Given the super admin has already signed up
+    Given the system manager has already been created by super admin
     Given Push Server has an App Group data as below:
     """
     {
@@ -27,40 +28,64 @@ Feature: Push Management - App Group Access Key List
       "updated_at": "2017-07-18T01:48:48.008Z"
     }
     """
-    Given Push Server has an App Group Access Key data as below:
+    Given Push Server has an App Group App data as below:
     """
     {
-      "access_key_id": "a673e515-b6de-47e5-91f7-259a2a3b2fbe",
+      "app_id": "419b0e28-a418-4e79-8dda-72cafbf4b036",
       "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
-      "description": "APP_GROUP_ACCESS_KEY_DESCRIPTION2",
-      "app_group_topic_arn": "arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b",
-      "public_key": "-----BEGIN CERTIFICATE-----\nMIIDYjCCAkoCCQCSIsV//EcBFzANBgkqhkiG9w0BAQUFADBzMQswCQYDVQQGEwJU\nVzEPMA0GA1UECAwGVGFpd2FuMQ8wDQYDVQQHDAZUYWlwZWkxFTATBgNVBAoMDEVj\nb3dvcmsgSW5jLjEVMBMGA1UECwwMRWNvd29yayBJbmMuMRQwEgYDVQQDDAtQdXNo\nU2VydmljZTAeFw0xNzA3MjIxNTE1MjhaFw0zNzA3MjIxNTE1MjhaMHMxCzAJBgNV\nBAYTAlRXMQ8wDQYDVQQIDAZUYWl3YW4xDzANBgNVBAcMBlRhaXBlaTEVMBMGA1UE\nCgwMRWNvd29yayBJbmMuMRUwEwYDVQQLDAxFY293b3JrIEluYy4xFDASBgNVBAMM\nC1B1c2hTZXJ2aWNlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0NP/\nayyRvrWwQL4M8IMyxvMvLHWpRuBeEDkzeXxWCeullt+PAdTN2SJHUZFufwgNO1qO\neXylud0jMez6GfT7PQQeHP9/PxMJ7T6ayfPR+4OLZ15JSU2dFZhlmSxD/oTqOvCS\ndQQL5bCKquxOVFBppueO5b/xtghTV7xEIpt7etNMQh7YDqErBJqr13Vv+LwnetTr\nCkHQJ7R3AVielAdngttyuggir4Zz3xAgewDWtGBRwwwoM8dIUBXbWrpaulzgWiOX\nvHDzbnBxGNrQFAtvvl9sF2yIrGpDS7UQttAY/9c0YCVHG8B8zsx+a/BeOP7zjQPO\nwiVM3u9r9OhF+Pv0zQIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQCSw7fPAtw1VV16\nl48GXSrz1pwj4fZHVV20vUj0KYZ17HlPCmQe2Lclebk7M891n7C6VHnIaRd0ADp0\n8oJGq7E7VneHF4wdfnD0CmJlY/8jYEHQnJ2/HeZwQms+nOrE788cBQmmpmIZUWKQ\nxMMwAxmFr2bvq0nfi27UtYOQraw2NkGEcn5D1Ll8LcEsfQ6HyYwB34nlxWter8Ap\nsMWXfJk6n8oSi0z5Xc94eaY4PpMUqNu8rn3V5nKGoxaC2mGyFNmM+vC6fFautSAg\nquEr/NeXzso0ckgWaCvjLQeoZnk59Yd/BoPve3zyybaF3/2OrV5JdFwLyoLheiV3\nOcDFSqzE\n-----END CERTIFICATE-----\n",
+      "name": "myzyxel-android",
+      "description": "myZyxel Alpha Android 版",
       "status": "active",
-      "type": "app_group",
-      "created_at": "2017-07-14T02:57:42.276Z",
+      "application_arn": "arn:aws:sns:us-east-1:567710019248:app/GCM/myzyxel-android-alpha",
+      "package_name": "android_package_name",
+      "platform": "GCM",
+      "topic_arn": "arn:aws:sns:us-east-1:567710019248:419b0e28-a418-4e79-8dda-72cafbf4b036",
+      "created_at": "2017-07-14T02:56:42.276Z",
+      "updated_at": "2017-07-18T01:48:48.008Z"
+    }
+    """
+    Given Push Server has an App Group App data as below:
+    """
+    {
+      "app_id": "17ac740b-5c0f-4b55-a90e-1d65ec499a46",
+      "app_group_id": "569e2004-6ad8-4681-81dd-8769d2ea9b0b",
+      "name": "myzyxel-ios-test",
+      "description": "myZyxel Alpha iOS 測試版",
+      "status": "revoked",
+      "application_arn": "arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/myzyxel-alpha-ios-test",
+      "bundle_id": "ios_test_bundle_id",
+      "platform": "APNS_SANDBOX",
+      "topic_arn": "arn:aws:sns:us-east-1:567710019248:17ac740b-5c0f-4b55-a90e-1d65ec499a46",
+      "created_at": "2017-07-16T02:56:42.276Z",
       "updated_at": "2017-07-18T01:48:48.008Z"
     }
     """
 
+
   @javascript @webmock
-  Scenario: [03_02_01]
-    查看推播 App Group Access Keys 列表
+  Scenario: [03_01_04]
+    App Groups 發送測試推播
     Given the super admin has already signed in
      Then the super admin should be at page - "/"
      When the super admin clicks "推播管理" within "側邊功能"
      Then the super admin should see "App Group 列表"
      When the super admin clicks "App Group 列表" within "側邊功能"
      Then the super admin should be at page - "/admin/push/app_groups"
+      And should see "App Group 管理"
+      And should see "App Group 列表"
+      And should see "名稱" - "APP_GROUP_NAME1" on App Group List table Row "1"
+      And should see "描述" - "APP_GROUP_DESCRIPTION1" on App Group List table Row "1"
+      And should see "建立時間" - "2017-07-14T02:56:42.276Z" on App Group List table Row "1"
+      And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group List table Row "1"
       And clicks "檢視" link on App Group List table Row "1"
      Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b"
-      And should see "APP_GROUP_NAME1 - Access Keys 列表"
-      And should see "Access Key ID" - "a673e515-b6de-47e5-91f7-259a2a3b2fbe" on App Group Access Key List table Row "1"
-      And should see "狀態" - "啟用" on App Group Access Key List table Row "1"
-      And should see "描述" - "APP_GROUP_ACCESS_KEY_DESCRIPTION2" on App Group Access Key List table Row "1"
-      And should see "建立時間" - "2017-07-14T02:57:42.276Z" on App Group Access Key List table Row "1"
-      And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group Access Key List table Row "1"
-      And should see "Access Key ID" - "c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e" on App Group Access Key List table Row "2"
-      And should see "狀態" - "啟用" on App Group Access Key List table Row "2"
-      And should see "描述" - "APP_GROUP_ACCESS_KEY_DESCRIPTION1" on App Group Access Key List table Row "2"
-      And should see "建立時間" - "2017-07-14T02:56:42.276Z" on App Group Access Key List table Row "2"
-      And should see "更新時間" - "2017-07-18T01:48:48.008Z" on App Group Access Key List table Row "2"
+      And should see "發送測試推播" within "側邊功能"
+     When the super admin clicks "發送測試推播" within "側邊功能"
+     Then the super admin should be at page - "/admin/push/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/notification"
+      And selects "發送對象" with "super_admin@example.com" option
+      And selects "發送對象" with "system_manager@example.com" option
+     When the super admin fills in "訊息主旨" with "title"
+      And the super admin fills in "訊息內容" with "content"
+      And presses "提交"
+      And should see /發送測試推播成功 - {"code":"0000","message":"OK","data":{"job_id":"c8756b3c-7ce6-11e7-83d1-03192e974713","total_ids":2,"total":2}}/
+

@@ -121,4 +121,35 @@ Before '@webmock' do
       body: response.to_json
     }
   }
+
+  # App Group - Notification
+  stub_request(:post, "https://#{ENV['PUSH_HOST']}/v1/notifications/personal").to_return{ |request|
+    params = Rack::Utils.parse_nested_query(request.body)
+    attributes = {
+      user_ids: params['user_ids'],
+      app_ids: params['app_ids'],
+      title: params['title'],
+      body: params['body']
+    }
+    notification = Push::NotificationClient.new(attributes)
+    @notifications ||= []
+    @notifications << notification
+    # 產生 response
+    response = {
+      code: '0000',
+      message: 'OK',
+      data: {
+        job_id: "c8756b3c-7ce6-11e7-83d1-03192e974713",
+        total_ids: 2,
+        total: 2
+      }
+    }
+    # 返回
+    {
+      headers: {
+        'Content-Type' => 'application/json'
+      },
+      body: response.to_json
+    }
+  }
 end

@@ -11,15 +11,15 @@ module Push
     end
 
     def api_key
-      ENV['NOTIFICATION_API_KEY']
+      @api_key ||= ENV['NOTIFICATION_API_KEY']
     end
 
     def access_key_id
-      ENV['NOTIFICATION_ACCESS_KEY_ID']
+      @access_key_id ||= ENV['NOTIFICATION_ACCESS_KEY_ID']
     end
 
     def private_key
-      ENV['NOTIFICATION_PRIVATE_KEY']
+      @private_key ||= ENV['NOTIFICATION_PRIVATE_KEY']
     end
   end
 end

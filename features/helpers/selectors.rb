@@ -8,6 +8,8 @@ module SelectorsHelper
       '#sidebar-menu'
     when '工具列'
       '.toolbar'
+    when '上方工具列'
+      '.toolbar.upper'
     else
       raise "Can't find mapping from \"#{selector_name}\" to a selector.\n" +
         "Now, go and add a mapping in #{__FILE__}"

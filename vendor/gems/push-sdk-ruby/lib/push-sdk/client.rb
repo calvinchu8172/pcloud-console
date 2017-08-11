@@ -1,6 +1,14 @@
 module Push
   class Client
 
+    attr_accessor :api_key, :access_key_id, :private_key
+
+    def initialize(options = {})
+      options.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
+    end
+
     class << self
 
       def swagger_yml

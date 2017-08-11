@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include UserDeIdentifiable
   include UserGroupable
   include UserInvitable
   include UserOmniauth
