@@ -41,20 +41,27 @@ Before '@webmock' do
     correct_token = '77f84d04df9336385ed04d68a08a4f3bf94cd600b5f9333017ba8a8698ef8bcd'
     if access_token == correct_token
       user = @current_resource_owner
-      data = {
-        info: {
-          account_id: user.id.to_s,
-          email: user.email
-        },
+      # data = {
+      #   info: {
+      #     account_id: user.id.to_s,
+      #     email: user.email
+      #   },
+      #   timestamp: Time.now.to_i
+      # }
+      # binding.pry
+      response = {
+        id: user.id.to_s,
+        email: user.email,
         timestamp: Time.now.to_i
       }
+
       # 將 data 加密產生 response
-      response = {
-        result: Aescrypt::encrypt(
-          Rails.configuration.omniauth_myzyxel[:client_secret],
-          data.to_json
-        )
-      }
+      # response = {
+      #   result: Aescrypt::encrypt(
+      #     Rails.configuration.omniauth_myzyxel[:client_secret],
+      #     data.to_json
+      #   )
+      # }
     else
       response = { error: 'unauthorized' }
     end
