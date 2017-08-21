@@ -3,7 +3,6 @@ class Admin::Pcloud::UsersController < AdminController
   before_action { authorize! :manage, :pcloud_management }
 
   def revoke
-    @user = Pcloud::User.new
   end
 
   def revoke_user
