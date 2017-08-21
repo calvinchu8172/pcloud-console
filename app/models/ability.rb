@@ -56,4 +56,13 @@ class Ability
     def load_push_management_permissions(user)
       can :manage, :push_management
     end
+
+    # ---------------------- #
+    # - 載入 P.Cloud 管理權限 - #
+    # ---------------------- #
+
+    def load_pcloud_management_permissions(user)
+      can :manage, :pcloud_management
+    end
+
 end
