@@ -1,0 +1,17 @@
+zh-TW:
+  activemodel:
+    attributes:
+      pcloud/user:
+        email: Email
+        created_at: 建立時間
+        updated_at: 更新時間
+  pcloud:
+    user:
+      labels:
+        management: User 管理
+        email: Email
+      titles:
+        revoke: 帳號刪除
+      messages:
+        revoke_user_success: 刪除 %{user} 成功
+        revoke_user_error: 刪除 %{user} 失敗 - %{message}

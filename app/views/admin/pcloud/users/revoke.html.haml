@@ -1,0 +1,22 @@
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('pcloud.user.titles.revoke')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = form_tag admin_pcloud_user_revoke_url, id: 'revoke-user', class: 'form-horizontal' do
+          .form-group
+            = label_tag :email, class: 'col-sm-3 control-label col-xs-12' do
+              %span.required *
+              = I18n.t('pcloud.user.labels.email')
+            .col-xs-12.col-sm-5
+              = email_field_tag :email, params[:email], class: 'form-control', required: true
+              .help-block.with-errors
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = button_tag t('common.labels.submit'), class: 'btn btn-success'
