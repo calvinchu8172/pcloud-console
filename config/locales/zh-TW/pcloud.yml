@@ -15,3 +15,6 @@ zh-TW:
       messages:
         revoke_user_success: 刪除 %{user} 成功
         revoke_user_error: 刪除 %{user} 失敗 - %{message}
+  log:
+    events:
+      revoke_pcloud_user: 刪除 P.Cloud User 帳號
