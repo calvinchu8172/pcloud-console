@@ -38,6 +38,7 @@ cucumber:
   only:
     - develop
     - /^parallel.*$/
+    - feature/20170817-1-revoke-user
 
 release:unstable:
   tags:
