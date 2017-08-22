@@ -49,14 +49,6 @@ class Ability
       can :download_csv, Log
     end
 
-    # ------------------ #
-    # - 載入推播管理權限 - #
-    # ------------------ #
-
-    def load_push_management_permissions(user)
-      can :manage, :push_management
-    end
-
     # ---------------------- #
     # - 載入 P.Cloud 管理權限 - #
     # ---------------------- #
@@ -65,4 +57,11 @@ class Ability
       can :manage, :pcloud_management
     end
 
+    # ------------------ #
+    # - 載入推播管理權限 - #
+    # ------------------ #
+
+    def load_push_management_permissions(user)
+      can :manage, :push_management
+    end
 end

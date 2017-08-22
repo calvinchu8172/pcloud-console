@@ -39,19 +39,18 @@ cucumber:
   only:
     - develop
     - /^parallel.*$/
-    - feature/20170817-1-revoke-user
 
-release:unstable:
-  tags:
-    - ruby
-  stage: release
-  script:
-    - docker pull 683422241496.dkr.ecr.us-east-1.amazonaws.com/rails-passenger:latest
-    - docker build -t $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME .
-    - docker push $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME
-  only:
-    - develop
-    - master
+# release:unstable:
+#   tags:
+#     - ruby
+#   stage: release
+#   script:
+#     - docker pull 683422241496.dkr.ecr.us-east-1.amazonaws.com/rails-passenger:latest
+#     - docker build -t $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME .
+#     - docker push $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME
+#   only:
+#     - develop
+#     - master
 
 release:stable:
   tags:
@@ -63,14 +62,14 @@ release:stable:
   only:
     - tags
 
-deploy:alpha:
-  tags:
-    - ruby
-  stage: deploy
-  script:
-    - ecs-deploy -c $AWS_ECS_CLUSTER_NAME -n $AWS_ECS_SERVICE_NAME -i $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME -t 600
-  only:
-    - develop
+# deploy:alpha:
+#   tags:
+#     - ruby
+#   stage: deploy
+#   script:
+#     - ecs-deploy -c $AWS_ECS_CLUSTER_NAME -n $AWS_ECS_SERVICE_NAME -i $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME -t 600
+#   only:
+#     - develop
 
 release:build:
   tags:

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   include UserProfileable
 
   devise :database_authenticatable, :registerable, :trackable, :validatable, :timeoutable,
-         :invitable, :lockable, :omniauthable, omniauth_providers: [:myzyxel]
+         :invitable, :lockable, :omniauthable, omniauth_providers: [:pcloud]
 
   def lock_status
     if self.access_locked?

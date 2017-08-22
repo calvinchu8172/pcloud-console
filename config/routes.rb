@@ -81,8 +81,8 @@ Rails.application.routes.draw do
 
     # - P.Cloud 管理 - #
     namespace :pcloud do
-      get 'user/revoke', to: 'users#revoke'
-      post 'user/revoke', to: 'users#revoke_user'
+      get  'user/revoke', to: 'users#revoke'
+      post 'user/revoke', to: 'users#revoking'
     end
 
   end

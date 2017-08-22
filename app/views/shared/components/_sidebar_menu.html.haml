@@ -17,6 +17,17 @@
                 = link_to admin_logs_url do
                   %span= t('log.labels.record')
 
+      - if can? :read, :pcloud_management
+        = sidebar_menu_item controller: ['admin/pcloud/users'] do
+          = link_to '#' do
+            = fa_icon('cog')
+            %label= Group.human_attribute_name('name.pcloud_management')
+            %span.fa.fa-chevron-down
+          %ul.nav.child_menu
+            = sidebar_child_menu_item controller: 'admin/pcloud/users', action: :revoke do
+              = link_to admin_pcloud_user_revoke_url do
+                %span= t('pcloud.user.titles.revoke')
+
       - if can? :read, :push_management
         = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/access_keys', 'admin/push/app_groups/apps'] do
           = link_to '#' do
@@ -39,16 +50,3 @@
                   = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :notification do
                     = link_to notification_admin_push_app_group_url(@app_group) do
                       %span= t('push.app_group.titles.notification')
-
-      - if can? :read, :pcloud_management
-        = sidebar_menu_item controller: ['admin/pcloud/users'] do
-          = link_to '#' do
-            = fa_icon('commenting-o')
-            %label= Group.human_attribute_name('name.pcloud_management')
-            %span.fa.fa-chevron-down
-          %ul.nav.child_menu
-            = sidebar_child_menu_item controller: 'admin/pcloud/users', action: :revoke do
-              = link_to admin_pcloud_user_revoke_url do
-                %span= t('pcloud.user.titles.revoke')
-
-

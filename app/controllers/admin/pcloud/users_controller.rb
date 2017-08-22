@@ -5,10 +5,10 @@ class Admin::Pcloud::UsersController < AdminController
   def revoke
   end
 
-  def revoke_user
+  def revoking
     user = Pcloud::UserClient.new
     certificate_serial = user.certificate_serial
-    response = user.revoke_user(
+    user.revoke_user(
       email: params[:email],
       certificate_serial: certificate_serial
     )
@@ -22,9 +22,4 @@ class Admin::Pcloud::UsersController < AdminController
     flash.now[:error] = I18n.t('pcloud.user.messages.revoke_user_error', user: params[:email], message: message)
     render :revoke
   end
-
-  def pcloud_user_params
-    params.require(:pcloud_user).permit(:email)
-  end
-
 end

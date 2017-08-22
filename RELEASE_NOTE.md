@@ -1,4 +1,4 @@
-# myZyxel Console 各版本發佈內容
+# Pcloud Console 各版本發佈內容
 
 ## Version：1.0.0-b2
 

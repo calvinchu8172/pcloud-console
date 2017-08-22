@@ -160,7 +160,7 @@ Before '@webmock' do
       code: '0000',
       message: 'OK',
       data: {
-        download_url: 'https://myzyxel-push.s3-website-us-east-1.amazonaws.com/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem'
+        download_url: 'https://pcloud-push.s3-website-us-east-1.amazonaws.com/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem'
       }
     }
     # 返回
@@ -172,7 +172,7 @@ Before '@webmock' do
     }
   }
   # Download App Group Access Key c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem
-  stub_request(:get, "https://myzyxel-push.s3-website-us-east-1.amazonaws.com/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem").to_return{ |request|
+  stub_request(:get, "https://pcloud-push.s3-website-us-east-1.amazonaws.com/c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem").to_return{ |request|
     # 返回
     {
       headers: {

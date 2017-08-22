@@ -66,8 +66,8 @@ Before '@webmock' do
       app_group_id: '569e2004-6ad8-4681-81dd-8769d2ea9b0b',
       app_id: '17ac740b-5c0f-4b55-a90e-1d65ec499a46',
       app_group_topic_arn: 'arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b',
-      app_topic_arn: 'arn:aws:sns:us-east-1:567710019248:myzyxel-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
-      application_arn: 'arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/myzyxel-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
+      app_topic_arn: 'arn:aws:sns:us-east-1:567710019248:pcloud-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
+      application_arn: 'arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/pcloud-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
       access_key_id: '110ec58a-a0f2-4ac4-8393-c866d813b8d1',
       platform: 'APNS_SANDBOX',
       status: 'active',
@@ -160,8 +160,8 @@ Before '@webmock' do
       app_group_id: '569e2004-6ad8-4681-81dd-8769d2ea9b0b',
       app_id: '17ac740b-5c0f-4b55-a90e-1d65ec499a46',
       app_group_topic_arn: 'arn:aws:sns:us-east-1:567710019248:569e2004-6ad8-4681-81dd-8769d2ea9b0b',
-      app_topic_arn: 'arn:aws:sns:us-east-1:567710019248:myzyxel-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
-      application_arn: 'arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/myzyxel-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
+      app_topic_arn: 'arn:aws:sns:us-east-1:567710019248:pcloud-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
+      application_arn: 'arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/pcloud-push-alpha-01dd8f4e-df4a-425b-9943-96069c0622aa',
       access_key_id: '110ec58a-a0f2-4ac4-8393-c866d813b8d1',
       platform: 'APNS_SANDBOX',
       type: 'app',
@@ -226,7 +226,7 @@ Before '@webmock' do
       code: '0000',
       message: 'OK',
       data: {
-        download_url: 'https://myzyxel-push.s3-website-us-east-1.amazonaws.com/110ec58a-a0f2-4ac4-8393-c866d813b8d1.pem'
+        download_url: 'https://pcloud-push.s3-website-us-east-1.amazonaws.com/110ec58a-a0f2-4ac4-8393-c866d813b8d1.pem'
       }
     }
     # 返回
@@ -238,7 +238,7 @@ Before '@webmock' do
     }
   }
   # Download App Group Access Key c51b80dc-e3ba-45ac-a8b6-6acf7fb88e7e.pem
-  stub_request(:get, "https://myzyxel-push.s3-website-us-east-1.amazonaws.com/110ec58a-a0f2-4ac4-8393-c866d813b8d1.pem").to_return{ |request|
+  stub_request(:get, "https://pcloud-push.s3-website-us-east-1.amazonaws.com/110ec58a-a0f2-4ac4-8393-c866d813b8d1.pem").to_return{ |request|
     # 返回
     {
       headers: {

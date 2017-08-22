@@ -1,7 +1,7 @@
 PATH
-  remote: vendor/gems/omniauth_myzyxel
+  remote: vendor/gems/omniauth_pcloud
   specs:
-    omniauth_myzyxel (1.0.0)
+    omniauth_pcloud (1.0.0)
       devise (>= 3.5)
       omniauth (~> 1.2)
       omniauth-oauth2 (= 1.3.1)
@@ -515,7 +515,7 @@ DEPENDENCIES
   mysql2 (= 0.4.6)
   nokogiri (= 1.8.0)
   omniauth-oauth2 (= 1.3.1)
-  omniauth_myzyxel!
+  omniauth_pcloud!
   pcloud-sdk!
   pry (= 0.10.4)
   pry-rails (= 0.3.6)
@@ -552,4 +552,4 @@ DEPENDENCIES
   yard-cucumber (= 3.1.0)
 
 BUNDLED WITH
-   1.15.1
+   1.14.6

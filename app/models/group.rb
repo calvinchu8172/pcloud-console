@@ -6,7 +6,11 @@ class Group < ApplicationRecord
   class << self
 
     def select_options
-      all.map{ |group| [human_attribute_name("name.#{group.i18n_name}"), group.id] }
+      # all.map{ |group| [human_attribute_name("name.#{group.i18n_name}"), group.id] }
+      # TODO: 第一個版本隱藏 Push Management
+      all.reject{ |group| group.name === 'Push Management' }.map do |group|
+        [human_attribute_name("name.#{group.i18n_name}"), group.id]
+      end
     end
   end
 

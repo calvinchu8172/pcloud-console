@@ -15,7 +15,7 @@ info:
     email: chouandy@ecoworkinc.com
 schemes:
   - https
-host: push.myzyxel.com
+host: push.pcloud.com
 paths:
   /v1/app_groups/{app_group_id}/apps:
     get:
