@@ -25,10 +25,10 @@ cucumber:
     - rename 's/.sample//' config/*.sample
     - bundle install --jobs $(nproc) --path=/cache/bundler
     - bin/rails bower:install[--allow-root] bower:resolve
-    - mysqladmin -uroot -h mysql create myzyxel-console_test
+    - mysqladmin -uroot -h mysql create pcloud-console_test
     - RAILS_ENV=test bin/rails db:migrate db:seed
     - mkdir test-plans
-    - xvfb-run -a --server-args="-screen 0 1280x1000x24" bin/cucumber -f EcoworkFormatter -o test-plans/myzyxel-console.html
+    - xvfb-run -a --server-args="-screen 0 1280x1000x24" bin/cucumber -f EcoworkFormatter -o test-plans/pcloud-console.html
     - bundle exec yard config load_plugins true
     - bundle exec yardoc 'app/**/*.rb' 'features/**/*.feature'
   artifacts:
