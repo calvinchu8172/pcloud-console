@@ -1,6 +1,44 @@
 Before '@webmock' do
-  # App Access Keys - Index
+  # App 17ac740b-5c0f-4b55-a90e-1d65ec499a46 Access Keys - Index
   stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/17ac740b-5c0f-4b55-a90e-1d65ec499a46/access_keys").with(
+    query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
+  ).to_return{ |request|
+    @access_keys ||= []
+    # 產生 response
+    response = {
+      code: '0000',
+      message: 'OK',
+      data: @access_keys.map(&:serializable_hash)
+    }
+    # 返回
+    {
+      headers: {
+        'Content-Type' => 'application/json'
+      },
+      body: response.to_json
+    }
+  }
+  # App 01dd8f4e-df4a-425b-9943-96069c0622aa Access Keys - Index
+  stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/01dd8f4e-df4a-425b-9943-96069c0622aa/access_keys").with(
+    query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
+  ).to_return{ |request|
+    @access_keys ||= []
+    # 產生 response
+    response = {
+      code: '0000',
+      message: 'OK',
+      data: @access_keys.map(&:serializable_hash)
+    }
+    # 返回
+    {
+      headers: {
+        'Content-Type' => 'application/json'
+      },
+      body: response.to_json
+    }
+  }
+  # App 419b0e28-a418-4e79-8dda-72cafbf4b036 Access Keys - Index
+  stub_request(:get, "https://#{ENV['PUSH_CONSOLE_HOST']}/v1/app_groups/569e2004-6ad8-4681-81dd-8769d2ea9b0b/apps/419b0e28-a418-4e79-8dda-72cafbf4b036/access_keys").with(
     query: hash_including({ access_key_id: ENV['CONSOLE_ACCESS_KEY_ID'] })
   ).to_return{ |request|
     @access_keys ||= []
