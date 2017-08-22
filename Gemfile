@@ -152,5 +152,6 @@ gem 'simple_form', '3.5.0'
 
 gem 'omniauth_myzyxel', path: 'vendor/gems/omniauth_myzyxel'
 gem 'push-sdk', path: 'vendor/gems/push-sdk-ruby'
+gem 'pcloud-sdk', path: 'vendor/gems/pcloud-sdk-ruby'
 gem 'rails-cdn-helper', '1.0.0'
 gem 'sqlite3', '1.3.13'

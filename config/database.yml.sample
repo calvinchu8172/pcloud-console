@@ -16,7 +16,7 @@ test:
   username: root
   password:
   host: mysql
-  database: myzyxel-console_test
+  database: pcloud-console_test
 production:
   adapter: sqlite3
   pool: 5

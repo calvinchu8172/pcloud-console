@@ -22,8 +22,10 @@ Feature: Push Management - App Groups - Update App group App
       "description": "myZyxel Alpha Android 版",
       "status": "active",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/GCM/myzyxel-android-alpha",
+      "app_group_topic_arn": "APP_GROUP_TOPIC_ARN",
       "package_name": "android_package_name",
       "platform": "GCM",
+      "locales": [ "de", "en", "fr", "it", "pt", "ru", "th", "tr", "zh-TW", "zh-CN" ],
       "topic_arn": "arn:aws:sns:us-east-1:567710019248:419b0e28-a418-4e79-8dda-72cafbf4b036",
       "created_at": "2017-07-14T02:56:42.276Z",
       "updated_at": "2017-07-18T01:48:48.008Z"
@@ -38,8 +40,10 @@ Feature: Push Management - App Groups - Update App group App
       "description": "myZyxel Alpha iOS 版",
       "status": "active",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/APNS/myzyxel-alpha-ios",
+      "app_group_topic_arn": "APP_GROUP_TOPIC_ARN",
       "bundle_id": "ios_bundle_id",
       "platform": "APNS",
+      "locales": [ "de", "en", "fr", "it", "pt", "ru", "th", "tr", "zh-TW", "zh-CN" ],
       "topic_arn": "arn:aws:sns:us-east-1:567710019248:01dd8f4e-df4a-425b-9943-96069c0622aa",
       "created_at": "2017-07-15T02:56:42.276Z",
       "updated_at": "2017-07-18T01:48:48.008Z"
@@ -54,8 +58,10 @@ Feature: Push Management - App Groups - Update App group App
       "description": "myZyxel Alpha iOS 測試版",
       "status": "active",
       "application_arn": "arn:aws:sns:us-east-1:567710019248:app/APNS_SANDBOX/myzyxel-alpha-ios-test",
+      "app_group_topic_arn": "APP_GROUP_TOPIC_ARN",
       "bundle_id": "ios_test_bundle_id",
       "platform": "APNS_SANDBOX",
+      "locales": [ "de", "en", "fr", "it", "pt", "ru", "th", "tr", "zh-TW", "zh-CN" ],
       "topic_arn": "arn:aws:sns:us-east-1:567710019248:17ac740b-5c0f-4b55-a90e-1d65ec499a46",
       "created_at": "2017-07-16T02:56:42.276Z",
       "updated_at": "2017-07-18T01:48:48.008Z"

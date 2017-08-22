@@ -6,7 +6,7 @@ Feature: Common - Super Admin
     2. 第二個登入的使用者無任何權限
     # 1. 第一個登入的使用者將成為超級管理員
     When the customer goes to page - "/"
-    Then the customer should see "myZyxel 推播後台"
+    Then the customer should see "P.Cloud 後台"
     When the customer presses "登入"
      And fills in "Email" with "customer@example.com"
      And fills in "Password" with "12345678"

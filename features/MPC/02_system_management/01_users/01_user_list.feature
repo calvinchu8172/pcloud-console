@@ -10,7 +10,7 @@ Feature: System Management - Users - User List
     查看人員帳號列表
     Given the super admin has already signed in
      Then the super admin should be at page - "/"
-      And should see "myZyxel 推播後台"
+      And should see "P.Cloud 後台"
       And should see "系統管理"
      When the super admin clicks "系統管理" within "側邊功能"
      Then the super admin should see "人員帳號列表"

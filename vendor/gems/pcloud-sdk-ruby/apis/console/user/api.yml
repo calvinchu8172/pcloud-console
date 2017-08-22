@@ -1,0 +1,77 @@
+swagger: '2.0'
+info:
+  title: PCloud Console User APIs
+  description: |
+    PCloud Console User APIs
+
+    ###  Revision History
+
+    **v1.0.0 - Aug. 17 2017**
+
+    1. Initial Release
+
+  version: 1.0.0
+  contact:
+    email: calvinchu@ecoworkinc.com
+schemes:
+  - https
+host: api-mycloud.zyxel.com
+paths:
+  /console/user/revoke:
+    put:
+      summary: 註銷 User
+      description: 註銷 User
+      tags:
+        - console
+      operationId: revoke_user
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: email
+          in: formData
+          description: User Email
+          required: true
+          type: string
+        - name: certificate_serial
+          in: formData
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息

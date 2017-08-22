@@ -4,7 +4,7 @@ Feature: Common - SSO Login
   Scenario: [01_01_01]
     User logs in SSO, authorizes Console and logs out
     When the customer goes to page - "/"
-    Then the customer should see "myZyxel 推播後台"
+    Then the customer should see "P.Cloud 後台"
     When the customer presses "登入"
      And fills in "Email" with "customer@example.com"
      And fills in "Password" with "12345678"
@@ -19,11 +19,11 @@ Feature: Common - SSO Login
   Scenario: [01-01-02]
     User denies authorization
     When the customer goes to page - "/"
-    Then the customer should see "myZyxel 推播後台"
+    Then the customer should see "P.Cloud 後台"
     When the customer presses "登入"
      And fills in "Email" with "customer@example.com"
      And fills in "Password" with "12345678"
      And presses "Submit"
      And presses "Deny"
-    Then the customer should see a message - "myZyxel 推播後台 無法從 Myzyxel 驗證"
+    Then the customer should see a message - "P.Cloud 後台 無法從 Myzyxel 驗證"
      And should see a message - "擁有者或認證伺服器拒絕此需求"

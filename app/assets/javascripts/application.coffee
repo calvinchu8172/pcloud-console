@@ -3,6 +3,7 @@
 #= require gentelella/vendors/datatables.net-responsive/js/dataTables.responsive
 #= require gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap
 #= require gentelella/vendors/iCheck/icheck
+#= require bootbox/bootbox
 
 #= require plugins/time_zone
 

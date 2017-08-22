@@ -35,7 +35,7 @@ Before '@webmock' do
       status: 'active',
       bundle_id: params['bundle_id'],
       package_name: params['package_name'],
-      locales: ['en'],
+      locales: [ "de", "en", "fr", "it", "pt", "ru", "th", "tr", "zh-TW", "zh-CN" ],
       created_at: '2017-07-18T06:52:47.031Z',
       updated_at: '2017-07-18T06:52:47.031Z'
     }
