@@ -2,21 +2,6 @@
   .menu_section
     %ul.nav.side-menu
 
-      - if can? :read, User
-        = sidebar_menu_item controller: ['admin/users', 'users/creations', 'admin/logs'] do
-          = link_to '#' do
-            = fa_icon('cog')
-            %label= Group.human_attribute_name('name.system_management')
-            %span.fa.fa-chevron-down
-          %ul.nav.child_menu
-            = sidebar_child_menu_item controller: ['admin/users', 'users/creations'], action: [:index, :new] do
-              = link_to admin_users_url do
-                %span= t('user.titles.index')
-            - if can? :read, Log
-              = sidebar_child_menu_item controller: 'admin/logs', action: :index do
-                = link_to admin_logs_url do
-                  %span= t('log.labels.record')
-
       - if can? :read, :pcloud_management
         = sidebar_menu_item controller: ['admin/pcloud/users'] do
           = link_to '#' do
@@ -50,3 +35,18 @@
                   = sidebar_child_menu_item controller: 'admin/push/app_groups', action: :notification do
                     = link_to notification_admin_push_app_group_url(@app_group) do
                       %span= t('push.app_group.titles.notification')
+
+      - if can? :read, User
+        = sidebar_menu_item controller: ['admin/users', 'users/creations', 'admin/logs'] do
+          = link_to '#' do
+            = fa_icon('cog')
+            %label= Group.human_attribute_name('name.system_management')
+            %span.fa.fa-chevron-down
+          %ul.nav.child_menu
+            = sidebar_child_menu_item controller: ['admin/users', 'users/creations'], action: [:index, :new] do
+              = link_to admin_users_url do
+                %span= t('user.titles.index')
+            - if can? :read, Log
+              = sidebar_child_menu_item controller: 'admin/logs', action: :index do
+                = link_to admin_logs_url do
+                  %span= t('log.labels.record')
