@@ -62,14 +62,14 @@ release:stable:
   only:
     - tags
 
-# deploy:alpha:
-#   tags:
-#     - ruby
-#   stage: deploy
-#   script:
-#     - ecs-deploy -c $AWS_ECS_CLUSTER_NAME -n $AWS_ECS_SERVICE_NAME -i $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME -t 600
-#   only:
-#     - develop
+deploy:alpha:
+  tags:
+    - ruby
+  stage: deploy
+  script:
+    - ecs-deploy -c $AWS_ECS_CLUSTER_NAME -n $AWS_ECS_SERVICE_NAME -i $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME -t 600
+  only:
+    - develop
 
 release:build:
   tags:
