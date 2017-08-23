@@ -40,17 +40,17 @@ cucumber:
     - develop
     - /^parallel.*$/
 
-# release:unstable:
-#   tags:
-#     - ruby
-#   stage: release
-#   script:
-#     - docker pull 683422241496.dkr.ecr.us-east-1.amazonaws.com/rails-passenger:latest
-#     - docker build -t $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME .
-#     - docker push $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME
-#   only:
-#     - develop
-#     - master
+release:unstable:
+  tags:
+    - ruby
+  stage: release
+  script:
+    - docker pull 683422241496.dkr.ecr.us-east-1.amazonaws.com/rails-passenger:latest
+    - docker build -t $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME .
+    - docker push $AWS_ECR_REPOSITORY:$CI_BUILD_REF_NAME
+  only:
+    - develop
+    - master
 
 release:stable:
   tags:
