@@ -7,7 +7,7 @@ development:
 test:
   client_id: 1b3b85e1c5121026d18852ed849c907899f4072c040fd09c162068273966c0c3
   client_secret: bc2be18af9099082b96bb62bad48ed03cb154fec914df4e3b95c7ab7616fa2f6
-  provider_url: http://oauth.pcloud.com
+  provider_url: http://oauth.myzyxel.com
 
 production:
   client_id:
