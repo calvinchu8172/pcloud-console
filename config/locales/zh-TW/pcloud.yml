@@ -5,6 +5,12 @@ zh-TW:
         email: Email
         created_at: 建立時間
         updated_at: 更新時間
+      pcloud/device_cert:
+        cert_file: 上傳憑證
+        serial: 憑證編號
+        description: 描述
+        created_at: 建立時間
+        updated_at: 更新時間
   pcloud:
     user:
       labels:
@@ -15,6 +21,15 @@ zh-TW:
       messages:
         revoke_user_success: 刪除 %{user} 成功
         revoke_user_error: 刪除 %{user} 失敗 - %{message}
+    device_cert: 
+      labels:
+        management: 裝置憑證管理
+        new: 新增憑證
+      titles:
+        index: 裝置憑證管理
+        list: 裝置憑證列表
+        new: 新增裝置憑證
+        edit: 編輯裝置憑證
   log:
     events:
       revoke_pcloud_user: 刪除 P.Cloud User 帳號

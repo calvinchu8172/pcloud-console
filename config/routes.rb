@@ -83,6 +83,8 @@ Rails.application.routes.draw do
     namespace :pcloud do
       get  'user/revoke', to: 'users#revoke'
       post 'user/revoke', to: 'users#revoking'
+
+      resources :device_certs, only: [:index, :show, :new, :create, :edit, :update]
     end
 
   end

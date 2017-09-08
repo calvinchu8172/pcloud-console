@@ -1,0 +1,49 @@
+- content_for :title, t('user.labels.management')
+
+.row
+  .col-md-12.col-sm-12.col-xs-12.toolbar
+    .x_panel
+      .x_title
+        %h2= t('common.labels.toolbar')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = link_to admin_pcloud_device_certs_url, class: 'btn btn-app btn-sm' do
+          = fa_icon('caret-square-o-left')
+          = t('common.labels.back')
+        = link_to edit_admin_pcloud_device_cert_url(@device_cert), class: 'btn btn-app btn-sm' do
+          = fa_icon('pencil')
+          = t('common.labels.edit')
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('user.titles.show')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        .form-horizontal
+          .form-group
+            = label_tag :device_cert, Pcloud::DeviceCert.human_attribute_name(:serial), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @device_cert.serial
+          .form-group
+            = label_tag :device_cert, Pcloud::DeviceCert.human_attribute_name(:created_at), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @device_cert.created_at
+          .form-group
+            = label_tag :device_cert, Pcloud::DeviceCert.human_attribute_name(:updated_at), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @device_cert.updated_at
+          .form-group
+            = label_tag :device_cert, Pcloud::DeviceCert.human_attribute_name(:description), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @device_cert.description
+

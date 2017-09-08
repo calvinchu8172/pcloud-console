@@ -1,0 +1,257 @@
+swagger: '2.0'
+info:
+  title: PCloud Console Device Certificate APIs
+  description: |
+    PCloud Console Device Certificate APIs
+
+    ###  Revision History
+
+    **v1.0.0 - Sep. 4 2017**
+
+    1. Initial Release
+
+  version: 1.0.0
+  contact:
+    email: ryanli@ecoworkinc.com
+schemes:
+  - http
+host: api-mycloud.zyxel.com
+paths:
+  /console/device_certs:
+    get:
+      summary: 裝置憑證列表
+      description: 取得裝置憑證列表
+      tags:
+        - console
+      operationId: list_device_certs
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: certificate_serial
+          in: query
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+    post:
+      summary: 新增裝置憑證
+      description: 新增裝置憑證
+      tags:
+        - console
+      operationId: create_device_cert
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: certificate_serial
+          in: formData
+          description: Certificate Serial
+          required: true
+          type: string
+        - name: description
+          in: formData
+          description: 裝置憑證描述
+          required: true
+          type: string
+        - name: content
+          in: formData
+          description: 裝置憑證內容
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+  /console/device_certs/{id}:
+    get:
+      summary: 取得裝置憑證詳細資訊
+      description: 取得裝置憑證詳細資訊
+      tags:
+        - console
+      operationId: get_device_cert
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: Certificate ID
+          required: true
+          type: string
+        - name: certificate_serial
+          in: query
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+    put:
+      summary: 更新裝置憑證資訊
+      description: 更新裝置憑證資訊
+      tags:
+        - console
+      operationId: put_device_cert
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: Certificate ID
+          required: true
+          type: string
+        - name: certificate_serial
+          in: formData
+          description: Certificate Serial
+          required: true
+          type: string
+        - name: description
+          in: formData
+          description: 裝置憑證描述
+          required: true
+          type: string
+        - name: content
+          in: formData
+          description: 裝置憑證內容
+          required: false
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
