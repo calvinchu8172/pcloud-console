@@ -1,7 +1,7 @@
 class DisplayTextInput < SimpleForm::Inputs::Base
   # This method usually returns input's html like <input ... />
   # but in this case it returns just a value of the attribute.
-  def input
+  def input(wrapper_options)
     @builder.object.send(attribute_name)
   end
 end

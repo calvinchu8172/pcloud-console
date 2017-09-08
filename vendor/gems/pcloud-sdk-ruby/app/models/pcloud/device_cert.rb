@@ -18,17 +18,11 @@ module Pcloud
         end
       end
 
-      def find(device_crt_id)
+      def find(id)
         client = Pcloud::DeviceCertClient.new
-        response = client.get_device_cert(id: device_crt_id)
+        response = client.get_device_cert(id: id)
         record = DeviceCert.new
         record.assign_attributes(response['data'])
-        unless record.created_at.blank?
-          record.created_at = DateTime.parse(record.created_at).new_offset('+08:00').to_s
-        end
-        unless record.updated_at.blank?
-          record.updated_at = DateTime.parse(record.updated_at).new_offset('+08:00').to_s
-        end
         record
       end
     end # class << self
