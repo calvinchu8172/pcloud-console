@@ -1,0 +1,365 @@
+swagger: '2.0'
+info:
+  title: PCloud Console Device Certificate APIs
+  description: |
+    PCloud Console Device Certificate APIs
+
+    ###  Revision History
+
+    **v1.0.0 - Sep. 4 2017**
+
+    1. Initial Release
+
+  version: 1.0.0
+  contact:
+    email: ryanli@ecoworkinc.com
+schemes:
+  - https
+  # - http
+host: api-mycloud.zyxel.com
+paths:
+  /v1/oauth/applications:
+    get:
+      summary: 取得 SSO APPs 列表
+      description: 取得 SSO APPs 列表
+      tags:
+        - console
+      operationId: list_sso_apps
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: certificate_serial
+          in: query
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+    post:
+      summary: 新增 SSO APP
+      description: 新增 SSO APP
+      tags:
+        - console
+      operationId: create_sso_app
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: certificate_serial
+          in: formData
+          description: Certificate Serial
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: SSO APP Name
+          required: true
+          type: string
+        - name: scopes
+          in: formData
+          description: SSO APP scopes
+          required: false
+          type: string
+        - name: redirect_uri
+          in: formData
+          description: SSO Redirect URI
+          required: true
+          type: string
+        - name: logout_redirect_uri
+          in: formData
+          description: SSO Logout Redirect URI
+          required: false
+          type: string
+        - name: create_db
+          in: formData
+          description: SSO Create DB
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+  /v1/oauth/applications/{client_id}:
+    get:
+      summary: Show APP details
+      description: Show APP details
+      tags:
+        - console
+      operationId: get_sso_app
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: client_id
+          in: path
+          description: Client ID
+          required: true
+          type: string
+        - name: certificate_serial
+          in: query
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+    put:
+      summary: Update SSO APP
+      description: Update SSO APP
+      tags:
+        - console
+      operationId: put_sso_app
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: client_id
+          in: path
+          description: Client ID
+          required: true
+          type: string
+        - name: certificate_serial
+          in: formData
+          description: Certificate Serial
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: SSO APP Name
+          required: false
+          type: string
+        - name: scopes
+          in: formData
+          description: SSO APP scopes
+          required: false
+          type: string
+        - name: redirect_uri
+          in: formData
+          description: SSO Redirect URI
+          required: false
+          type: string
+        - name: logout_redirect_uri
+          in: formData
+          description: SSO Logout Redirect URI
+          required: false
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+    delete:
+      summary: Delete SSO APP
+      description: Delete SSO APP
+      tags:
+        - console
+      operationId: delete_sso_app
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: client_id
+          in: path
+          description: Client ID
+          required: true
+          type: string
+        - name: certificate_serial
+          in: query
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息

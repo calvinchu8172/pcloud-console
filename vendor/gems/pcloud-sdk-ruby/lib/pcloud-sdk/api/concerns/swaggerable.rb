@@ -47,7 +47,7 @@ module Pcloud
         signature_data_keys.each{ |key|
           @signature_data[key] = instance_variable_get("@#{key}")
         }
-        # @signature_data['X-Timestamp'] = timestamp
+        @signature_data['X-Timestamp'] = timestamp
         @signature_data
       end
 
@@ -66,7 +66,7 @@ module Pcloud
       # 取得 headers
       def headers
         @headers = {
-          # 'X-Timestamp' => timestamp,
+          'X-Timestamp' => timestamp,
           'X-Signature' => signature
         }
         # @headers['X-Api-Key'] = client.api_key if 'X-Api-Key'.in?(header_keys)
