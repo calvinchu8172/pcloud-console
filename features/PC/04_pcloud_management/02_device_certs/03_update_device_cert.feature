@@ -5,7 +5,6 @@ Feature: Pcloud Management - Device Certs - Update Device Cert
     Given Pcloud Server has an Device Cert data as below:
     """
     {
-      "id": 1,
       "serial": "53152101-d6fe-4cb7-afb7-64e0f905a4b6",
       "description":"DEVICE_CERT_DESCRIPTION1",
       "created_at": "2017-07-14T02:56:42.276Z",
@@ -21,14 +20,14 @@ Feature: Pcloud Management - Device Certs - Update Device Cert
       And clicks "裝置憑證管理" within "側邊功能"
      Then the super admin should be at page - "/admin/pcloud/device_certs"
       And clicks "檢視" link on Device Cert List table Row "1"
-     Then the super admin should be at page - "/admin/pcloud/device_certs/1"
+     Then the super admin should be at page - "/admin/pcloud/device_certs/53152101-d6fe-4cb7-afb7-64e0f905a4b6"
       And should see "編輯"
      When the super admin clicks "編輯"
-     Then the super admin should be at page - "/admin/pcloud/device_certs/1/edit"
+     Then the super admin should be at page - "/admin/pcloud/device_certs/53152101-d6fe-4cb7-afb7-64e0f905a4b6/edit"
       And should see "描述"
      When the super admin fills in "描述" with "DEVICE_CERT_DESCRIPTION1_MODIFY"
       And presses "提交"
-     Then the super admin should be at page - "/admin/pcloud/device_certs/1"
+     Then the super admin should be at page - "/admin/pcloud/device_certs/53152101-d6fe-4cb7-afb7-64e0f905a4b6"
       And should see "憑證編號 53152101-d6fe-4cb7-afb7-64e0f905a4b6"
       And should see "描述 DEVICE_CERT_DESCRIPTION1_MODIFY"
       And should see "建立時間 2017-07-14T02:56:42.276Z"

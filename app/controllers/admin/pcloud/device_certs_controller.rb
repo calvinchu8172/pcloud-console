@@ -1,12 +1,12 @@
 class Admin::Pcloud::DeviceCertsController < AdminController
   before_action { authorize! :manage, :pcloud_management }
-
+  before_action :set_device_cert, only: [:show, :edit, :update]
+  
   def index 
     @device_crts = Pcloud::DeviceCert.all
   end
 
   def show 
-    @device_cert = Pcloud::DeviceCert.find(valid_params[:id])
   end
 
   def new
@@ -14,11 +14,7 @@ class Admin::Pcloud::DeviceCertsController < AdminController
   end
 
   def create
-    @device_cert = Pcloud::DeviceCert.new
-    @device_cert.description = pcloud_device_cert_params[:description]
-    unless pcloud_device_cert_params[:cert_file].blank?
-      @device_cert.content = uploaded_crt
-    end
+    @device_cert = Pcloud::DeviceCert.new(device_cert_params)
     if @device_cert.save
       Log.write(current_user, nil, request.remote_ip, 'create_device_cert', {
         serial: @device_cert.serial
@@ -30,19 +26,10 @@ class Admin::Pcloud::DeviceCertsController < AdminController
   end
 
   def edit
-    @device_cert = Pcloud::DeviceCert.find(valid_params[:id])
-    puts "@device_cert: #{@device_cert.inspect}"
   end 
 
   def update 
-    @device_cert = Pcloud::DeviceCert.find(valid_params[:id])
-    update_data = {
-      description: pcloud_device_cert_params[:description]
-    }
-    unless pcloud_device_cert_params[:cert_file].blank?
-      update_data["content"] = uploaded_crt
-    end
-    if @device_cert.update(update_data)
+    if @device_cert.update(device_cert_params)
       Log.write(current_user, nil, request.remote_ip, 'update_device_cert', {
         serial: @device_cert.serial
       })
@@ -52,22 +39,20 @@ class Admin::Pcloud::DeviceCertsController < AdminController
     end
   end 
 
-  private 
+  private
 
-    def valid_params
-      params.permit(:id, :cert_file, :description)
+    def set_device_cert
+      @device_cert = Pcloud::DeviceCert.find(params[:id])
     end
 
-    def pcloud_device_cert_params
-      params.require(:pcloud_device_cert).permit(:cert_file, :description)
-    end
-
-    def uploaded_crt
-      file_data = pcloud_device_cert_params[:cert_file].tempfile
-      crt_content = ""
-      File.open(file_data, 'r') do |file|
-        crt_content = file.read
+    def device_cert_params
+      @device_cert_params = params.require(:pcloud_device_cert).permit(:cert_file, :description)
+      if @device_cert_params[:cert_file].present?
+        file_data = @device_cert_params[:cert_file].tempfile
+        File.open(file_data, 'r') do |file|
+          @device_cert_params[:content] = file.read
+        end
       end
-      crt_content
+      @device_cert_params
     end
 end

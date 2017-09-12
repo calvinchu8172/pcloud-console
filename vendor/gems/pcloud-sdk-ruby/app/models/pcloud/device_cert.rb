@@ -1,8 +1,8 @@
 module Pcloud
   class DeviceCert < ApplicationModel
 
-    permit_primary_key :id
-    permit_attributes :id, :created_at, :serial, :vendor_id, :updated_at, :description, :cert_file, :content
+    permit_primary_key :serial
+    permit_attributes  :serial, :vendor_id, :created_at, :updated_at, :description, :cert_file, :content
 
     validates :description, presence: true
 
@@ -18,16 +18,15 @@ module Pcloud
         end
       end
 
-      def find(id)
+      def find(serial)
         client = Pcloud::DeviceCertClient.new
-        response = client.get_device_cert(id: id)
+        response = client.get_device_cert(serial: serial)
         record = DeviceCert.new
         record.assign_attributes(response['data'])
         record
       end
     end # class << self
       
-
     def save
       run_callbacks :save do
         if valid?

@@ -5,7 +5,6 @@ Feature: Pcloud Management - Device Cert List
     Given Pcloud Server has an Device Cert data as below:
     """
     {
-      "id": 1,
       "serial": "53152101-d6fe-4cb7-afb7-64e0f905a4b6",
       "description":"DEVICE_CERT_DESCRIPTION1",
       "created_at": "2017-07-14T02:56:42.276Z",
@@ -15,7 +14,6 @@ Feature: Pcloud Management - Device Cert List
     Given Pcloud Server has an Device Cert data as below:
     """
     {
-      "id": 2,
       "serial": "ee71bc0e-f4cc-45ec-bdde-dc545376e1e1",
       "description":"DEVICE_CERT_DESCRIPTION2",
       "created_at": "2017-07-14T02:56:42.276Z",

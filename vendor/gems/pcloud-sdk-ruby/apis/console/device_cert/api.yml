@@ -130,7 +130,7 @@ paths:
               message:
                 type: string
                 description: 系統回應訊息
-  /console/device_certs/{id}:
+  /console/device_certs/{serial}:
     get:
       summary: 取得裝置憑證詳細資訊
       description: 取得裝置憑證詳細資訊
@@ -147,7 +147,7 @@ paths:
           description: 簽證驗證碼
           required: true
           type: string
-        - name: id
+        - name: serial
           in: path
           description: Certificate ID
           required: true
@@ -204,7 +204,7 @@ paths:
           description: 簽證驗證碼
           required: true
           type: string
-        - name: id
+        - name: serial
           in: path
           description: Certificate ID
           required: true
