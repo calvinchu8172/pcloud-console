@@ -28,6 +28,7 @@ module Pcloud
   # autoload :AppClient,       'pcloud-sdk/clients/console/app_client'
   autoload :UserClient,       'pcloud-sdk/clients/console/user_client'
   autoload :DeviceCertClient, 'pcloud-sdk/clients/console/device_cert_client'
+  autoload :SsoAppClient, 'pcloud-sdk/clients/console/sso_app_client'
 
   # notification clients
   # autoload :NotificationClient, 'pcloud-sdk/clients/notification_client'
