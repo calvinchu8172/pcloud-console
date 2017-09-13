@@ -14,7 +14,7 @@ info:
   contact:
     email: ryanli@ecoworkinc.com
 schemes:
-  - http
+  - https
 host: api-mycloud.zyxel.com
 paths:
   /console/device_certs:
@@ -30,6 +30,11 @@ paths:
         - name: X-Signature
           in: header
           description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: 簽證驗證碼有效期限
           required: true
           type: string
         - name: certificate_serial
@@ -82,6 +87,11 @@ paths:
         - name: X-Signature
           in: header
           description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: 簽證驗證碼有效期限
           required: true
           type: string
         - name: certificate_serial
@@ -147,6 +157,11 @@ paths:
           description: 簽證驗證碼
           required: true
           type: string
+        - name: X-Timestamp
+          in: header
+          description: 簽證驗證碼有效期限
+          required: true
+          type: string
         - name: serial
           in: path
           description: Certificate ID
@@ -202,6 +217,11 @@ paths:
         - name: X-Signature
           in: header
           description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: 簽證驗證碼有效期限
           required: true
           type: string
         - name: serial
