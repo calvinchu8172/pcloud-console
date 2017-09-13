@@ -15,6 +15,9 @@
             = sidebar_child_menu_item controller: 'admin/pcloud/device_certs', action: :index do
               = link_to admin_pcloud_device_certs_url do
                 %span= t('pcloud.device_cert.titles.index')
+            = sidebar_child_menu_item controller: 'admin/pcloud/sso_apps', action: :index do
+              = link_to admin_pcloud_sso_apps_url do
+                %span= t('pcloud.sso_app.titles.index')
 
       - if can? :read, :push_management
         = sidebar_menu_item controller: ['admin/push/app_groups', 'admin/push/app_groups/access_keys', 'admin/push/app_groups/apps'] do

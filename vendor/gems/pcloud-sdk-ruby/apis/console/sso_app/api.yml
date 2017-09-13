@@ -18,7 +18,7 @@ schemes:
   - http
 host: api-mycloud.zyxel.com
 paths:
-  /v1/oauth/applications:
+  /v1/oauth2/applications:
     get:
       summary: 取得 SSO APPs 列表
       description: 取得 SSO APPs 列表
@@ -156,7 +156,7 @@ paths:
               message:
                 type: string
                 description: 系統回應訊息
-  /v1/oauth/applications/{client_id}:
+  /v1/oauth2/applications/{client_id}:
     get:
       summary: Show APP details
       description: Show APP details
@@ -363,7 +363,7 @@ paths:
               message:
                 type: string
                 description: 系統回應訊息
-  /v1/oauth/applications/{client_id}/create_db:
+  /v1/oauth2/applications/{client_id}/create_db:
     post:
       summary: 新增 SSO APP Dynamo DB
       description: 新增 SSO APP Dynamo DB

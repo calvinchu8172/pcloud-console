@@ -11,6 +11,15 @@ zh-TW:
         description: 描述
         created_at: 建立時間
         updated_at: 更新時間
+      pcloud/sso_app:
+        name: 名稱
+        uid: Client ID
+        secret: Client Secret
+        scopes: Scopes
+        redirect_uri: Redirect URI
+        logout_redirect_uri: Logout Redirect URI
+        created_at: 建立時間
+        updated_at: 更新時間
   pcloud:
     user:
       labels:
@@ -21,7 +30,7 @@ zh-TW:
       messages:
         revoke_user_success: 刪除 %{user} 成功
         revoke_user_error: 刪除 %{user} 失敗 - %{message}
-    device_cert: 
+    device_cert:
       labels:
         management: 裝置憑證管理
         new: 新增憑證
@@ -30,6 +39,15 @@ zh-TW:
         list: 裝置憑證列表
         new: 新增裝置憑證
         edit: 編輯裝置憑證
+    sso_app:
+      labels:
+        management: SSO APP 管理
+        new: 新增 SSO APP
+      titles:
+        index: SSO APP 管理
+        list: SSO APP 列表
+        new: 新增 SSO APP
+        edit: 編輯 SSO APP
   log:
     events:
       revoke_pcloud_user: 刪除 P.Cloud User 帳號

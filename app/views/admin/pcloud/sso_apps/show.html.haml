@@ -1,0 +1,68 @@
+- content_for :title, t('pcloud.sso_app.labels.management')
+
+.row
+  .col-md-12.col-sm-12.col-xs-12.toolbar
+    .x_panel
+      .x_title
+        %h2= t('common.labels.toolbar')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = link_to admin_pcloud_sso_apps_url, class: 'btn btn-app btn-sm' do
+          = fa_icon('caret-square-o-left')
+          = t('common.labels.back')
+        = link_to edit_admin_pcloud_sso_app_url(@sso_app.uid), class: 'btn btn-app btn-sm' do
+          = fa_icon('pencil')
+          = t('common.labels.edit')
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.app_group.titles.show')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        .form-horizontal
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:name), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.name
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:uid), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.uid
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:secret), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.secret
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:scopes), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.scopes_break_line
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:redirect_uri), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.redirect_uris_break_line
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:logout_redirect_uri), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.logout_redirect_uris_break_line
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:created_at), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.created_at
+          .form-group
+            = label_tag :sso_app, Pcloud::SsoApp.human_attribute_name(:updated_at), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @sso_app.updated_at
