@@ -27,6 +27,12 @@ window.RailsApp.admin_pcloud_sso_apps =
         null
         null
         null
-        null
-        null
+        { orderable: false }
+        { orderable: false }
+      ]
+      columnDefs: [
+        {
+          targets: [ 2 ],
+          visible: false
+        }
       ]

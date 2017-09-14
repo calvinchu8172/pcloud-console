@@ -13,13 +13,19 @@
         = link_to admin_pcloud_sso_apps_url, class: 'btn btn-app btn-sm' do
           = fa_icon('caret-square-o-left')
           = t('common.labels.back')
-        = link_to edit_admin_pcloud_sso_app_url(@sso_app.uid), class: 'btn btn-app btn-sm' do
+        = link_to edit_admin_pcloud_sso_app_url(@sso_app), class: 'btn btn-app btn-sm' do
           = fa_icon('pencil')
           = t('common.labels.edit')
+        = link_to admin_pcloud_sso_app_url(@sso_app), 'data-confirm' => t('common.messages.confirm'), method: 'delete', class: 'btn btn-app btn-sm' do
+          = fa_icon('minus-circle')
+          = t('common.labels.delete')
+        = link_to create_table_admin_pcloud_sso_app_url(@sso_app), method: 'post', class: 'btn btn-app btn-sm' do
+          = fa_icon('plus')
+          = t('pcloud.sso_app.titles.create_table')
   .col-md-12.col-sm-12.col-xs-12
     .x_panel
       .x_title
-        %h2= t('push.app_group.titles.show')
+        %h2= t('pcloud.sso_app.titles.show')
         %ul.nav.navbar-right.panel_toolbox
           %li
             %a.collapse-link= fa_icon('chevron-up')

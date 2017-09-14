@@ -85,9 +85,9 @@ Rails.application.routes.draw do
       post 'user/revoke', to: 'users#revoking'
 
       resources :device_certs, except: [:destroy]
-      resources :sso_apps, param: :client_id do
+      resources :sso_apps do
         member do
-          post :create_db
+          post :create_table
         end
       end
     end

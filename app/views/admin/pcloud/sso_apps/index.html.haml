@@ -26,37 +26,21 @@
           %thead
             %tr
               %th= Pcloud::SsoApp.human_attribute_name(:name)
-              / %th= Pcloud::SsoApp.human_attribute_name(:uid)
-              / %th= Pcloud::SsoApp.human_attribute_name(:secret)
-              / %th= Pcloud::SsoApp.human_attribute_name(:scopes)
               %th= Pcloud::SsoApp.human_attribute_name(:redirect_uri)
-              / %th= Pcloud::SsoApp.human_attribute_name(:logout_redirect_uri)
               %th= Pcloud::SsoApp.human_attribute_name(:created_at)
-              / %th= Pcloud::SsoApp.human_attribute_name(:updated_at)
-              %th
               %th
               %th
           %tbody
             - @sso_apps.each do |sso_app|
               %tr
-                %td= link_to sso_app.name, admin_pcloud_sso_app_url(sso_app.uid)
-                / %td= sso_app.uid
-                / %td= sso_app.secret
-                / %td= sso_app.scopes
-                / %td.break_line= sso_app.redirect_uri
+                %td= link_to sso_app.name, admin_pcloud_sso_app_url(sso_app)
                 %td= sso_app.redirect_uris_break_line
-                / %td= sso_app.logout_redirect_uri
                 %td= sso_app.created_at
-                / %td= sso_app.updated_at
-                / %td
-                /   = link_to admin_pcloud_sso_app_url(sso_app.uid), class: 'btn btn-primary btn-xs' do
-                /     = fa_icon('folder')
-                /     = t('common.labels.view')
                 %td
-                  = link_to edit_admin_pcloud_sso_app_url(sso_app.uid), class: 'btn btn-warning btn-xs' do
+                  = link_to edit_admin_pcloud_sso_app_url(sso_app), class: 'btn btn-warning btn-xs' do
                     = fa_icon('pencil')
                     = t('common.labels.edit')
                 %td
-                  = link_to admin_pcloud_sso_app_url(sso_app.uid), :method => :delete, class: 'btn btn-danger btn-xs' do
+                  = link_to admin_pcloud_sso_app_url(sso_app), class: 'btn btn-danger btn-xs', 'data-confirm' => t('common.messages.confirm'), method: 'delete' do
                     = fa_icon('minus-circle')
                     = t('common.labels.delete')

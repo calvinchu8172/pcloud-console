@@ -1,1 +1,20 @@
-edit
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('pcloud.sso_app.titles.edit')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = simple_form_for @sso_app, url: admin_pcloud_sso_app_url(@sso_app), method: :put, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.input :name, input_wrapper_html: { class: 'col-sm-3' }
+          = f.input :redirect_uri, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 },  placeholder: t('pcloud.sso_app.titles.redirect_uri_rule')
+          = f.input :logout_redirect_uri, as: :text, input_wrapper_html: { class: 'col-sm-5' }, input_html: { rows: 7 },  placeholder: t('pcloud.sso_app.titles.redirect_uri_rule')
+          = f.input :scopes, input_wrapper_html: { class: 'col-sm-5' },  placeholder: t('pcloud.sso_app.titles.scopes_rule')
+          .ln_solid
+          .form-group
+            .col-sm-6.col-xs-12.col-sm-offset-3
+              = f.button :submit, t('common.labels.submit'), class: 'btn-success'
+              = link_to t('common.labels.cancel'), admin_pcloud_sso_app_url(@sso_app), class: 'btn btn-default'

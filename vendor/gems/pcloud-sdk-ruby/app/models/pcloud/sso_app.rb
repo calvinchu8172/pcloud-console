@@ -1,11 +1,13 @@
 module Pcloud
   class SsoApp < ApplicationModel
 
-    permit_primary_key :client_id
-    permit_attributes  :id, :uid, :secret, :client_id, :name, :redirect_uri, :scopes,
-      :logout_redirect_uri, :create_db, :created_at, :updated_at
+    permit_primary_key :id
+    permit_attributes  :id, :uid, :secret, :name, :redirect_uri, :scopes,
+      :logout_redirect_uri, :create_table, :created_at, :updated_at
 
     validates :name, presence: true
+    validates :redirect_uri, presence: true
+    validates :create_table, presence: true, on: :create
 
     class << self
 
@@ -19,13 +21,14 @@ module Pcloud
         end
       end
 
-      def find(client_id)
+      def find(id)
         client = SsoAppClient.new
-        response = client.get_sso_app(client_id: client_id)
+        response = client.get_sso_app(id: id)
         record = SsoApp.new
         record.assign_attributes(response['data'])
         record
       end
+
     end # class << self
 
     def scopes_break_line
@@ -52,6 +55,26 @@ module Pcloud
       end
     end
 
+    def destroy
+      client = SsoAppClient.new
+      client.delete_sso_app(attributes)
+      true
+    end
+
+    def create_ddb_table
+      client = SsoAppClient.new
+      client.create_sso_app_table(attributes)
+      true
+    rescue => e
+      self.api_error_message = begin
+        JSON.parse(e.response.body)['message']
+      rescue
+        I18n.t('common.messages.error')
+      end
+      false
+    end
+
+
     def save
       run_callbacks :save do
         if valid?
@@ -68,6 +91,13 @@ module Pcloud
           false
         end
       end
+    rescue => e
+      self.api_error_message = begin
+        JSON.parse(e.response.body)['message']
+      rescue
+        I18n.t('common.messages.error')
+      end
+      false
     end # save
 
   end

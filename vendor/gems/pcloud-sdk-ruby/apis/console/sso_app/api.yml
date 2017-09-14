@@ -14,8 +14,8 @@ info:
   contact:
     email: ryanli@ecoworkinc.com
 schemes:
-  # - https
-  - http
+  - https
+  # - http
 host: api-mycloud.zyxel.com
 paths:
   /v1/oauth2/applications:
@@ -120,9 +120,9 @@ paths:
           description: SSO Logout Redirect URI
           required: false
           type: string
-        - name: create_db
+        - name: create_table
           in: formData
-          description: SSO Create DB
+          description: Create OSS Dynamo DB Table
           required: true
           type: string
       responses:
@@ -156,7 +156,7 @@ paths:
               message:
                 type: string
                 description: 系統回應訊息
-  /v1/oauth2/applications/{client_id}:
+  /v1/oauth2/applications/{id}:
     get:
       summary: Show APP details
       description: Show APP details
@@ -178,9 +178,9 @@ paths:
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
           type: integer
-        - name: client_id
+        - name: id
           in: path
-          description: Client ID
+          description: ID
           required: true
           type: string
         - name: certificate_serial
@@ -240,9 +240,9 @@ paths:
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
           type: integer
-        - name: client_id
+        - name: id
           in: path
-          description: Client ID
+          description: ID
           required: true
           type: string
         - name: certificate_serial
@@ -322,13 +322,13 @@ paths:
           description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
           required: true
           type: integer
-        - name: client_id
+        - name: id
           in: path
-          description: Client ID
+          description: ID
           required: true
           type: string
         - name: certificate_serial
-          in: query
+          in: formData
           description: Certificate Serial
           required: true
           type: string
@@ -363,13 +363,13 @@ paths:
               message:
                 type: string
                 description: 系統回應訊息
-  /v1/oauth2/applications/{client_id}/create_db:
+  /v1/oauth2/applications/{id}/create_table:
     post:
-      summary: 新增 SSO APP Dynamo DB
-      description: 新增 SSO APP Dynamo DB
+      summary: 新增 SSO APP Dynamo Table
+      description: 新增 SSO APP Dynamo Table
       tags:
         - console
-      operationId: create_sso_app_db
+      operationId: create_sso_app_table
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -390,9 +390,9 @@ paths:
           description: Certificate Serial
           required: true
           type: string
-        - name: client_id
+        - name: id
           in: path
-          description: Client ID
+          description: ID
           required: true
           type: string
       responses:

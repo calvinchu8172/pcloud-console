@@ -22,7 +22,6 @@ module Pcloud
         # 透過 RestClient 執行 api
         response = RestClient::Request.execute(rest_client_options)
         # 取得 response body 並轉換為 Hash
-        puts response
         JSON.parse(response.body) rescue nil
       # rescue => e
       #   binding.pry
