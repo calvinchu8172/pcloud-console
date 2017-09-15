@@ -1,6 +1,6 @@
 Before '@webmock' do
   # Device Cert - Index
-  stub_request(:get, "http://#{ENV['PCLOUD_API_HOST']}/v1/device_certs").with(
+  stub_request(:get, "https://#{ENV['PCLOUD_API_HOST']}/v1/device_certs").with(
     query: hash_including({ certificate_serial: ENV['CERTIFICATE_SERIAL'] })
   ).to_return{ |request|
     @device_certs ||= []
@@ -18,7 +18,7 @@ Before '@webmock' do
   }
 
   # Device Cert - Create
-  stub_request(:post, "http://#{ENV['PCLOUD_API_HOST']}/v1/device_certs").to_return{ |request|
+  stub_request(:post, "https://#{ENV['PCLOUD_API_HOST']}/v1/device_certs").to_return{ |request|
     params = Rack::Utils.parse_nested_query(request.body)
     attributes = {
       serial: "53152101-d6fe-4cb7-afb7-64e0f905a4b6",
@@ -43,7 +43,7 @@ Before '@webmock' do
   }
 
   # Device Cert - Show for id: 53152101-d6fe-4cb7-afb7-64e0f905a4b6
-  stub_request(:get, "http://#{ENV['PCLOUD_API_HOST']}/v1/device_certs/53152101-d6fe-4cb7-afb7-64e0f905a4b6").with(
+  stub_request(:get, "https://#{ENV['PCLOUD_API_HOST']}/v1/device_certs/53152101-d6fe-4cb7-afb7-64e0f905a4b6").with(
     query: hash_including({ certificate_serial: ENV['CERTIFICATE_SERIAL'] })
   ).to_return{ |request|
     @device_certs ||= []
@@ -62,7 +62,7 @@ Before '@webmock' do
   }
 
   # Device Cert - Update
-  stub_request(:put, "http://#{ENV['PCLOUD_API_HOST']}/v1/device_certs/53152101-d6fe-4cb7-afb7-64e0f905a4b6").to_return{ |request|
+  stub_request(:put, "https://#{ENV['PCLOUD_API_HOST']}/v1/device_certs/53152101-d6fe-4cb7-afb7-64e0f905a4b6").to_return{ |request|
     params = Rack::Utils.parse_nested_query(request.body)
     attributes = {
       serial: "53152101-d6fe-4cb7-afb7-64e0f905a4b6",
