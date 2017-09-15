@@ -47,7 +47,7 @@ class Admin::Pcloud::SsoAppsController < AdminController
 
   def destroy
     @sso_app = Pcloud::SsoApp.find(params[:id])
-    @sso_app.destroy
+    @sso_app.destroy!
     Log.write(current_user, nil, request.remote_ip, 'delete_sso_app', {
       id: @sso_app.id,
       name: @sso_app.name
