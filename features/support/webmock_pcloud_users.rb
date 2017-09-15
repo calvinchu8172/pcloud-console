@@ -1,6 +1,6 @@
 Before '@webmock' do
   # PCloud User - Revoke
-  stub_request(:put, "https://#{ENV['PCLOUD_API_HOST']}/console/user/revoke").to_return{ |request|
+  stub_request(:put, "https://#{ENV['PCLOUD_API_HOST']}/v1/user/revoke").to_return{ |request|
     params = Rack::Utils.parse_nested_query(request.body)
     # binding.pry
     attributes = {

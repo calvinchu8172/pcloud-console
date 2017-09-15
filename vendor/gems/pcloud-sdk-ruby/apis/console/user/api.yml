@@ -14,8 +14,7 @@ info:
   contact:
     email: calvinchu@ecoworkinc.com
 schemes:
-  # - https
-  - http
+  - https
 host: api-mycloud.zyxel.com
 paths:
   /v1/user/revoke:
@@ -35,6 +34,11 @@ paths:
           description: 簽證驗證碼
           required: true
           type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
         - name: email
           in: formData
           description: User Email
