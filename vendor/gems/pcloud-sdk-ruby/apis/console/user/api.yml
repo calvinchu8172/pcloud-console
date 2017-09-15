@@ -14,8 +14,8 @@ info:
   contact:
     email: calvinchu@ecoworkinc.com
 schemes:
-  - https
-  # - http
+  # - https
+  - http
 host: api-mycloud.zyxel.com
 paths:
   /v1/user/revoke:

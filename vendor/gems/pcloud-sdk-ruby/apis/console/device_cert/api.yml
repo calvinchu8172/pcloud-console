@@ -14,10 +14,11 @@ info:
   contact:
     email: ryanli@ecoworkinc.com
 schemes:
-  - https
+  # - https
+  - http
 host: api-mycloud.zyxel.com
 paths:
-  /console/device_certs:
+  /v1/device_certs:
     get:
       summary: 裝置憑證列表
       description: 取得裝置憑證列表
@@ -140,7 +141,7 @@ paths:
               message:
                 type: string
                 description: 系統回應訊息
-  /console/device_certs/{serial}:
+  /v1/device_certs/{serial}:
     get:
       summary: 取得裝置憑證詳細資訊
       description: 取得裝置憑證詳細資訊
