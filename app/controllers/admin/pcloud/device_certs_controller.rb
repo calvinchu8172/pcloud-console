@@ -1,12 +1,12 @@
 class Admin::Pcloud::DeviceCertsController < AdminController
   before_action { authorize! :manage, :pcloud_management }
   before_action :set_device_cert, only: [:show, :edit, :update]
-  
-  def index 
+
+  def index
     @device_crts = Pcloud::DeviceCert.all
   end
 
-  def show 
+  def show
   end
 
   def new
@@ -26,9 +26,9 @@ class Admin::Pcloud::DeviceCertsController < AdminController
   end
 
   def edit
-  end 
+  end
 
-  def update 
+  def update
     if @device_cert.update(device_cert_params)
       Log.write(current_user, nil, request.remote_ip, 'update_device_cert', {
         serial: @device_cert.serial
@@ -37,7 +37,7 @@ class Admin::Pcloud::DeviceCertsController < AdminController
     else
       render :edit
     end
-  end 
+  end
 
   private
 

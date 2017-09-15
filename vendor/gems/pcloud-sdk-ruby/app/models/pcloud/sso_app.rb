@@ -58,7 +58,6 @@ module Pcloud
     def destroy
       client = SsoAppClient.new
       client.delete_sso_app(attributes)
-      true
     end
 
     def create_ddb_table
