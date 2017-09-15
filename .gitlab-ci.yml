@@ -39,6 +39,7 @@ cucumber:
   only:
     - develop
     - /^parallel.*$/
+    - /^release.*$/
 
 release:unstable:
   tags:
