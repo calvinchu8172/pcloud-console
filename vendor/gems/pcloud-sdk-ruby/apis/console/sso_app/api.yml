@@ -14,8 +14,8 @@ info:
   contact:
     email: ryanli@ecoworkinc.com
 schemes:
-  # - https
-  - http
+  - https
+  # - http
 host: api-mycloud.zyxel.com
 paths:
   /v1/oauth2/applications:
