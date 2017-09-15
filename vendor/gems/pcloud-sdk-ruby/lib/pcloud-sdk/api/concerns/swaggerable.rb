@@ -21,7 +21,11 @@ module Pcloud
 
       # 取得 base_url
       def base_url
-        "#{scheme}://#{client.host.gsub(/\/+/, '/')}".sub(/\/+\z/, '')
+        if Rails.env.development?
+          "http://#{client.host.gsub(/\/+/, '/')}".sub(/\/+\z/, '')
+        else
+          "#{scheme}://#{client.host.gsub(/\/+/, '/')}".sub(/\/+\z/, '')
+        end
       end
 
       # 取得 url

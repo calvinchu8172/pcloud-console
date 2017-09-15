@@ -21,6 +21,7 @@ class Admin::Pcloud::DeviceCertsController < AdminController
       })
       redirect_to admin_pcloud_device_cert_url(@device_cert)
     else
+      flash.now[:error] = @device_cert.api_error_message if @device_cert.api_error?
       render :new
     end
   end
@@ -35,6 +36,7 @@ class Admin::Pcloud::DeviceCertsController < AdminController
       })
       redirect_to admin_pcloud_device_cert_url(@device_cert)
     else
+      flash.now[:error] = @device_cert.api_error_message if @device_cert.api_error?
       render :edit
     end
   end

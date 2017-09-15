@@ -7,7 +7,7 @@ module Pcloud
     validates :description, presence: true
 
     class << self
-      
+
       def all
         client = DeviceCertClient.new
         response = client.list_device_certs
@@ -26,7 +26,7 @@ module Pcloud
         record
       end
     end # class << self
-      
+
     def save
       run_callbacks :save do
         if valid?
@@ -43,6 +43,13 @@ module Pcloud
           false
         end
       end
+    rescue => e
+      self.api_error_message = begin
+        JSON.parse(e.response.body)['message']
+      rescue
+        I18n.t('common.messages.error')
+      end
+      false
     end # save
 
   end
