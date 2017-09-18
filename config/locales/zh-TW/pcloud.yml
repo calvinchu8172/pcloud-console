@@ -60,3 +60,5 @@ zh-TW:
       create_sso_app: 建立 SSO APP
       delete_sso_app: 刪除 SSO APP
       create_sso_app_db: 建立 OSS APP Table
+      create_device_cert: 建立 Device Certificate
+      update_device_cert: 更新 Device Certificate
