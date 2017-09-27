@@ -1,0 +1,139 @@
+swagger: '2.0'
+info:
+  title: PCloud Console Device Certificate APIs
+  description: |
+    PCloud Console Device Certificate APIs
+
+    ###  Revision History
+
+    **v1.0.0 - Sep. 4 2017**
+
+    1. Initial Release
+
+  version: 1.0.0
+  contact:
+    email: calvinchu@ecoworkinc.com
+schemes:
+  # - https
+  - http
+host: api-mycloud.zyxel.com
+paths:
+  /v1/templates:
+    get:
+      summary: 取得 Templates 列表
+      description: 取得 Templates 列表
+      tags:
+        - console
+      operationId: list_templates
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: certificate_serial
+          in: query
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+  /v1/templates/{identity}:
+    get:
+      summary: Show Template details
+      description: Show Template details
+      tags:
+        - console
+      operationId: get_template
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Signature
+          in: header
+          description: 簽證驗證碼
+          required: true
+          type: string
+        - name: X-Timestamp
+          in: header
+          description: Unix Timestamp。會與 Server Time 的時間比對，判斷此請求是否逾時，也同時讓每次的 Sig. 不同。
+          required: true
+          type: integer
+        - name: identity
+          in: path
+          description: ID
+          required: true
+          type: string
+        - name: certificate_serial
+          in: query
+          description: Certificate Serial
+          required: true
+          type: string
+      responses:
+        200:
+          description: Response from server.
+        400:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息
+        404:
+          description: Response from server.
+          schema:
+            type: object
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: 訊息回應碼
+              message:
+                type: string
+                description: 系統回應訊息

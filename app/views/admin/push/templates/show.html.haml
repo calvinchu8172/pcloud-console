@@ -1,0 +1,49 @@
+- content_for :title, t('push.template.labels.management')
+
+.row
+  .col-md-12.col-sm-12.col-xs-12.toolbar
+    .x_panel
+      .x_title
+        %h2= t('common.labels.toolbar')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        = link_to admin_push_templates_url, class: 'btn btn-app btn-sm' do
+          = fa_icon('caret-square-o-left')
+          = t('common.labels.back')
+        = link_to edit_admin_push_template_url(@templates[0].identity), class: 'btn btn-app btn-sm' do
+          = fa_icon('pencil')
+          = t('common.labels.edit')
+        = link_to admin_push_template_url(@templates[0].identity), 'data-confirm' => t('common.messages.confirm'), method: 'delete', class: 'btn btn-app btn-sm' do
+          = fa_icon('minus-circle')
+          = t('common.labels.delete')
+
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2= t('push.template.titles.show')
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link= fa_icon('chevron-up')
+        .clearfix
+      .x_content
+        .form-horizontal
+          .form-group
+            = label_tag :template, Pcloud::Template.human_attribute_name(:identity), class: 'control-label col-sm-2 col-xs-12'
+            .col-sm-10.col-xs-12
+              %p.form-control-static
+                = @templates[0].identity
+        %table.table.table-bordered.dt-responsive.nowrap
+          %thead
+            %tr
+              %th= Pcloud::Template.human_attribute_name(:locale)
+              %th= Pcloud::Template.human_attribute_name(:title)
+              %th= Pcloud::Template.human_attribute_name(:content)
+          %tbody
+            - @templates.each do |template|
+              %tr
+                %td= template.locale
+                %td= template.title
+                %td.break_line= template.content

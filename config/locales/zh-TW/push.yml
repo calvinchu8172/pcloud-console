@@ -89,6 +89,14 @@ zh-TW:
             show: "%{app_name} - Access Key 資訊"
             new: "%{app_name} - 新增 Access Key"
             edit: "%{app_name} - 編輯 Access Key"
+    template:
+      labels:
+        management: Template 管理
+        new: 新增 Template
+      titles:
+        list: Template 列表
+        show: Template 資訊
+
   log:
     events:
       create_app_group: 新增 App Group

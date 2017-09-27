@@ -21,6 +21,13 @@ zh-TW:
         create_table: 建立 OSS APP Table
         created_at: 建立時間
         updated_at: 更新時間
+      pcloud/template:
+        identity: Template ID
+        title_en: 英文主旨
+        content_en: 英文內容
+        locale: 語言
+        title: 主旨
+        content: 內容
   pcloud:
     user:
       labels:

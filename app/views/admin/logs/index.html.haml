@@ -37,7 +37,7 @@
               %tr
                 %td= log.source.email
                 %td= log.source_ip
-                %td.break_line
+                %td
                   %pre.clear_border= log.target.try(:email) || (log.extra? ? JSON.pretty_generate(log.extra) : nil)
                 %td= log.localized_event
                 %td= log.created_at

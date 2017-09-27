@@ -77,6 +77,8 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      resources :templates, param: :identity
     end
 
     # - P.Cloud 管理 - #

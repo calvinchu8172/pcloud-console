@@ -19,16 +19,17 @@ module Pcloud
   end
 
   # client
-  autoload :Client,          'pcloud-sdk/client'
+  autoload :Client,           'pcloud-sdk/client'
 
   # console clients
-  autoload :ConsoleClient,   'pcloud-sdk/clients/console_client'
+  autoload :ConsoleClient,    'pcloud-sdk/clients/console_client'
   # autoload :AppGroupClient,  'pcloud-sdk/clients/console/app_group_client'
   # autoload :AccessKeyClient, 'pcloud-sdk/clients/console/access_key_client'
   # autoload :AppClient,       'pcloud-sdk/clients/console/app_client'
   autoload :UserClient,       'pcloud-sdk/clients/console/user_client'
   autoload :DeviceCertClient, 'pcloud-sdk/clients/console/device_cert_client'
-  autoload :SsoAppClient, 'pcloud-sdk/clients/console/sso_app_client'
+  autoload :SsoAppClient,     'pcloud-sdk/clients/console/sso_app_client'
+  autoload :TemplateClient,   'pcloud-sdk/clients/console/template_client'
 
   # notification clients
   # autoload :NotificationClient, 'pcloud-sdk/clients/notification_client'
