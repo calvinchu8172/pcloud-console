@@ -11,6 +11,7 @@ class Admin::Push::TemplatesController < AdminController
   end
 
   def new
+    @template = Pcloud::Template.new
   end
 
   def edit

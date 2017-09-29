@@ -96,6 +96,7 @@ zh-TW:
       titles:
         list: Template 列表
         show: Template 資訊
+        new: 新增 Template
 
   log:
     events:

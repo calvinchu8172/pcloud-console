@@ -3,7 +3,7 @@ module Pcloud
 
     permit_primary_key :identity
     permit_attributes  :identity, :created_at, :updated_at, :id, :title_en, :content_en,
-    :template_id, :locale, :title, :content
+      :template_id, :locale, :title, :content, :'title_zh-TW', :'content_zh-TW'
 
     validates :identity, presence: true
     # validates :redirect_uri, presence: true
